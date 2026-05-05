@@ -2,7 +2,7 @@
    THE COVENANT — Design System
    ═══════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap');
 
 :root {
   /* Core */
@@ -45,7 +45,7 @@
   --border-strong:rgba(201,168,76,0.6);
 
   /* Typography */
-  --font-display: 'Cinzel Decorative', serif;
+  --font-display: 'Cormorant SC', serif;
   --font-title:   'Cinzel', serif;
   --font-body:    'IM Fell English', Georgia, serif;
 
@@ -99,7 +99,7 @@ body::before {
 }
 
 .nav-brand {
-  font-family: var(--font-display);
+  font-family: 'Cormorant SC', serif;
   font-size: 16px;
   font-weight: 900;
   color: var(--gold);
@@ -204,7 +204,7 @@ body::before {
 }
 
 .section-title {
-  font-family: var(--font-display);
+  font-family: 'Cormorant SC', serif;
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 700;
   color: var(--gold-light);
@@ -303,7 +303,7 @@ body::before {
 }
 
 .footer-brand {
-  font-family: var(--font-display);
+  font-family: 'Cormorant SC', serif;
   font-size: 18px;
   color: var(--gold);
   letter-spacing: 3px;
