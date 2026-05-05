@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .coming-soon {
+    .coming {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -15,40 +15,80 @@
       justify-content: center;
       text-align: center;
       padding: 120px var(--page-pad) 80px;
+      position: relative;
     }
-    .coming-soon h1 {
+
+    .coming::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(192,21,42,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .coming-seal {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 40px;
+      opacity: 0.3;
+    }
+
+    .coming-label {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .coming-title {
       font-family: var(--font-display);
-      font-size: clamp(32px, 5vw, 60px);
+      font-size: clamp(36px, 6vw, 64px);
       color: var(--gold-light);
       letter-spacing: 4px;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
+      text-shadow: 0 0 40px rgba(201,168,76,0.2);
     }
-    .coming-soon p {
-      color: var(--text-dim);
+
+    .coming-text {
+      font-family: var(--font-body);
       font-style: italic;
       font-size: 16px;
-      margin-bottom: 40px;
+      color: var(--text-dim);
+      max-width: 440px;
+      line-height: 1.9;
+      margin-bottom: 48px;
     }
   </style>
 </head>
 <body>
+
   <nav class="nav">
     <a href="index.html" class="nav-brand">THE COVENANT</a>
     <ul class="nav-links">
       <li><a href="bloodlines.html">Bloodlines</a></li>
       <li><a href="characters.html">Characters</a></li>
-      <li><a href="lore.html">Lore</a></li>
+      <li><a href="lore.html" class="active">Lore</a></li>
       <li><a href="collection.html">Collection</a></li>
     </ul>
     <a href="mint.html" class="nav-cta">Collect</a>
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
-  <div class="coming-soon">
-    <div class="section-label">THE COVENANT</div>
-    <h1>Lore</h1>
-    <p>The seal has not yet been broken on this page. It is coming.</p>
+
+  <div class="coming">
+    <svg class="coming-seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+      <polygon points="40,8 47,28 68,28 52,42 58,62 40,50 22,62 28,42 12,28 33,28" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+      <circle cx="40" cy="40" r="4" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+    </svg>
+    <div class="coming-label">THE COVENANT</div>
+    <div class="coming-title">The Lore</div>
+    <p class="coming-text">The seal has not yet been broken on this chapter. The story of the five bloodlines, the world they inhabit, and the dark forces that bind them — coming soon.</p>
     <a href="index.html" class="btn btn-outline">Return Home</a>
   </div>
+
   <script src="js/main.js"></script>
 </body>
 </html>

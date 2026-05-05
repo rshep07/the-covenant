@@ -3,39 +3,291 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE COVENANT — Bloodlines</title>
+  <title>THE COVENANT — The Bloodlines</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .coming-soon {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+
+    .page-hero {
+      padding: 160px var(--page-pad) 80px;
       text-align: center;
-      padding: 120px var(--page-pad) 80px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
     }
-    .coming-soon h1 {
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(192,21,42,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-label {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .page-hero-title {
       font-family: var(--font-display);
-      font-size: clamp(32px, 5vw, 60px);
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
       color: var(--gold-light);
       letter-spacing: 4px;
-      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(201,168,76,0.25);
+      margin-bottom: 20px;
     }
-    .coming-soon p {
-      color: var(--text-dim);
+
+    .page-hero-sub {
+      font-family: var(--font-body);
       font-style: italic;
       font-size: 16px;
-      margin-bottom: 40px;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .bloodlines-section {
+      padding: 80px var(--page-pad);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .bloodline-full {
+      border: 1px solid var(--border);
+      margin-bottom: 2px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .bloodline-full:hover { background: rgba(255,255,255,0.015); }
+
+    .bloodline-full::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+    }
+
+    .bloodline-full.crimson::before { background: var(--crimson); box-shadow: 0 0 20px rgba(192,21,42,0.5); }
+    .bloodline-full.mystic::before  { background: var(--mystic);  box-shadow: 0 0 20px rgba(123,45,139,0.5); }
+    .bloodline-full.spirit::before  { background: var(--spirit);  box-shadow: 0 0 20px rgba(26,79,160,0.5); }
+    .bloodline-full.wild::before    { background: var(--wild);    box-shadow: 0 0 20px rgba(26,122,42,0.5); }
+    .bloodline-full.cursed::before  { background: var(--cursed-border); }
+
+    .bloodline-full-inner {
+      display: grid;
+      grid-template-columns: 260px 1fr 1fr;
+      align-items: start;
+      padding: 36px 36px 36px 48px;
+      gap: 40px;
+    }
+
+    .bloodline-full-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .bloodline-full.crimson .bloodline-full-name { color: #e84057; }
+    .bloodline-full.mystic  .bloodline-full-name { color: #b06ac4; }
+    .bloodline-full.spirit  .bloodline-full-name { color: #5b8fe0; }
+    .bloodline-full.wild    .bloodline-full-name { color: #4db85e; }
+    .bloodline-full.cursed  .bloodline-full-name { color: #aaa; }
+
+    .bloodline-full-tagline {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .cursed-note {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .bloodline-col-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 14px;
+    }
+
+    .bloodline-char-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bloodline-char-list li {
+      font-family: var(--font-title);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .char-tier-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .char-tier-dot.common    { background: rgba(200,190,170,0.5); }
+    .char-tier-dot.rare      { background: #7ec8e3; }
+    .char-tier-dot.epic      { background: #d4a0e8; }
+
+    .supply-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .supply-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .supply-row:last-child { border-bottom: none; }
+
+    .supply-row-label {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .supply-row-val {
+      font-family: var(--font-title);
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--gold);
+    }
+
+    /* TOTALS */
+    .totals-bar {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--page-pad) 80px;
+    }
+
+    .totals-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .totals-divider::before,
+    .totals-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .totals-divider span {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .totals-inner {
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      background: var(--border);
+      gap: 1px;
+    }
+
+    .total-cell {
+      background: var(--deep);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .total-cell-num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .total-cell.crimson .total-cell-num { color: #e84057; }
+    .total-cell.mystic  .total-cell-num { color: #b06ac4; }
+    .total-cell.spirit  .total-cell-num { color: #5b8fe0; }
+    .total-cell.wild    .total-cell-num { color: #4db85e; }
+    .total-cell.cursed  .total-cell-num { color: #aaa; }
+
+    .total-cell-name {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .total-cell-note {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .bloodline-full-inner { grid-template-columns: 1fr 1fr; }
+      .bloodline-identity { grid-column: 1 / -1; }
+      .totals-inner { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .bloodline-full-inner { grid-template-columns: 1fr; }
+      .totals-inner { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
+
   <nav class="nav">
     <a href="index.html" class="nav-brand">THE COVENANT</a>
     <ul class="nav-links">
-      <li><a href="bloodlines.html">Bloodlines</a></li>
+      <li><a href="bloodlines.html" class="active">Bloodlines</a></li>
       <li><a href="characters.html">Characters</a></li>
       <li><a href="lore.html">Lore</a></li>
       <li><a href="collection.html">Collection</a></li>
@@ -43,12 +295,227 @@
     <a href="mint.html" class="nav-cta">Collect</a>
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
-  <div class="coming-soon">
-    <div class="section-label">THE COVENANT</div>
-    <h1>Bloodlines</h1>
-    <p>The seal has not yet been broken on this page. It is coming.</p>
-    <a href="index.html" class="btn btn-outline">Return Home</a>
+
+  <div class="page-hero">
+    <div class="page-hero-label">THE COVENANT</div>
+    <div class="page-hero-title">The Bloodlines</div>
+    <p class="page-hero-sub">Five bloodlines. Each carries its own power, its own curse, its own rarity. Choose wisely.</p>
   </div>
+
+  <div class="bloodlines-section">
+
+    <div class="bloodline-full crimson" data-reveal>
+      <div class="bloodline-full-inner">
+        <div class="bloodline-identity">
+          <div class="bloodline-full-name">Crimson</div>
+          <div class="bloodline-full-tagline">The First Order</div>
+        </div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Saint</li>
+            <li><span class="char-tier-dot common"></span>Druid</li>
+            <li><span class="char-tier-dot common"></span>Warden</li>
+            <li><span class="char-tier-dot rare"></span>The Oracle</li>
+            <li><span class="char-tier-dot rare"></span>The Sovereign</li>
+            <li><span class="char-tier-dot rare"></span>The Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>The Demon</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">5 × 5 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">3 × 3 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 × 1 char</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloodline-full mystic" data-reveal data-delay="80">
+      <div class="bloodline-full-inner">
+        <div class="bloodline-identity">
+          <div class="bloodline-full-name">Mystic</div>
+          <div class="bloodline-full-tagline">The Unseen Path</div>
+        </div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Saint</li>
+            <li><span class="char-tier-dot common"></span>Druid</li>
+            <li><span class="char-tier-dot common"></span>Warden</li>
+            <li><span class="char-tier-dot rare"></span>The Oracle</li>
+            <li><span class="char-tier-dot rare"></span>The Sovereign</li>
+            <li><span class="char-tier-dot rare"></span>The Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>The Fallen Angel</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">5 × 5 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">3 × 3 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 × 1 char</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloodline-full spirit" data-reveal data-delay="160">
+      <div class="bloodline-full-inner">
+        <div class="bloodline-identity">
+          <div class="bloodline-full-name">Spirit</div>
+          <div class="bloodline-full-tagline">Between Worlds</div>
+        </div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Saint</li>
+            <li><span class="char-tier-dot common"></span>Druid</li>
+            <li><span class="char-tier-dot common"></span>Warden</li>
+            <li><span class="char-tier-dot rare"></span>The Oracle</li>
+            <li><span class="char-tier-dot rare"></span>The Sovereign</li>
+            <li><span class="char-tier-dot rare"></span>The Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>The Ghost</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">5 × 5 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">3 × 3 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 × 1 char</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloodline-full wild" data-reveal data-delay="240">
+      <div class="bloodline-full-inner">
+        <div class="bloodline-identity">
+          <div class="bloodline-full-name">Wild</div>
+          <div class="bloodline-full-tagline">The Old Earth</div>
+        </div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Saint</li>
+            <li><span class="char-tier-dot common"></span>Druid</li>
+            <li><span class="char-tier-dot common"></span>Warden</li>
+            <li><span class="char-tier-dot rare"></span>The Oracle</li>
+            <li><span class="char-tier-dot rare"></span>The Sovereign</li>
+            <li><span class="char-tier-dot rare"></span>The Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>The Shapeshifter</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">5 × 5 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">3 × 3 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 × 1 char</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloodline-full cursed" data-reveal data-delay="320">
+      <div class="bloodline-full-inner">
+        <div class="bloodline-identity">
+          <div class="bloodline-full-name">Cursed</div>
+          <div class="bloodline-full-tagline">The Rarest Strain</div>
+          <div class="cursed-note">1 edition per character — all tiers</div>
+        </div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Saint</li>
+            <li><span class="char-tier-dot common"></span>Druid</li>
+            <li><span class="char-tier-dot common"></span>Warden</li>
+            <li><span class="char-tier-dot rare"></span>The Oracle</li>
+            <li><span class="char-tier-dot rare"></span>The Sovereign</li>
+            <li><span class="char-tier-dot rare"></span>The Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>The Condemned</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">1 × 5 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">1 × 3 chars</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 × 1 char</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">9 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="totals-bar">
+    <div class="totals-divider"><span>Total Pieces Per Bloodline</span></div>
+    <div class="totals-inner">
+      <div class="total-cell crimson">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Crimson</div>
+        <div class="total-cell-note">The First Order</div>
+      </div>
+      <div class="total-cell mystic">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Mystic</div>
+        <div class="total-cell-note">The Unseen Path</div>
+      </div>
+      <div class="total-cell spirit">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Spirit</div>
+        <div class="total-cell-note">Between Worlds</div>
+      </div>
+      <div class="total-cell wild">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Wild</div>
+        <div class="total-cell-note">The Old Earth</div>
+      </div>
+      <div class="total-cell cursed">
+        <div class="total-cell-num">9</div>
+        <div class="total-cell-name">Cursed</div>
+        <div class="total-cell-note">The Rarest Strain</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
+      <ul class="footer-links">
+        <li><a href="bloodlines.html">Bloodlines</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="mint.html">Mint</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank">X / Twitter</a>
+        <a href="#" target="_blank">OpenSea</a>
+      </div>
+      <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
+    </div>
+  </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>
