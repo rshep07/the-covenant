@@ -228,18 +228,74 @@
       font-size: 11px;
     }
 
+    .char-desc-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-bottom: 40px;
+    }
+
+    .char-desc-entry {
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 32px 40px 32px 48px;
+      background: var(--deep);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      align-items: start;
+      position: relative;
+    }
+
+    .char-desc-entry::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+    }
+
+    .char-desc-entry.common::before { background: rgba(200,190,170,0.2); }
+    .char-desc-entry.rare::before   { background: rgba(126,200,227,0.4); }
+
+    .char-desc-name {
+      font-family: 'Cormorant SC', serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text);
+      position: sticky;
+      top: 100px;
+      padding-top: 3px;
+    }
+
+    .char-desc-entry.rare .char-desc-name { color: #a8dff0; }
+
+    .char-desc-text p {
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .char-desc-text p:last-child {
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
     @media (max-width: 900px) {
-      .char-entry { grid-template-columns: 1fr; }
-      .char-entry-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .character-grid { grid-template-columns: repeat(3, 1fr); }
+      .character-grid.rare-grid { grid-template-columns: repeat(3, 1fr); }
       .character-grid.epic-grid { grid-template-columns: repeat(3, 1fr); }
+      .char-desc-entry { grid-template-columns: 1fr; gap: 16px; padding: 24px 24px 24px 32px; }
+      .char-desc-name { position: static; }
     }
 
     @media (max-width: 600px) {
+      .character-grid { grid-template-columns: repeat(2, 1fr); }
       .character-grid.epic-grid { grid-template-columns: repeat(2, 1fr); }
       .tier-legend { gap: 16px; }
     }
-
-
   </style>
 </head>
 <body>
@@ -279,113 +335,17 @@
         <span class="tier-section-name">The Practitioners · 5 Characters · 105 Pieces</span>
       </div>
       <div class="character-grid">
-        <div class="char-entry common">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Witch Doctor</div>
-            <div class="char-bloodlines">
+        <div class="char-card common">
+          <div class="char-card-name">Witch Doctor</div>
+          <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
             <span class="char-bloodline-pill mystic">Mystic</span>
             <span class="char-bloodline-pill spirit">Spirit</span>
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">5 per bloodline &middot; 1 cursed</div>
           </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Witch Doctor has been doing this longer than anyone alive can remember. Long enough that it stopped feeling like something they chose and started feeling like something that was always going to happen.</p>
-            <p>Everything they carry has a purpose. The feathers. The wrapped cord. The beads worn smooth from years of handling. Nothing is there to look good. Every piece has a use, and every use has a price. They know that better than anyone, and they use it anyway.</p>
-            <p>They work somewhere between the living and the dead, which is a crowded and miserable place to spend your time. They have gone back and forth so many times that death stopped feeling far away. It became familiar. Too familiar.</p>
-            <p>The skull face is not a mask. It is what happens after enough trips.</p>
-            </div>
-          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-entry common">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Shaman</div>
-            <div class="char-bloodlines">
-            <span class="char-bloodline-pill crimson">Crimson</span>
-            <span class="char-bloodline-pill mystic">Mystic</span>
-            <span class="char-bloodline-pill spirit">Spirit</span>
-            <span class="char-bloodline-pill wild">Wild</span>
-            <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">5 per bloodline &middot; 1 cursed</div>
-          </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Shaman covered their eyes a long time ago. Not because they cannot see. Because what they see now has nothing to do with eyes.</p>
-            <p>The animal skull they wear is not ceremonial. It is not there for effect. It is proof of how far a person can go before they stop being one. They crossed that line a while ago.</p>
-            <p>They are wide and heavy. They stand like something rooted. When they move, it is with the patience of something that was here before your city existed and will still be here after it is gone.</p>
-            <p>The Wild bloodline does not make Shamans. It finishes them.</p>
-            </div>
-          </div>
-        </div>
-        <div class="char-entry common">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Necromancer</div>
-            <div class="char-bloodlines">
-            <span class="char-bloodline-pill crimson">Crimson</span>
-            <span class="char-bloodline-pill mystic">Mystic</span>
-            <span class="char-bloodline-pill spirit">Spirit</span>
-            <span class="char-bloodline-pill wild">Wild</span>
-            <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">5 per bloodline &middot; 1 cursed</div>
-          </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Necromancer does not hurry. The dead are patient, and they learned it from them.</p>
-            <p>They stand in places where something has already ended. Empty fields. Dead rooms. Crossroads where the air still feels wrong years after whatever happened there. The places find them. Something in the ground knows what they are.</p>
-            <p>What they do is simple. They call. Things answer. It is older than the covenant. Older than the deal that made any of this possible. They were always going to become this. The deal just gave it shape.</p>
-            <p>Some people mistake it for grief. It is not. It is closer to ownership.</p>
-            </div>
-          </div>
-        </div>
-        <div class="char-entry common">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Warlock</div>
-            <div class="char-bloodlines">
-            <span class="char-bloodline-pill crimson">Crimson</span>
-            <span class="char-bloodline-pill mystic">Mystic</span>
-            <span class="char-bloodline-pill spirit">Spirit</span>
-            <span class="char-bloodline-pill wild">Wild</span>
-            <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">5 per bloodline &middot; 1 cursed</div>
-          </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Warlock made terms. That is the difference. They sat down with something old and patient and asked for more than anyone should ask for. Whatever answered did not say no.</p>
-            <p>The face is gone. Not hidden. Not masked. Gone. Replaced by something that burns green in the dark where a face used to be. The Wild bloodline does this eventually. The Warlock got there faster because they wanted more.</p>
-            <p>The vines came later. They always do. The earth finds the openings and works its way in, slowly, because it knows it has time.</p>
-            <p>There is still something behind those eyes. Not human. But something. The bargain is not finished yet.</p>
-            </div>
-          </div>
-        </div>
-        <div class="char-entry common">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Sorceress</div>
-            <div class="char-bloodlines">
-            <span class="char-bloodline-pill crimson">Crimson</span>
-            <span class="char-bloodline-pill mystic">Mystic</span>
-            <span class="char-bloodline-pill spirit">Spirit</span>
-            <span class="char-bloodline-pill wild">Wild</span>
-            <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">5 per bloodline &middot; 1 cursed</div>
-          </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Sorceress looks like someone you could talk to. That is the first thing people notice. Then they notice the hand.</p>
-            <p>She has been collecting for longer than most people have been looking. Every necklace, every coin, every stone worn smooth and hanging against her chest came from somewhere it was meant to stay hidden. She found them anyway. She always does.</p>
-            <p>The hand extended outward is not dramatic. It is not for show. She is simply doing something, the same way someone else might reach for a glass of water. The part you can see is only a side effect.</p>
-            <p>She does not hide her face. There is nothing in her expression that gives her away. She learned that too.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
         <div class="char-card common">
           <div class="char-card-name">Shaman</div>
           <div class="char-card-bloodlines">
@@ -395,13 +355,7 @@
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
-          <div class="char-card-supply">5 per bloodline&nbsp;&nbsp;1 cursed</div>
-          <div class="char-card-desc">
-            <p>The Shaman covered their eyes a long time ago. Not because they cannot see. Because what they see now has nothing to do with eyes.</p>
-            <p>The animal skull they wear is not ceremonial. It is not there for effect. It is proof of how far a person can go before they stop being one. They crossed that line a while ago.</p>
-            <p>They are wide and heavy. They stand like something rooted. When they move, it is with the patience of something that was here before your city existed and will still be here after it is gone.</p>
-            <p class="char-desc-close">The Wild bloodline does not make Shamans. It finishes them.</p>
-          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
         <div class="char-card common">
           <div class="char-card-name">Necromancer</div>
@@ -412,13 +366,7 @@
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
-          <div class="char-card-supply">5 per bloodline&nbsp;&nbsp;1 cursed</div>
-          <div class="char-card-desc">
-            <p>The Necromancer does not hurry. The dead are patient, and they learned it from them.</p>
-            <p>They stand in places where something has already ended. Empty fields. Dead rooms. Crossroads where the air still feels wrong years after whatever happened there. The places find them. Something in the ground knows what they are.</p>
-            <p>What they do is simple. They call. Things answer. It is older than the covenant. Older than the deal that made any of this possible. They were always going to become this. The deal just gave it shape.</p>
-            <p class="char-desc-close">Some people mistake it for grief. It is not. It is closer to ownership.</p>
-          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
         <div class="char-card common">
           <div class="char-card-name">Warlock</div>
@@ -429,13 +377,7 @@
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
-          <div class="char-card-supply">5 per bloodline&nbsp;&nbsp;1 cursed</div>
-          <div class="char-card-desc">
-            <p>The Warlock made terms. That is the difference. They sat down with something old and patient and asked for more than anyone should ask for. Whatever answered did not say no.</p>
-            <p>The face is gone. Not hidden. Not masked. Gone. Replaced by something that burns green in the dark where a face used to be. The Wild bloodline does this eventually. The Warlock got there faster because they wanted more.</p>
-            <p>The vines came later. They always do. The earth finds the openings and works its way in, slowly, because it knows it has time.</p>
-            <p class="char-desc-close">There is still something behind those eyes. Not human. But something. The bargain is not finished yet.</p>
-          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
         <div class="char-card common">
           <div class="char-card-name">Sorceress</div>
@@ -446,12 +388,53 @@
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
-          <div class="char-card-supply">5 per bloodline&nbsp;&nbsp;1 cursed</div>
-          <div class="char-card-desc">
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
+        </div>
+      </div>
+      <div class="char-desc-section">
+        <div class="char-desc-entry common">
+          <div class="char-desc-name">Witch Doctor</div>
+          <div class="char-desc-text">
+            <p>The Witch Doctor has been doing this longer than anyone alive can remember. Long enough that it stopped feeling like something they chose and started feeling like something that was always going to happen.</p>
+            <p>Everything they carry has a purpose. The feathers. The wrapped cord. The beads worn smooth from years of handling. Nothing is there to look good. Every piece has a use, and every use has a price. They know that better than anyone, and they use it anyway.</p>
+            <p>They work somewhere between the living and the dead, which is a crowded and miserable place to spend your time. They have gone back and forth so many times that death stopped feeling far away. It became familiar. Too familiar.</p>
+            <p>The skull face is not a mask. It is what happens after enough trips.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common">
+          <div class="char-desc-name">Shaman</div>
+          <div class="char-desc-text">
+            <p>The Shaman covered their eyes a long time ago. Not because they cannot see. Because what they see now has nothing to do with eyes.</p>
+            <p>The animal skull they wear is not ceremonial. It is not there for effect. It is proof of how far a person can go before they stop being one. They crossed that line a while ago.</p>
+            <p>They are wide and heavy. They stand like something rooted. When they move, it is with the patience of something that was here before your city existed and will still be here after it is gone.</p>
+            <p>The Wild bloodline does not make Shamans. It finishes them.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common">
+          <div class="char-desc-name">Necromancer</div>
+          <div class="char-desc-text">
+            <p>The Necromancer does not hurry. The dead are patient, and they learned it from them.</p>
+            <p>They stand in places where something has already ended. Empty fields. Dead rooms. Crossroads where the air still feels wrong years after whatever happened there. The places find them. Something in the ground knows what they are.</p>
+            <p>What they do is simple. They call. Things answer. It is older than the covenant. Older than the deal that made any of this possible. They were always going to become this. The deal just gave it shape.</p>
+            <p>Some people mistake it for grief. It is not. It is closer to ownership.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common">
+          <div class="char-desc-name">Warlock</div>
+          <div class="char-desc-text">
+            <p>The Warlock made terms. That is the difference. They sat down with something old and patient and asked for more than anyone should ask for. Whatever answered did not say no.</p>
+            <p>The face is gone. Not hidden. Not masked. Gone. Replaced by something that burns green in the dark where a face used to be. The Wild bloodline does this eventually. The Warlock got there faster because they wanted more.</p>
+            <p>The vines came later. They always do. The earth finds the openings and works its way in, slowly, because it knows it has time.</p>
+            <p>There is still something behind those eyes. Not human. But something. The bargain is not finished yet.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common">
+          <div class="char-desc-name">Sorceress</div>
+          <div class="char-desc-text">
             <p>The Sorceress looks like someone you could talk to. That is the first thing people notice. Then they notice the hand.</p>
             <p>She has been collecting for longer than most people have been looking. Every necklace, every coin, every stone worn smooth and hanging against her chest came from somewhere it was meant to stay hidden. She found them anyway. She always does.</p>
             <p>The hand extended outward is not dramatic. It is not for show. She is simply doing something, the same way someone else might reach for a glass of water. The part you can see is only a side effect.</p>
-            <p class="char-desc-close">She does not hide her face. There is nothing in her expression that gives her away. She learned that too.</p>
+            <p>She does not hide her face. There is nothing in her expression that gives her away. She learned that too.</p>
           </div>
         </div>
       </div>
@@ -463,72 +446,18 @@
         <span class="tier-badge rare">Rare</span>
         <span class="tier-section-name">The Specialists · 3 Characters · 39 Pieces</span>
       </div>
-      <div class="character-grid">
-        <div class="char-entry rare">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Oracle</div>
-            <div class="char-bloodlines">
+      <div class="character-grid rare-grid">
+        <div class="char-card rare">
+          <div class="char-card-name">Oracle</div>
+          <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
             <span class="char-bloodline-pill mystic">Mystic</span>
             <span class="char-bloodline-pill spirit">Spirit</span>
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">3 per bloodline &middot; 1 cursed</div>
           </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>Nobody forced the Oracle to look. That is the part people struggle with.</p>
-            <p>The markings on their face are not decoration. They are preparation. The kind of thing you do before opening something you already know will hurt you. Not for ceremony. For protection, or whatever is left of it.</p>
-            <p>The orb does not show them what they want to see. It never has. It shows them what is there, and that is worse. The Oracle stopped hoping for good news a long time ago.</p>
-            <p>What they see stays with them. Every vision. Every ending they watched arrive exactly the way it was shown to them. They are still looking. They always are.</p>
-            </div>
-          </div>
+          <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-entry rare">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Plague Doctor</div>
-            <div class="char-bloodlines">
-            <span class="char-bloodline-pill crimson">Crimson</span>
-            <span class="char-bloodline-pill mystic">Mystic</span>
-            <span class="char-bloodline-pill spirit">Spirit</span>
-            <span class="char-bloodline-pill wild">Wild</span>
-            <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">3 per bloodline &middot; 1 cursed</div>
-          </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Plague Doctor shows up when things are already bad. That is usually how people know it is worse than they thought.</p>
-            <p>They put on the coat. The mask. The hat. They pick up what they need and go where the sickness is. The covenant made them better at the work and worse at almost everything else.</p>
-            <p>The mask is not for them. It never was. The herbs that used to fill the beak are long gone. Whatever it filters now, it filters outward.</p>
-            <p>They still show up. Whatever it costs to see what they see, they still put on the coat and go. Nobody asks what happens after they arrive.</p>
-            </div>
-          </div>
-        </div>
-        <div class="char-entry rare">
-          <div class="char-entry-left">
-            <div class="char-entry-name">Alchemist</div>
-            <div class="char-bloodlines">
-            <span class="char-bloodline-pill crimson">Crimson</span>
-            <span class="char-bloodline-pill mystic">Mystic</span>
-            <span class="char-bloodline-pill spirit">Spirit</span>
-            <span class="char-bloodline-pill wild">Wild</span>
-            <span class="char-bloodline-pill cursed">Cursed</span>
-            </div>
-            <div class="char-entry-supply">3 per bloodline &middot; 1 cursed</div>
-          </div>
-          <div class="char-entry-right">
-            <div class="char-entry-desc">
-            <p>The Alchemist wants to know what it is made of. Not what it feels like. Not what it means. What it is made of, and whether those parts can be separated, and whether something better, or worse, comes out the other side.</p>
-            <p>The bottles at their feet and the bottles dripping from above are not ingredients. They are results. Whatever is inside them used to be somewhere else. Something else. The Alchemist made sure it ended up here.</p>
-            <p>The Spirit bloodline let them move between the living and the dead. Most people cross that line and come back changed. The Alchemist comes back with samples.</p>
-            <p>The coat is stained because the work is not clean. The face was only ever in the way.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
         <div class="char-card rare">
           <div class="char-card-name">Plague Doctor</div>
           <div class="char-card-bloodlines">
@@ -538,13 +467,7 @@
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
-          <div class="char-card-supply">3 per bloodline&nbsp;&nbsp;1 cursed</div>
-          <div class="char-card-desc">
-            <p>The Plague Doctor shows up when things are already bad. That is usually how people know it is worse than they thought.</p>
-            <p>They put on the coat. The mask. The hat. They pick up what they need and go where the sickness is. The covenant made them better at the work and worse at almost everything else.</p>
-            <p>The mask is not for them. It never was. The herbs that used to fill the beak are long gone. Whatever it filters now, it filters outward.</p>
-            <p class="char-desc-close">They still show up. Whatever it costs to see what they see, they still put on the coat and go. Nobody asks what happens after they arrive.</p>
-          </div>
+          <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
         </div>
         <div class="char-card rare">
           <div class="char-card-name">Alchemist</div>
@@ -555,12 +478,35 @@
             <span class="char-bloodline-pill wild">Wild</span>
             <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
-          <div class="char-card-supply">3 per bloodline&nbsp;&nbsp;1 cursed</div>
-          <div class="char-card-desc">
+          <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
+        </div>
+      </div>
+      <div class="char-desc-section">
+        <div class="char-desc-entry rare">
+          <div class="char-desc-name">Oracle</div>
+          <div class="char-desc-text">
+            <p>Nobody forced the Oracle to look. That is the part people struggle with.</p>
+            <p>The markings on their face are not decoration. They are preparation. The kind of thing you do before opening something you already know will hurt you. Not for ceremony. For protection, or whatever is left of it.</p>
+            <p>The orb does not show them what they want to see. It never has. It shows them what is there, and that is worse. The Oracle stopped hoping for good news a long time ago.</p>
+            <p>What they see stays with them. Every vision. Every ending they watched arrive exactly the way it was shown to them. They are still looking. They always are.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry rare">
+          <div class="char-desc-name">Plague Doctor</div>
+          <div class="char-desc-text">
+            <p>The Plague Doctor shows up when things are already bad. That is usually how people know it is worse than they thought.</p>
+            <p>They put on the coat. The mask. The hat. They pick up what they need and go where the sickness is. The covenant made them better at the work and worse at almost everything else.</p>
+            <p>The mask is not for them. It never was. The herbs that used to fill the beak are long gone. Whatever it filters now, it filters outward.</p>
+            <p>They still show up. Whatever it costs to see what they see, they still put on the coat and go. Nobody asks what happens after they arrive.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry rare">
+          <div class="char-desc-name">Alchemist</div>
+          <div class="char-desc-text">
             <p>The Alchemist wants to know what it is made of. Not what it feels like. Not what it means. What it is made of, and whether those parts can be separated, and whether something better, or worse, comes out the other side.</p>
             <p>The bottles at their feet and the bottles dripping from above are not ingredients. They are results. Whatever is inside them used to be somewhere else. Something else. The Alchemist made sure it ended up here.</p>
             <p>The Spirit bloodline let them move between the living and the dead. Most people cross that line and come back changed. The Alchemist comes back with samples.</p>
-            <p class="char-desc-close">The coat is stained because the work is not clean. The face was only ever in the way.</p>
+            <p>The coat is stained because the work is not clean. The face was only ever in the way.</p>
           </div>
         </div>
       </div>
