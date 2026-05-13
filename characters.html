@@ -240,11 +240,15 @@
       border-top: none;
       padding: 32px 40px 32px 48px;
       background: var(--deep);
-      display: grid;
+      display: none;
       grid-template-columns: 180px 1fr;
       gap: 48px;
       align-items: start;
       position: relative;
+    }
+
+    .char-desc-entry.active {
+      display: grid;
     }
 
     .char-desc-entry::before {
@@ -335,7 +339,7 @@
         <span class="tier-section-name">The Practitioners · 5 Characters · 105 Pieces</span>
       </div>
       <div class="character-grid">
-        <div class="char-card common">
+        <div class="char-card common" data-char="witch-doctor">
           <div class="char-card-name">Witch Doctor</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -346,7 +350,7 @@
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-card common">
+        <div class="char-card common" data-char="shaman">
           <div class="char-card-name">Shaman</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -357,7 +361,7 @@
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-card common">
+        <div class="char-card common" data-char="necromancer">
           <div class="char-card-name">Necromancer</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -368,7 +372,7 @@
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-card common">
+        <div class="char-card common" data-char="warlock">
           <div class="char-card-name">Warlock</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -379,7 +383,7 @@
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-card common">
+        <div class="char-card common" data-char="sorceress">
           <div class="char-card-name">Sorceress</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -392,7 +396,7 @@
         </div>
       </div>
       <div class="char-desc-section">
-        <div class="char-desc-entry common">
+        <div class="char-desc-entry common" data-char="witch-doctor">
           <div class="char-desc-name">Witch Doctor</div>
           <div class="char-desc-text">
             <p>The Witch Doctor has been doing this longer than anyone alive can remember. Long enough that it stopped feeling like something they chose and started feeling like something that was always going to happen.</p>
@@ -401,7 +405,7 @@
             <p>The skull face is not a mask. It is what happens after enough trips.</p>
           </div>
         </div>
-        <div class="char-desc-entry common">
+        <div class="char-desc-entry common" data-char="shaman">
           <div class="char-desc-name">Shaman</div>
           <div class="char-desc-text">
             <p>The Shaman covered their eyes a long time ago. Not because they cannot see. Because what they see now has nothing to do with eyes.</p>
@@ -410,7 +414,7 @@
             <p>The Wild bloodline does not make Shamans. It finishes them.</p>
           </div>
         </div>
-        <div class="char-desc-entry common">
+        <div class="char-desc-entry common" data-char="necromancer">
           <div class="char-desc-name">Necromancer</div>
           <div class="char-desc-text">
             <p>The Necromancer does not hurry. The dead are patient, and they learned it from them.</p>
@@ -419,7 +423,7 @@
             <p>Some people mistake it for grief. It is not. It is closer to ownership.</p>
           </div>
         </div>
-        <div class="char-desc-entry common">
+        <div class="char-desc-entry common" data-char="warlock">
           <div class="char-desc-name">Warlock</div>
           <div class="char-desc-text">
             <p>The Warlock made terms. That is the difference. They sat down with something old and patient and asked for more than anyone should ask for. Whatever answered did not say no.</p>
@@ -428,7 +432,7 @@
             <p>There is still something behind those eyes. Not human. But something. The bargain is not finished yet.</p>
           </div>
         </div>
-        <div class="char-desc-entry common">
+        <div class="char-desc-entry common" data-char="sorceress">
           <div class="char-desc-name">Sorceress</div>
           <div class="char-desc-text">
             <p>The Sorceress looks like someone you could talk to. That is the first thing people notice. Then they notice the hand.</p>
@@ -447,7 +451,7 @@
         <span class="tier-section-name">The Specialists · 3 Characters · 39 Pieces</span>
       </div>
       <div class="character-grid rare-grid">
-        <div class="char-card rare">
+        <div class="char-card rare" data-char="oracle">
           <div class="char-card-name">Oracle</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -458,7 +462,7 @@
           </div>
           <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-card rare">
+        <div class="char-card rare" data-char="plague-doctor">
           <div class="char-card-name">Plague Doctor</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -469,7 +473,7 @@
           </div>
           <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
         </div>
-        <div class="char-card rare">
+        <div class="char-card rare" data-char="alchemist">
           <div class="char-card-name">Alchemist</div>
           <div class="char-card-bloodlines">
             <span class="char-bloodline-pill crimson">Crimson</span>
@@ -482,7 +486,7 @@
         </div>
       </div>
       <div class="char-desc-section">
-        <div class="char-desc-entry rare">
+        <div class="char-desc-entry rare" data-char="oracle">
           <div class="char-desc-name">Oracle</div>
           <div class="char-desc-text">
             <p>Nobody forced the Oracle to look. That is the part people struggle with.</p>
@@ -491,7 +495,7 @@
             <p>What they see stays with them. Every vision. Every ending they watched arrive exactly the way it was shown to them. They are still looking. They always are.</p>
           </div>
         </div>
-        <div class="char-desc-entry rare">
+        <div class="char-desc-entry rare" data-char="plague-doctor">
           <div class="char-desc-name">Plague Doctor</div>
           <div class="char-desc-text">
             <p>The Plague Doctor shows up when things are already bad. That is usually how people know it is worse than they thought.</p>
@@ -500,7 +504,7 @@
             <p>They still show up. Whatever it costs to see what they see, they still put on the coat and go. Nobody asks what happens after they arrive.</p>
           </div>
         </div>
-        <div class="char-desc-entry rare">
+        <div class="char-desc-entry rare" data-char="alchemist">
           <div class="char-desc-name">Alchemist</div>
           <div class="char-desc-text">
             <p>The Alchemist wants to know what it is made of. Not what it feels like. Not what it means. What it is made of, and whether those parts can be separated, and whether something better, or worse, comes out the other side.</p>
@@ -595,5 +599,28 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Character card click to expand description
+    document.querySelectorAll('.char-card[data-char]').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.dataset.char;
+        const desc = document.querySelector(`.char-desc-entry[data-char="${key}"]`);
+        const isActive = card.classList.contains('active');
+
+        // Close all open entries in this tier
+        const tier = card.closest('.tier-section');
+        tier.querySelectorAll('.char-card').forEach(c => c.classList.remove('active'));
+        tier.querySelectorAll('.char-desc-entry').forEach(d => d.classList.remove('active'));
+
+        // If it wasn't active, open it
+        if (!isActive && desc) {
+          card.classList.add('active');
+          desc.classList.add('active');
+          // Scroll into view smoothly
+          setTimeout(() => desc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

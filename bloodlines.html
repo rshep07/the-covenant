@@ -83,19 +83,39 @@
     .bloodline-full.cursed::before  { background: var(--cursed-border); }
 
     .bloodline-full-inner {
-      padding: 36px 36px 36px 48px;
-    }
-
-    .bloodline-full-top {
-      margin-bottom: 28px;
-    }
-
-    .bloodline-full-bottom {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      grid-template-columns: 260px 1fr 1fr;
+      grid-template-rows: auto auto;
+      align-items: start;
+      padding: 36px 36px 36px 48px;
+      gap: 0 40px;
+    }
+
+    .bloodline-identity {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .bloodline-characters {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .bloodline-supply {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .bloodline-full-desc {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-top: 28px;
       padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
     .bloodline-full-name {
@@ -119,6 +139,17 @@
       text-transform: uppercase;
       color: var(--text-dim);
       font-weight: 400;
+    }
+
+    .bloodline-full-desc {
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-top: 16px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      grid-column: 1 / -1;
     }
 
     .cursed-note {
@@ -278,17 +309,9 @@
       margin-top: 4px;
     }
 
-    .bloodline-full-desc {
-      font-family: 'IM Fell English', serif;
-      font-size: 15px;
-      line-height: 1.9;
-      color: var(--text-dim);
-      margin-top: 12px;
-      max-width: 680px;
-    }
-
     @media (max-width: 900px) {
-      .bloodline-full-bottom { grid-template-columns: 1fr 1fr; }
+      .bloodline-full-inner { grid-template-columns: 1fr 1fr; }
+      .bloodline-identity { grid-column: 1 / -1; }
       .totals-inner { grid-template-columns: repeat(3, 1fr); }
     }
 
@@ -321,41 +344,12 @@
   <div class="bloodlines-section">
 
     <div class="bloodline-full crimson" data-reveal>
-                  <div class="bloodline-full-inner">
-        <div class="bloodline-full-top">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
           <div class="bloodline-full-name">Crimson</div>
-          <div class="bloodline-full-desc">He gave them power over flesh. The kind that lets you take a life, keep one going, or do things to a body that no prayer, charm, or locked door can protect against. He marks it all down. Every death. Every life spared. All of it his. What they lose is harder to see. The hesitation. The mercy. The part of them that used to feel bad about it.</div>
         </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
-            <div class="bloodline-col-label">Characters</div>
-            <ul class="bloodline-char-list">
-            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
-            <li><span class="char-tier-dot common"></span>Shaman</li>
-            <li><span class="char-tier-dot common"></span>Necromancer</li>
-            <li><span class="char-tier-dot common"></span>Warlock</li>
-            <li><span class="char-tier-dot common"></span>Sorceress</li>
-            <li><span class="char-tier-dot rare"></span>Oracle</li>
-            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
-            <li><span class="char-tier-dot rare"></span>Alchemist</li>
-            <li><span class="char-tier-dot epic"></span>Demon</li>
-            </ul>
-          </div>
-          <div class="bloodline-supply">
-            <div class="bloodline-col-label">Supply</div>
-          <div class="supply-detail">
-            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
-            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
+        <div class="bloodline-full-desc">He gave them power over flesh. The kind that lets you take a life, keep one going, or do things to a body that no prayer, charm, or locked door can protect against. He marks it all down. Every death. Every life spared. All of it his. What they lose is harder to see. The hesitation. The mercy. The part of them that used to feel bad about it.</div>
+        <div class="bloodline-characters">
           <div class="bloodline-col-label">Characters</div>
           <ul class="bloodline-char-list">
             <li><span class="char-tier-dot common"></span>Witch Doctor</li>
@@ -369,51 +363,25 @@
             <li><span class="char-tier-dot epic"></span>Demon</li>
           </ul>
         </div>
-          <div class="bloodline-supply">
+        <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
       </div>
     </div>
 
     <div class="bloodline-full mystic" data-reveal data-delay="80">
-                  <div class="bloodline-full-inner">
-        <div class="bloodline-full-top">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
           <div class="bloodline-full-name">Mystic</div>
-          <div class="bloodline-full-desc">The Mystic bloodline wanted what was locked away on purpose. Not rumors. Not secrets passed around by frightened people. The stuff that was hidden because knowing it changes you in ways you cannot come back from. He gave them the key, and what he gets back is everything they find. He knows what they know before they have time to understand what it means.</div>
         </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
-            <div class="bloodline-col-label">Characters</div>
-            <ul class="bloodline-char-list">
-            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
-            <li><span class="char-tier-dot common"></span>Shaman</li>
-            <li><span class="char-tier-dot common"></span>Necromancer</li>
-            <li><span class="char-tier-dot common"></span>Warlock</li>
-            <li><span class="char-tier-dot common"></span>Sorceress</li>
-            <li><span class="char-tier-dot rare"></span>Oracle</li>
-            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
-            <li><span class="char-tier-dot rare"></span>Alchemist</li>
-            <li><span class="char-tier-dot epic"></span>Fallen Angel</li>
-            </ul>
-          </div>
-          <div class="bloodline-supply">
-            <div class="bloodline-col-label">Supply</div>
-          <div class="supply-detail">
-            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
-            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
+        <div class="bloodline-full-desc">The Mystic bloodline wanted what was locked away on purpose. Not rumors. Not secrets passed around by frightened people. The stuff that was hidden because knowing it changes you in ways you cannot come back from. He gave them the key, and what he gets back is everything they find. He knows what they know before they have time to understand what it means.</div>
+        <div class="bloodline-characters">
           <div class="bloodline-col-label">Characters</div>
           <ul class="bloodline-char-list">
             <li><span class="char-tier-dot common"></span>Witch Doctor</li>
@@ -427,51 +395,25 @@
             <li><span class="char-tier-dot epic"></span>Fallen Angel</li>
           </ul>
         </div>
-          <div class="bloodline-supply">
+        <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
       </div>
     </div>
 
     <div class="bloodline-full spirit" data-reveal data-delay="160">
-                  <div class="bloodline-full-inner">
-        <div class="bloodline-full-top">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
           <div class="bloodline-full-name">Spirit</div>
-          <div class="bloodline-full-desc">He governs the dead, but the dead do not stay neatly where they are put. They wander. They cling. They get lost in doorways, bedrooms, mirrors, and places where grief has worn a path into the floor. So he made a deal. The price is belonging. They live between two worlds and are claimed by neither. The living feel something wrong before they can name it. The dead know exactly what they are.</div>
         </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
-            <div class="bloodline-col-label">Characters</div>
-            <ul class="bloodline-char-list">
-            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
-            <li><span class="char-tier-dot common"></span>Shaman</li>
-            <li><span class="char-tier-dot common"></span>Necromancer</li>
-            <li><span class="char-tier-dot common"></span>Warlock</li>
-            <li><span class="char-tier-dot common"></span>Sorceress</li>
-            <li><span class="char-tier-dot rare"></span>Oracle</li>
-            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
-            <li><span class="char-tier-dot rare"></span>Alchemist</li>
-            <li><span class="char-tier-dot epic"></span>Ghost</li>
-            </ul>
-          </div>
-          <div class="bloodline-supply">
-            <div class="bloodline-col-label">Supply</div>
-          <div class="supply-detail">
-            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
-            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
+        <div class="bloodline-full-desc">He governs the dead, but the dead do not stay neatly where they are put. They wander. They cling. They get lost in doorways, bedrooms, mirrors, and places where grief has worn a path into the floor. So he made a deal. The price is belonging. They live between two worlds and are claimed by neither. The living feel something wrong before they can name it. The dead know exactly what they are.</div>
+        <div class="bloodline-characters">
           <div class="bloodline-col-label">Characters</div>
           <ul class="bloodline-char-list">
             <li><span class="char-tier-dot common"></span>Witch Doctor</li>
@@ -485,51 +427,25 @@
             <li><span class="char-tier-dot epic"></span>Ghost</li>
           </ul>
         </div>
-          <div class="bloodline-supply">
+        <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
       </div>
     </div>
 
     <div class="bloodline-full wild" data-reveal data-delay="240">
-                  <div class="bloodline-full-inner">
-        <div class="bloodline-full-top">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
           <div class="bloodline-full-name">Wild</div>
-          <div class="bloodline-full-desc">The Wild bloodline wanted to stop being human. Not to die. To be done with the weakness of being one person in one body for one short life. He rules what the ground receives and what it gives back. He let them become part of that cycle. It starts in the skin and works inward. Quietly. Most do not notice what is missing until they reach for it and find nothing there.</div>
         </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
-            <div class="bloodline-col-label">Characters</div>
-            <ul class="bloodline-char-list">
-            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
-            <li><span class="char-tier-dot common"></span>Shaman</li>
-            <li><span class="char-tier-dot common"></span>Necromancer</li>
-            <li><span class="char-tier-dot common"></span>Warlock</li>
-            <li><span class="char-tier-dot common"></span>Sorceress</li>
-            <li><span class="char-tier-dot rare"></span>Oracle</li>
-            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
-            <li><span class="char-tier-dot rare"></span>Alchemist</li>
-            <li><span class="char-tier-dot epic"></span>Beast</li>
-            </ul>
-          </div>
-          <div class="bloodline-supply">
-            <div class="bloodline-col-label">Supply</div>
-          <div class="supply-detail">
-            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
-            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
-            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
+        <div class="bloodline-full-desc">The Wild bloodline wanted to stop being human. Not to die. To be done with the weakness of being one person in one body for one short life. He rules what the ground receives and what it gives back. He let them become part of that cycle. It starts in the skin and works inward. Quietly. Most do not notice what is missing until they reach for it and find nothing there.</div>
+        <div class="bloodline-characters">
           <div class="bloodline-col-label">Characters</div>
           <ul class="bloodline-char-list">
             <li><span class="char-tier-dot common"></span>Witch Doctor</li>
@@ -543,25 +459,27 @@
             <li><span class="char-tier-dot epic"></span>Beast</li>
           </ul>
         </div>
-          <div class="bloodline-supply">
+        <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
       </div>
     </div>
 
     <div class="bloodline-full cursed" data-reveal data-delay="320">
-                  <div class="bloodline-full-inner">
-        <div class="bloodline-full-top">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
           <div class="bloodline-full-name">Cursed</div>
-          <div class="bloodline-full-desc">The Cursed bloodline never made a deal. Someone before them did. The terms were broken. The debt went unpaid. He does not forgive debts. He passes them down. They were born already owing. He could end it. He just has not decided they are worth the answer.</div>
         </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
-            <div class="bloodline-col-label">Characters</div>
-            <ul class="bloodline-char-list">
+        <div class="bloodline-full-desc">The Cursed bloodline never made a deal. Someone before them did. The terms were broken. The debt went unpaid. He does not forgive debts. He passes them down. They were born already owing. He could end it. He just has not decided they are worth the answer.</div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
             <li><span class="char-tier-dot common"></span>Witch Doctor</li>
             <li><span class="char-tier-dot common"></span>Shaman</li>
             <li><span class="char-tier-dot common"></span>Necromancer</li>
@@ -571,42 +489,17 @@
             <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
             <li><span class="char-tier-dot rare"></span>Alchemist</li>
             <li><span class="char-tier-dot epic"></span>Condemned</li>
-            </ul>
-          </div>
-          <div class="bloodline-supply">
-            <div class="bloodline-col-label">Supply</div>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
           <div class="supply-detail">
             <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">5 characters</span></div>
             <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">3 characters</span></div>
             <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
             <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">9 pieces</span></div>
           </div>
-          </div>
         </div>
-      </div>
-    </div>
-        </div>
-        <div class="bloodline-full-bottom">
-          <div class="bloodline-characters">
-          <div class="bloodline-col-label">Characters</div>
-          <ul class="bloodline-char-list">
-            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
-            <li><span class="char-tier-dot common"></span>Shaman</li>
-            <li><span class="char-tier-dot common"></span>Necromancer</li>
-            <li><span class="char-tier-dot common"></span>Warlock</li>
-            <li><span class="char-tier-dot common"></span>Sorceress</li>
-            <li><span class="char-tier-dot rare"></span>Oracle</li>
-            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
-            <li><span class="char-tier-dot rare"></span>Alchemist</li>
-            <li><span class="char-tier-dot epic"></span>Condemned</li>
-          </ul>
-        </div>
-          <div class="bloodline-supply">
-          <div class="bloodline-col-label">Supply</div>
-        </div>
-      </div>
-    </div>
-  </div>
       </div>
     </div>
 
