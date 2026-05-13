@@ -3,37 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE COVENANT — Lore</title>
+  <title>THE COVENANT — The Lore</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .coming {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .lore-hero {
+      padding: 160px var(--page-pad) 100px;
       text-align: center;
-      padding: 120px var(--page-pad) 80px;
       position: relative;
+      border-bottom: 1px solid var(--border);
     }
-
-    .coming::before {
+    .lore-hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(192,21,42,0.05) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(192,21,42,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
-
-    .coming-seal {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 40px;
-      opacity: 0.3;
-    }
-
-    .coming-label {
+    .lore-hero-label {
       font-family: var(--font-title);
       font-size: 10px;
       letter-spacing: 6px;
@@ -42,24 +29,110 @@
       opacity: 0.7;
       margin-bottom: 20px;
     }
-
-    .coming-title {
+    .lore-hero-title {
       font-family: 'Cormorant SC', serif;
-      font-size: clamp(36px, 6vw, 64px);
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 700;
       color: var(--gold-light);
-      letter-spacing: 4px;
-      margin-bottom: 24px;
+      letter-spacing: 8px;
       text-shadow: 0 0 40px rgba(201,168,76,0.2);
+      margin-bottom: 24px;
     }
-
-    .coming-text {
-      font-family: var(--font-body);
+    .lore-hero-sub {
+      font-family: 'IM Fell English', serif;
       font-style: italic;
-      font-size: 16px;
+      font-size: 17px;
       color: var(--text-dim);
-      max-width: 440px;
+      max-width: 480px;
+      margin: 0 auto;
       line-height: 1.9;
-      margin-bottom: 48px;
+    }
+    .lore-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 100px var(--page-pad);
+    }
+    .lore-section-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .lore-section-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 5px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .lore-divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 var(--page-pad);
+    }
+    .lore-divider::before,
+    .lore-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .lore-divider-mark {
+      width: 6px;
+      height: 6px;
+      border: 1px solid rgba(201,168,76,0.4);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .lore-prose p {
+      font-family: 'IM Fell English', serif;
+      font-size: 18px;
+      line-height: 2;
+      color: var(--text);
+      margin-bottom: 30px;
+    }
+    .lore-prose p.accent {
+      font-size: 20px;
+      color: var(--gold-light);
+      font-style: italic;
+      text-align: center;
+      margin: 44px 0;
+      padding: 0 20px;
+    }
+    .lore-prose p.closing {
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(201,168,76,0.75);
+      margin-bottom: 8px;
+    }
+    .lore-cta {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding: 80px var(--page-pad) 100px;
+    }
+    .lore-cta-text {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.9;
+    }
+    .lore-cta-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
   </style>
 </head>
@@ -77,16 +150,51 @@
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <div class="coming">
-    <svg class="coming-seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
-      <polygon points="40,8 47,28 68,28 52,42 58,62 40,50 22,62 28,42 12,28 33,28" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
-      <circle cx="40" cy="40" r="4" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
-    </svg>
-    <div class="coming-label">THE COVENANT</div>
-    <div class="coming-title">The Lore</div>
-    <p class="coming-text">The seal has not yet been broken on this chapter. The story of the five bloodlines, the world they inhabit, and the dark forces that bind them — coming soon.</p>
-    <a href="index.html" class="btn btn-outline">Return Home</a>
+  <div class="lore-hero">
+    <div class="lore-hero-label">The Covenant</div>
+    <div class="lore-hero-title">The Lore</div>
+    <p class="lore-hero-sub">Five bloodlines. Five deals. One crossroads that was always going to find you.</p>
+  </div>
+
+  <div class="lore-section" data-reveal>
+    <div class="lore-section-label">The Origin</div>
+    <div class="lore-section-title">The Crossroads</div>
+    <div class="lore-prose">
+      <p>The crossroads appears at the end of a road you have walked a hundred times. Five paths where there used to be one. He is already there, which should not surprise you.</p>
+      <p>Tall hat. Bone face. A cigar that has no interest in going out. He is laughing at something when you arrive. You never find out what.</p>
+      <p>Here is what nobody tells you about him. He could send you home. He has that power. He can cure anything, lift any curse, decide someone is not worth the ink and turn them away whole. He does it sometimes, when the want in someone does not interest him enough to write their name down.</p>
+      <p class="accent">Yours interests him.</p>
+      <p>Five bloodlines have been written at this crossing. Five different prices for five different wants. The deal does not announce itself. There is no ceremony. You go home, you sleep, you wake up and something is slightly different. Then something else. Then something else again. You tell yourself you are adjusting. Some of them never stop telling themselves that.</p>
+      <p>He digs the graves for what you were before you came here. Considers it part of the job. He is thorough about it.</p>
+      <p>He keeps the ledger. Every name, every want, every cost. He knows what you are giving up before you do. He could tell you. He will not.</p>
+      <p class="closing">He is not the villain of this story.</p>
+      <p class="closing">That is the part that should worry you.</p>
+    </div>
+  </div>
+
+  <div class="lore-divider"><div class="lore-divider-mark"></div></div>
+
+  <div class="lore-section" data-reveal>
+    <div class="lore-section-label">The Five Deals</div>
+    <div class="lore-section-title">The Bloodlines</div>
+    <div class="lore-prose">
+      <p>He gave them power over flesh. The kind that lets you take a life, keep one going, or do things to a body that no prayer, charm, or locked door can protect against. He marks it all down. Every death. Every life spared. All of it his. What they lose is harder to see. The hesitation. The mercy. The part of them that used to feel bad about it.</p>
+      <p>The Mystic bloodline wanted what was locked away on purpose. Not rumors. Not secrets passed around by frightened people. The stuff that was hidden because knowing it changes you in ways you cannot come back from. He sees what moves between worlds. He gave them the key. What he gets back is everything they find. He knows what they know before they have time to understand what it means.</p>
+      <p>He governs the dead, but the dead do not stay neatly where they are put. They wander. They cling. They get lost in doorways, bedrooms, mirrors, graveyards, and places where grief has worn a path into the floor. So he made a deal. The price is belonging. They live between two worlds and are claimed by neither.</p>
+      <p>The Wild bloodline wanted to stop being human. Not to die. To be done with the weakness of being one person in one body for one short life. He rules what the ground receives and what it gives back. He let them become part of that cycle. It starts in the skin and works inward. Quietly. Most do not notice what is missing until they reach for it and find nothing there.</p>
+      <p>The Cursed bloodline never made a deal. Someone before them did. The terms were broken. The debt went unpaid. He does not forgive debts. He passes them down. They were born already owing. He could end it. He just has not decided they are worth the answer.</p>
+    </div>
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="bloodlines.html" class="btn btn-outline">Read The Bloodlines</a>
+    </div>
+  </div>
+
+  <div class="lore-cta" data-reveal>
+    <p class="lore-cta-text">Fourteen characters across five bloodlines. Each one bound to a deal they may or may not have chosen.</p>
+    <div class="lore-cta-links">
+      <a href="characters.html" class="btn btn-outline">The Characters</a>
+      <a href="collection.html" class="btn btn-outline">The Collection</a>
+    </div>
   </div>
 
   <script src="js/main.js"></script>
