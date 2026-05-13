@@ -57,6 +57,12 @@
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
+a, button, [data-char], .btn, .nav-cta, .nav-hamburger, label, select,
+input[type="button"], input[type="submit"], input[type="checkbox"] {
+  cursor: pointer;
+}
+
 body {
   background: var(--black);
   color: var(--text);
