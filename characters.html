@@ -4,263 +4,338 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE COVENANT — Characters</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700;1,900&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
 
-    .chars-hero {
-      padding: 140px var(--page-pad) 80px;
-      max-width: var(--content-w);
-      margin: 0 auto;
+    .page-hero {
+      padding: 160px var(--page-pad) 80px;
+      text-align: center;
+      position: relative;
       border-bottom: 1px solid var(--border);
     }
 
-    .page-eyebrow {
-      font-family: var(--font-ui);
-      font-size: 9px;
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,45,139,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-label {
+      font-family: var(--font-title);
+      font-size: 10px;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: var(--red-mid);
-      opacity: 0.7;
-      margin-bottom: 14px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.8;
     }
 
-    .page-title {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 900;
+    .page-hero-title {
+      font-family: 'Cormorant SC', serif;
       font-size: clamp(36px, 6vw, 72px);
-      color: var(--bone);
-      line-height: 1.0;
-      margin-bottom: 16px;
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 12px;
+      text-shadow: 0 0 40px rgba(201,168,76,0.25);
+      margin-bottom: 20px;
     }
 
-    .page-sub {
+    .page-hero-sub {
       font-family: var(--font-body);
       font-style: italic;
       font-size: 16px;
       color: var(--text-dim);
-      max-width: 520px;
+      max-width: 500px;
+      margin: 0 auto;
       line-height: 1.8;
     }
 
-    /* ── TIER SECTIONS ── */
-    .chars-body {
-      max-width: var(--content-w);
+    /* ── TIER LEGEND ── */
+    .tier-legend {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 30px var(--page-pad);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.common    { background: rgba(200,190,170,0.6); }
+    .legend-dot.rare      { background: #7ec8e3; }
+    .legend-dot.epic      { background: #d4a0e8; }
+    .legend-dot.legendary { background: var(--gold); box-shadow: 0 0 8px rgba(201,168,76,0.6); }
+
+    /* ── CHARACTERS SECTION ── */
+    .characters-wrap {
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 80px var(--page-pad) 100px;
+      padding: 80px var(--page-pad);
     }
 
     .tier-section {
-      margin-bottom: 72px;
+      margin-bottom: 60px;
     }
 
-    .tier-header {
+    .tier-section-header {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 20px;
-      margin-bottom: 2px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .tier-section-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
     .tier-badge {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 900;
-      font-size: 28px;
-      color: var(--bone);
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: 1px solid;
+      white-space: nowrap;
     }
 
-    .tier-badge.rare   { color: #6688DD; }
-    .tier-badge.epic   { color: #AA77DD; }
-    .tier-badge.legendary { color: var(--red-mid); }
+    .tier-badge.common   { color: var(--text-dim); border-color: rgba(200,190,170,0.2); }
+    .tier-badge.rare     { color: #a8dff0; border-color: rgba(126,200,227,0.3); }
+    .tier-badge.epic     { color: #e0c0f0; border-color: rgba(208,160,232,0.3); }
+    .tier-badge.legendary { color: var(--gold-light); border-color: var(--border-mid); }
 
-    .tier-meta {
-      font-family: var(--font-mono);
-      font-size: 10px;
+    .tier-section-name {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
       color: var(--text-muted);
-      letter-spacing: 1px;
+      white-space: nowrap;
     }
 
-    /* ── CHARACTER GRID ── */
-    .char-grid {
+    /* ── CHARACTER CARDS ── */
+    .character-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1px;
       background: var(--border);
-      margin-bottom: 1px;
     }
 
-    .char-grid.rare-grid  { grid-template-columns: repeat(3, 1fr); }
-    .char-grid.epic-grid  { grid-template-columns: repeat(5, 1fr); }
-    .char-grid.legend-grid { grid-template-columns: 1fr; }
+    .character-grid.rare-grid   { grid-template-columns: repeat(3, 1fr); }
+    .character-grid.epic-grid   { grid-template-columns: repeat(5, 1fr); }
+    .character-grid.legend-grid { grid-template-columns: 1fr; }
 
     .char-card {
       background: var(--deep);
-      padding: 28px 22px;
+      padding: 28px 20px;
       text-align: center;
-      cursor: pointer;
       position: relative;
-      transition: background 0.25s;
+      transition: background 0.3s;
+      overflow: hidden;
     }
 
-    .char-card:hover { background: var(--surface); }
-
-    .char-card.active {
-      background: var(--surface-2);
-    }
-
-    .char-card::after {
+    .char-card::before {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      top: 0; left: 0; right: 0;
       height: 2px;
-      background: transparent;
-      transition: background 0.25s;
     }
 
-    .char-card.active.common::after  { background: rgba(180,172,160,0.35); }
-    .char-card.active.rare::after    { background: rgba(102,136,221,0.55); }
-    .char-card.active.epic::after    { background: rgba(170,119,221,0.6); }
-    .char-card.active.legendary::after { background: var(--red); }
+    .char-card.common::before   { background: rgba(200,190,170,0.3); }
+    .char-card.rare::before     { background: #7ec8e3; }
+    .char-card.epic::before     { background: #d4a0e8; }
+    .char-card.legendary::before { background: var(--gold); box-shadow: 0 0 10px rgba(201,168,76,0.5); }
+
+    .char-card:hover { background: rgba(255,255,255,0.025); }
 
     .char-card-name {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--bone);
-      margin-bottom: 14px;
-      line-height: 1.2;
+      font-family: var(--font-title);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
-    .char-card.rare .char-card-name      { color: #8AABEE; }
-    .char-card.epic .char-card-name      { color: #CC99EE; }
-    .char-card.legendary .char-card-name { color: var(--red-mid); font-size: 17px; }
+    .char-card.common .char-card-name   { color: var(--text); }
+    .char-card.rare .char-card-name     { color: #a8dff0; }
+    .char-card.epic .char-card-name     { color: #e0c0f0; }
+    .char-card.legendary .char-card-name { color: var(--gold-light); font-size: 16px; letter-spacing: 3px; }
 
-    .char-card-pills {
+    .char-card-bloodlines {
       display: flex;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       flex-wrap: wrap;
       margin-bottom: 12px;
     }
 
-    .char-card-supply {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .char-card-more {
-      display: block;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      font-family: var(--font-ui);
+    .char-bloodline-pill {
+      font-family: var(--font-title);
       font-size: 8px;
-      letter-spacing: 2.5px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--red-mid);
-      opacity: 0.5;
-      transition: opacity 0.2s;
+      padding: 2px 7px;
+      border: 1px solid;
     }
 
-    .char-card-more::after { content: ' ↓'; }
-    .char-card:hover .char-card-more { opacity: 0.9; }
-    .char-card.active .char-card-more { opacity: 1; }
-    .char-card.active .char-card-more::after { content: ' ↑'; }
+    .char-bloodline-pill.crimson { border-color: var(--crimson-dim); color: #e84057; }
+    .char-bloodline-pill.mystic  { border-color: var(--mystic-dim);  color: #b06ac4; }
+    .char-bloodline-pill.spirit  { border-color: var(--spirit-dim);  color: #5b8fe0; }
+    .char-bloodline-pill.wild    { border-color: var(--wild-dim);    color: #4db85e; }
+    .char-bloodline-pill.cursed  { border-color: #444; color: #999; }
+    .char-bloodline-pill.none    { border-color: var(--gold-dim); color: var(--gold); }
 
-    /* ── DESC SECTION ── */
+    .char-card-supply {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .char-card.legendary {
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      padding: 40px;
+    }
+
+    .char-card.legendary .char-card-supply {
+      color: var(--gold);
+      font-size: 11px;
+    }
+
     .char-desc-section {
       display: flex;
       flex-direction: column;
       gap: 1px;
-      background: var(--border);
-      margin-bottom: 1px;
+      margin-bottom: 40px;
     }
 
     .char-desc-entry {
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 32px 40px 32px 48px;
+      background: var(--deep);
       display: none;
-      grid-template-columns: 200px 1fr;
-      gap: 60px;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
       align-items: start;
-      background: var(--surface);
-      padding: 40px 32px 40px 40px;
-      border-left: 3px solid transparent;
+      position: relative;
     }
 
-    .char-desc-entry.common { border-left-color: rgba(180,172,160,0.25); }
-    .char-desc-entry.rare   { border-left-color: rgba(102,136,221,0.4); }
+    .char-desc-entry.active {
+      display: grid;
+    }
 
-    .char-desc-entry.active { display: grid; }
+    .char-desc-entry::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+    }
+
+    .char-desc-entry.common::before { background: rgba(200,190,170,0.2); }
+    .char-desc-entry.rare::before   { background: rgba(126,200,227,0.4); }
 
     .char-desc-name {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 900;
-      font-size: 22px;
-      color: var(--bone);
+      font-family: 'Cormorant SC', serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text);
       position: sticky;
-      top: 88px;
-      line-height: 1.15;
+      top: 100px;
+      padding-top: 3px;
     }
 
-    .char-desc-entry.rare .char-desc-name { color: #8AABEE; }
+    .char-desc-entry.rare .char-desc-name { color: #a8dff0; }
 
     .char-desc-text p {
-      font-family: var(--font-body);
+      font-family: 'IM Fell English', serif;
       font-size: 15px;
-      line-height: 1.95;
+      line-height: 1.9;
       color: var(--text-dim);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .char-desc-text p:last-child { margin-bottom: 0; }
-
-    /* ── LEGEND CARD ── */
-    .char-card.legendary {
-      padding: 44px;
-      text-align: left;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 40px;
-      background: linear-gradient(135deg, rgba(176,24,32,0.06) 0%, transparent 60%);
+    .char-desc-text p:last-child {
+      margin-bottom: 0;
     }
 
-    .char-card.legendary .char-card-more { display: none; }
 
-    .legend-right {
-      font-family: var(--font-mono);
+    .char-card-more {
+      display: block;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: var(--font-title);
       font-size: 9px;
-      color: var(--red-mid);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      white-space: nowrap;
+      color: var(--gold);
+      opacity: 0.6;
+      transition: opacity 0.2s;
     }
 
-    /* ── RESPONSIVE ── */
+    .char-card-more::after {
+      content: ' ↓';
+    }
+
+    .char-card:hover .char-card-more {
+      opacity: 1;
+    }
+
+    .char-card.active .char-card-more {
+      opacity: 1;
+    }
+
+    .char-card.active .char-card-more::after {
+      content: ' ↑';
+    }
+
     @media (max-width: 900px) {
-      .char-grid { grid-template-columns: repeat(3, 1fr); }
-      .char-grid.rare-grid { grid-template-columns: repeat(3, 1fr); }
-      .char-desc-entry { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; }
+      .character-grid { grid-template-columns: repeat(3, 1fr); }
+      .character-grid.rare-grid { grid-template-columns: repeat(3, 1fr); }
+      .character-grid.epic-grid { grid-template-columns: repeat(3, 1fr); }
+      .char-desc-entry { grid-template-columns: 1fr; gap: 16px; padding: 24px 24px 24px 32px; }
       .char-desc-name { position: static; }
     }
 
     @media (max-width: 600px) {
-      .char-grid { grid-template-columns: repeat(2, 1fr); }
-      .char-grid.epic-grid { grid-template-columns: repeat(2, 1fr); }
+      .character-grid { grid-template-columns: repeat(2, 1fr); }
+      .character-grid.epic-grid { grid-template-columns: repeat(2, 1fr); }
+      .tier-legend { gap: 16px; }
     }
-
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <a href="index.html" class="nav-brand">The Covenant</a>
+    <a href="index.html" class="nav-brand">THE COVENANT</a>
     <ul class="nav-links">
       <li><a href="bloodlines.html">Bloodlines</a></li>
       <li><a href="characters.html" class="active">Characters</a></li>
@@ -271,57 +346,85 @@
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <div class="chars-hero" data-reveal>
-    <div class="page-eyebrow">The Covenant</div>
-    <h1 class="page-title">The Characters</h1>
-    <p class="page-sub">Fourteen characters across four tiers of power. Each one bound to a deal they may or may not have chosen.</p>
+  <div class="page-hero">
+    <div class="page-hero-label">THE COVENANT</div>
+    <div class="page-hero-title">The Characters</div>
+    <p class="page-hero-sub">Fourteen beings across four tiers of power. Each bound to a bloodline. One bound to none.</p>
   </div>
 
-  <div class="chars-body">
+  <!-- LEGEND -->
+  <div class="tier-legend">
+    <div class="legend-item"><span class="legend-dot common"></span>Common — The Practitioners</div>
+    <div class="legend-item"><span class="legend-dot rare"></span>Rare — The Specialists</div>
+    <div class="legend-item"><span class="legend-dot epic"></span>Epic — The Ascended</div>
+    <div class="legend-item"><span class="legend-dot legendary"></span>Legendary — The Creator</div>
+  </div>
 
-    <!-- PRACTITIONERS -->
+  <div class="characters-wrap">
+
+    <!-- COMMON -->
     <div class="tier-section" data-reveal>
-      <div class="tier-header">
-        <span class="tier-badge">The Practitioners</span>
-        <span class="tier-meta">5 characters · 105 pieces</span>
+      <div class="tier-section-header">
+        <span class="tier-badge common">Common</span>
+        <span class="tier-section-name">The Practitioners · 5 Characters · 105 Pieces</span>
       </div>
-      <div class="char-grid">
+      <div class="character-grid">
         <div class="char-card common" data-char="witch-doctor">
           <div class="char-card-name">Witch Doctor</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
         </div>
         <div class="char-card common" data-char="shaman">
           <div class="char-card-name">Shaman</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
         </div>
         <div class="char-card common" data-char="necromancer">
           <div class="char-card-name">Necromancer</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
         </div>
         <div class="char-card common" data-char="warlock">
           <div class="char-card-name">Warlock</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
         </div>
         <div class="char-card common" data-char="sorceress">
           <div class="char-card-name">Sorceress</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
@@ -343,7 +446,7 @@
             <p>The Shaman covered their eyes a long time ago. Not because they cannot see. Because what they see now has nothing to do with eyes.</p>
             <p>The animal skull they wear is not ceremonial. It is not there for effect. It is proof of how far a person can go before they stop being one. They crossed that line a while ago.</p>
             <p>They are wide and heavy. They stand like something rooted. When they move, it is with the patience of something that was here before your city existed and will still be here after it is gone.</p>
-            <p>Whatever they were before they came to the crossroads, they were always going to end up here. The deal does not make Shamans. It finishes them.</p>
+            <p>Whatever they were before they came to the crossroads, they were always going to end up here. The deal does not make Shamans. It finishes them. Wearing what they wear. Knowing what they know. Standing between the world you know and the one you do not, listening to something underneath it all.</p>
           </div>
         </div>
         <div class="char-desc-entry common" data-char="necromancer">
@@ -376,33 +479,45 @@
       </div>
     </div>
 
-    <!-- SPECIALISTS -->
-    <div class="tier-section" data-reveal>
-      <div class="tier-header">
-        <span class="tier-badge rare">The Specialists</span>
-        <span class="tier-meta">3 characters · 39 pieces</span>
+    <!-- RARE -->
+    <div class="tier-section" data-reveal data-delay="100">
+      <div class="tier-section-header">
+        <span class="tier-badge rare">Rare</span>
+        <span class="tier-section-name">The Specialists · 3 Characters · 39 Pieces</span>
       </div>
-      <div class="char-grid rare-grid">
+      <div class="character-grid rare-grid">
         <div class="char-card rare" data-char="oracle">
           <div class="char-card-name">Oracle</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
         </div>
         <div class="char-card rare" data-char="plague-doctor">
           <div class="char-card-name">Plague Doctor</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
         </div>
         <div class="char-card rare" data-char="alchemist">
           <div class="char-card-name">Alchemist</div>
-          <div class="char-card-pills">
-            <span class="char-bloodline-pill crimson">Crimson</span><span class="char-bloodline-pill mystic">Mystic</span><span class="char-bloodline-pill spirit">Spirit</span><span class="char-bloodline-pill wild">Wild</span><span class="char-bloodline-pill cursed">Cursed</span>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
           </div>
           <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
           <span class="char-card-more">Full Details</span>
@@ -439,54 +554,64 @@
       </div>
     </div>
 
-    <!-- ASCENDED -->
-    <div class="tier-section" data-reveal>
-      <div class="tier-header">
-        <span class="tier-badge epic">The Ascended</span>
-        <span class="tier-meta">5 characters · 5 pieces · 1 of 1</span>
+    <!-- EPIC -->
+    <div class="tier-section" data-reveal data-delay="200">
+      <div class="tier-section-header">
+        <span class="tier-badge epic">Epic</span>
+        <span class="tier-section-name">The Ascended · 5 Characters · 5 Pieces</span>
       </div>
-      <div class="char-grid epic-grid">
+      <div class="character-grid epic-grid">
         <div class="char-card epic">
           <div class="char-card-name">Demon</div>
-          <div class="char-card-pills"><span class="char-bloodline-pill crimson">Crimson</span></div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+          </div>
           <div class="char-card-supply">1 of 1</div>
         </div>
         <div class="char-card epic">
           <div class="char-card-name">Fallen Angel</div>
-          <div class="char-card-pills"><span class="char-bloodline-pill mystic">Mystic</span></div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill mystic">Mystic</span>
+          </div>
           <div class="char-card-supply">1 of 1</div>
         </div>
         <div class="char-card epic">
           <div class="char-card-name">Ghost</div>
-          <div class="char-card-pills"><span class="char-bloodline-pill spirit">Spirit</span></div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill spirit">Spirit</span>
+          </div>
           <div class="char-card-supply">1 of 1</div>
         </div>
         <div class="char-card epic">
           <div class="char-card-name">Beast</div>
-          <div class="char-card-pills"><span class="char-bloodline-pill wild">Wild</span></div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill wild">Wild</span>
+          </div>
           <div class="char-card-supply">1 of 1</div>
         </div>
         <div class="char-card epic">
           <div class="char-card-name">Condemned</div>
-          <div class="char-card-pills"><span class="char-bloodline-pill cursed">Cursed</span></div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
           <div class="char-card-supply">1 of 1</div>
         </div>
       </div>
     </div>
 
-    <!-- CREATOR -->
-    <div class="tier-section" data-reveal>
-      <div class="tier-header">
-        <span class="tier-badge legendary">The Creator</span>
-        <span class="tier-meta">1 character · 1 piece · Legendary</span>
+    <!-- LEGENDARY -->
+    <div class="tier-section" data-reveal data-delay="300">
+      <div class="tier-section-header">
+        <span class="tier-badge legendary">Legendary</span>
+        <span class="tier-section-name">The Creator · 1 Character · 1 of 1</span>
       </div>
-      <div class="char-grid legend-grid">
+      <div class="character-grid legend-grid">
         <div class="char-card legendary">
-          <div>
-            <div class="char-card-name">Architect</div>
-            <div class="char-card-supply">1 of 1 · Post-mint auction</div>
+          <div class="char-card-name">Architect</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill none">No Bloodline</span>
           </div>
-          <div class="legend-right">The Ledger</div>
+          <div class="char-card-supply">Unique — belongs to no bloodline</div>
         </div>
       </div>
     </div>
@@ -494,31 +619,42 @@
   </div>
 
   <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">The Covenant</div>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
       <ul class="footer-links">
         <li><a href="bloodlines.html">Bloodlines</a></li>
         <li><a href="characters.html">Characters</a></li>
         <li><a href="lore.html">Lore</a></li>
         <li><a href="collection.html">Collection</a></li>
+        <li><a href="mint.html">Mint</a></li>
       </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank">X / Twitter</a>
+        <a href="#" target="_blank">OpenSea</a>
+      </div>
       <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
   <script>
+    // Character card click to expand description
     document.querySelectorAll('.char-card[data-char]').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.dataset.char;
         const desc = document.querySelector(`.char-desc-entry[data-char="${key}"]`);
         const isActive = card.classList.contains('active');
+
+        // Close all open entries in this tier
         const tier = card.closest('.tier-section');
         tier.querySelectorAll('.char-card').forEach(c => c.classList.remove('active'));
         tier.querySelectorAll('.char-desc-entry').forEach(d => d.classList.remove('active'));
+
+        // If it wasn't active, open it
         if (!isActive && desc) {
           card.classList.add('active');
           desc.classList.add('active');
+          // Scroll into view smoothly
           setTimeout(() => desc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
         }
       });

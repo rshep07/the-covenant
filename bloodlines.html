@@ -3,201 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE COVENANT — Bloodlines</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700;1,900&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <title>THE COVENANT — The Bloodlines</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
 
-    .bl-hero {
-      padding: 140px var(--page-pad) 80px;
-      max-width: var(--content-w);
-      margin: 0 auto;
+    .page-hero {
+      padding: 160px var(--page-pad) 80px;
+      text-align: center;
+      position: relative;
       border-bottom: 1px solid var(--border);
     }
 
-    .page-eyebrow {
-      font-family: var(--font-ui);
-      font-size: 9px;
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(192,21,42,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-label {
+      font-family: var(--font-title);
+      font-size: 10px;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: var(--red-mid);
-      opacity: 0.7;
-      margin-bottom: 14px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.8;
     }
 
-    .page-title {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 900;
+    .page-hero-title {
+      font-family: 'Cormorant SC', serif;
       font-size: clamp(36px, 6vw, 72px);
-      color: var(--bone);
-      line-height: 1.0;
-      margin-bottom: 16px;
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 12px;
+      text-shadow: 0 0 40px rgba(201,168,76,0.25);
+      margin-bottom: 20px;
     }
 
-    .page-sub {
+    .page-hero-sub {
       font-family: var(--font-body);
       font-style: italic;
       font-size: 16px;
       color: var(--text-dim);
-      max-width: 520px;
+      max-width: 500px;
+      margin: 0 auto;
       line-height: 1.8;
     }
 
-    /* ── BLOODLINE BLOCKS ── */
-    .bloodlines-list {
-      max-width: var(--content-w);
+    .bloodlines-section {
+      padding: 80px var(--page-pad);
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 var(--page-pad) 100px;
     }
 
-    .bl-block {
-      border-bottom: 1px solid var(--border);
-      padding: 72px 0;
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 80px;
-      align-items: start;
+    .bloodline-full {
+      border: 1px solid var(--border);
+      margin-bottom: 2px;
       position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
     }
 
-    .bl-block::before {
+    .bloodline-full:hover { background: rgba(255,255,255,0.015); }
+
+    .bloodline-full::before {
       content: '';
       position: absolute;
-      top: 0; left: -var(--page-pad);
+      top: 0; left: 0; bottom: 0;
       width: 3px;
-      height: 100%;
     }
 
-    .bl-block.crimson .bl-block-name { color: #E04050; }
-    .bl-block.crimson .bl-block-num  { color: rgba(224,64,80,0.4); }
+    .bloodline-full.crimson::before { background: var(--crimson); box-shadow: 0 0 20px rgba(192,21,42,0.5); }
+    .bloodline-full.mystic::before  { background: var(--mystic);  box-shadow: 0 0 20px rgba(123,45,139,0.5); }
+    .bloodline-full.spirit::before  { background: var(--spirit);  box-shadow: 0 0 20px rgba(26,79,160,0.5); }
+    .bloodline-full.wild::before    { background: var(--wild);    box-shadow: 0 0 20px rgba(26,122,42,0.5); }
+    .bloodline-full.cursed::before  { background: var(--cursed-border); }
 
-    .bl-block.mystic .bl-block-name  { color: #AA77DD; }
-    .bl-block.mystic .bl-block-num   { color: rgba(170,119,221,0.4); }
+    .bloodline-full-inner {
+      display: grid;
+      grid-template-columns: 260px 1fr 1fr;
+      grid-template-rows: auto auto;
+      align-items: start;
+      padding: 36px 36px 36px 48px;
+      gap: 0 40px;
+    }
 
-    .bl-block.spirit .bl-block-name  { color: #6688DD; }
-    .bl-block.spirit .bl-block-num   { color: rgba(102,136,221,0.4); }
+    .bloodline-identity {
+      grid-column: 1;
+      grid-row: 1;
+    }
 
-    .bl-block.wild .bl-block-name    { color: #55AA66; }
-    .bl-block.wild .bl-block-num     { color: rgba(85,170,102,0.4); }
+    .bloodline-characters {
+      grid-column: 2;
+      grid-row: 1;
+    }
 
-    .bl-block.cursed .bl-block-name  { color: #888; }
-    .bl-block.cursed .bl-block-num   { color: rgba(136,136,136,0.4); }
+    .bloodline-supply {
+      grid-column: 3;
+      grid-row: 1;
+    }
 
-    .bl-left {}
+    .bloodline-full-desc {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
 
-    .bl-block-num {
-      font-family: var(--font-mono);
+    .bloodline-full-name {
+      font-family: 'Cormorant SC', serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .bloodline-full.crimson .bloodline-full-name { color: #e84057; }
+    .bloodline-full.mystic  .bloodline-full-name { color: #b06ac4; }
+    .bloodline-full.spirit  .bloodline-full-name { color: #5b8fe0; }
+    .bloodline-full.wild    .bloodline-full-name { color: #4db85e; }
+    .bloodline-full.cursed  .bloodline-full-name { color: #aaa; }
+
+    .bloodline-full-tagline {
+      font-family: var(--font-title);
       font-size: 11px;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .bl-block-name {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 900;
-      font-size: clamp(52px, 7vw, 96px);
-      line-height: 0.9;
-      margin-bottom: 32px;
-    }
-
-    .bl-block-desc {
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.95;
-      color: var(--text);
-      max-width: 560px;
-    }
-
-    .bl-block-desc p { margin-bottom: 18px; }
-    .bl-block-desc p:last-child { margin-bottom: 0; }
-
-    .bl-right {
-      padding-top: 8px;
-    }
-
-    .bl-col-label {
-      font-family: var(--font-ui);
-      font-size: 8px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .bl-char-list {
-      list-style: none;
-      margin-bottom: 36px;
-    }
-
-    .bl-char-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      font-family: var(--font-ui);
-      font-size: 9.5px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
       color: var(--text-dim);
+      font-weight: 400;
     }
 
-    .bl-char-list li:last-child { border-bottom: none; }
-
-    .tier-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      flex-shrink: 0;
+    .bloodline-full-desc {
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-top: 16px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      grid-column: 1 / -1;
     }
 
-    .tier-dot.common   { background: rgba(180,172,160,0.4); }
-    .tier-dot.rare     { background: rgba(102,136,221,0.6); }
-    .tier-dot.epic     { background: rgba(170,119,221,0.7); }
+    .cursed-note {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
 
-    .bl-supply {
+    .bloodline-col-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 14px;
+    }
+
+    .bloodline-char-list {
+      list-style: none;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
+    .bloodline-char-list li {
+      font-family: var(--font-title);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .char-tier-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .char-tier-dot.common    { background: rgba(200,190,170,0.5); }
+    .char-tier-dot.rare      { background: #7ec8e3; }
+    .char-tier-dot.epic      { background: #d4a0e8; }
+
+    .supply-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
     .supply-row {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
 
     .supply-row:last-child { border-bottom: none; }
 
-    .supply-label {
-      font-family: var(--font-ui);
-      font-size: 8px;
+    .supply-row-label {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .supply-row-val {
+      font-family: var(--font-title);
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--gold);
+    }
+
+    /* TOTALS */
+    .totals-bar {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--page-pad) 80px;
+    }
+
+    .totals-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .totals-divider::before,
+    .totals-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .totals-divider span {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .totals-inner {
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      background: var(--border);
+      gap: 1px;
+    }
+
+    .total-cell {
+      background: var(--deep);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .total-cell-num {
+      font-family: 'Cormorant SC', serif;
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .total-cell.crimson .total-cell-num { color: #e84057; }
+    .total-cell.mystic  .total-cell-num { color: #b06ac4; }
+    .total-cell.spirit  .total-cell-num { color: #5b8fe0; }
+    .total-cell.wild    .total-cell-num { color: #4db85e; }
+    .total-cell.cursed  .total-cell-num { color: #aaa; }
+
+    .total-cell-name {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .total-cell-note {
+      font-family: var(--font-title);
+      font-size: 9px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
-    }
-
-    .supply-val {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-dim);
+      font-weight: 400;
+      margin-top: 4px;
     }
 
     @media (max-width: 900px) {
-      .bl-block { grid-template-columns: 1fr; gap: 40px; }
+      .bloodline-full-inner { grid-template-columns: 1fr 1fr; }
+      .bloodline-identity { grid-column: 1 / -1; }
+      .totals-inner { grid-template-columns: repeat(3, 1fr); }
     }
 
+    @media (max-width: 600px) {
+      .bloodline-full-inner { grid-template-columns: 1fr; }
+      .totals-inner { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <a href="index.html" class="nav-brand">The Covenant</a>
+    <a href="index.html" class="nav-brand">THE COVENANT</a>
     <ul class="nav-links">
       <li><a href="bloodlines.html" class="active">Bloodlines</a></li>
       <li><a href="characters.html">Characters</a></li>
@@ -208,185 +335,221 @@
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <div class="bl-hero" data-reveal>
-    <div class="page-eyebrow">The Covenant</div>
-    <h1 class="page-title">The Bloodlines</h1>
-    <p class="page-sub">Five deals made at the same crossing. Five different prices. Five different ways the deal gets into your blood and does its work.</p>
+  <div class="page-hero">
+    <div class="page-hero-label">THE COVENANT</div>
+    <div class="page-hero-title">The Bloodlines</div>
+    <p class="page-hero-sub">Five bloodlines. Each carries its own power, its own curse, its own rarity. Choose wisely.</p>
   </div>
 
-  <div class="bloodlines-list">
+  <div class="bloodlines-section">
 
-    <div class="bl-block crimson" data-reveal>
-      <div class="bl-left">
-        <div class="bl-block-num">01 / 05</div>
-        <div class="bl-block-name">Crimson</div>
-        <div class="bl-block-desc">
-          <p>He gave them power over flesh. The kind that lets you take a life, keep one going, or do things to a body that no prayer, charm, or locked door can protect against. He marks it all down. Every death. Every life spared. All of it his.</p>
-          <p>What they lose is harder to see. The hesitation. The mercy. The part of them that used to feel bad about it.</p>
+    <div class="bloodline-full crimson" data-reveal>
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
+          <div class="bloodline-full-name">Crimson</div>
         </div>
-      </div>
-      <div class="bl-right">
-        <div class="bl-col-label">Characters</div>
-        <ul class="bl-char-list">
-          <li><span class="tier-dot common"></span>Witch Doctor</li>
-          <li><span class="tier-dot common"></span>Shaman</li>
-          <li><span class="tier-dot common"></span>Necromancer</li>
-          <li><span class="tier-dot common"></span>Warlock</li>
-          <li><span class="tier-dot common"></span>Sorceress</li>
-          <li><span class="tier-dot rare"></span>Oracle</li>
-          <li><span class="tier-dot rare"></span>Plague Doctor</li>
-          <li><span class="tier-dot rare"></span>Alchemist</li>
-          <li><span class="tier-dot epic"></span>Demon</li>
-        </ul>
-        <div class="bl-col-label">Supply</div>
-        <div class="bl-supply">
-          <div class="supply-row"><span class="supply-label">Practitioners</span><span class="supply-val">25</span></div>
-          <div class="supply-row"><span class="supply-label">Specialists</span><span class="supply-val">9</span></div>
-          <div class="supply-row"><span class="supply-label">Ascended</span><span class="supply-val">1</span></div>
-          <div class="supply-row"><span class="supply-label">Total</span><span class="supply-val">35</span></div>
+        <div class="bloodline-full-desc">He gave them power over flesh. The kind that lets you take a life, keep one going, or do things to a body that no prayer, charm, or locked door can protect against. He marks it all down. Every death. Every life spared. All of it his. What they lose is harder to see. The hesitation. The mercy. The part of them that used to feel bad about it.</div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Necromancer</li>
+            <li><span class="char-tier-dot common"></span>Warlock</li>
+            <li><span class="char-tier-dot common"></span>Sorceress</li>
+            <li><span class="char-tier-dot rare"></span>Oracle</li>
+            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
+            <li><span class="char-tier-dot rare"></span>Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>Demon</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="bl-block mystic" data-reveal>
-      <div class="bl-left">
-        <div class="bl-block-num">02 / 05</div>
-        <div class="bl-block-name">Mystic</div>
-        <div class="bl-block-desc">
-          <p>The Mystic bloodline wanted what was locked away on purpose. Not rumors. Not secrets passed around by frightened people. The stuff that was hidden because knowing it changes you in ways you cannot come back from.</p>
-          <p>He gave them the key, and what he gets back is everything they find. He knows what they know before they have time to understand what it means.</p>
+    <div class="bloodline-full mystic" data-reveal data-delay="80">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
+          <div class="bloodline-full-name">Mystic</div>
         </div>
-      </div>
-      <div class="bl-right">
-        <div class="bl-col-label">Characters</div>
-        <ul class="bl-char-list">
-          <li><span class="tier-dot common"></span>Witch Doctor</li>
-          <li><span class="tier-dot common"></span>Shaman</li>
-          <li><span class="tier-dot common"></span>Necromancer</li>
-          <li><span class="tier-dot common"></span>Warlock</li>
-          <li><span class="tier-dot common"></span>Sorceress</li>
-          <li><span class="tier-dot rare"></span>Oracle</li>
-          <li><span class="tier-dot rare"></span>Plague Doctor</li>
-          <li><span class="tier-dot rare"></span>Alchemist</li>
-          <li><span class="tier-dot epic"></span>Fallen Angel</li>
-        </ul>
-        <div class="bl-col-label">Supply</div>
-        <div class="bl-supply">
-          <div class="supply-row"><span class="supply-label">Practitioners</span><span class="supply-val">25</span></div>
-          <div class="supply-row"><span class="supply-label">Specialists</span><span class="supply-val">9</span></div>
-          <div class="supply-row"><span class="supply-label">Ascended</span><span class="supply-val">1</span></div>
-          <div class="supply-row"><span class="supply-label">Total</span><span class="supply-val">35</span></div>
+        <div class="bloodline-full-desc">The Mystic bloodline wanted what was locked away on purpose. Not rumors. Not secrets passed around by frightened people. The stuff that was hidden because knowing it changes you in ways you cannot come back from. He gave them the key, and what he gets back is everything they find. He knows what they know before they have time to understand what it means.</div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Necromancer</li>
+            <li><span class="char-tier-dot common"></span>Warlock</li>
+            <li><span class="char-tier-dot common"></span>Sorceress</li>
+            <li><span class="char-tier-dot rare"></span>Oracle</li>
+            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
+            <li><span class="char-tier-dot rare"></span>Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>Fallen Angel</li>
+          </ul>
         </div>
-      </div>
-    </div>
-
-    <div class="bl-block spirit" data-reveal>
-      <div class="bl-left">
-        <div class="bl-block-num">03 / 05</div>
-        <div class="bl-block-name">Spirit</div>
-        <div class="bl-block-desc">
-          <p>He governs the dead, but the dead do not stay neatly where they are put. They wander. They cling. They get lost in doorways, bedrooms, mirrors, and places where grief has worn a path into the floor.</p>
-          <p>So he made a deal. The price is belonging. They live between two worlds and are claimed by neither. The living feel something wrong before they can name it. The dead know exactly what they are.</p>
-        </div>
-      </div>
-      <div class="bl-right">
-        <div class="bl-col-label">Characters</div>
-        <ul class="bl-char-list">
-          <li><span class="tier-dot common"></span>Witch Doctor</li>
-          <li><span class="tier-dot common"></span>Shaman</li>
-          <li><span class="tier-dot common"></span>Necromancer</li>
-          <li><span class="tier-dot common"></span>Warlock</li>
-          <li><span class="tier-dot common"></span>Sorceress</li>
-          <li><span class="tier-dot rare"></span>Oracle</li>
-          <li><span class="tier-dot rare"></span>Plague Doctor</li>
-          <li><span class="tier-dot rare"></span>Alchemist</li>
-          <li><span class="tier-dot epic"></span>Ghost</li>
-        </ul>
-        <div class="bl-col-label">Supply</div>
-        <div class="bl-supply">
-          <div class="supply-row"><span class="supply-label">Practitioners</span><span class="supply-val">25</span></div>
-          <div class="supply-row"><span class="supply-label">Specialists</span><span class="supply-val">9</span></div>
-          <div class="supply-row"><span class="supply-label">Ascended</span><span class="supply-val">1</span></div>
-          <div class="supply-row"><span class="supply-label">Total</span><span class="supply-val">35</span></div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="bl-block wild" data-reveal>
-      <div class="bl-left">
-        <div class="bl-block-num">04 / 05</div>
-        <div class="bl-block-name">Wild</div>
-        <div class="bl-block-desc">
-          <p>The Wild bloodline wanted to stop being human. Not to die. To be done with the weakness of being one person in one body for one short life.</p>
-          <p>He rules what the ground receives and what it gives back. He let them become part of that cycle. It starts in the skin and works inward. Quietly. Most do not notice what is missing until they reach for it and find nothing there.</p>
+    <div class="bloodline-full spirit" data-reveal data-delay="160">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
+          <div class="bloodline-full-name">Spirit</div>
         </div>
-      </div>
-      <div class="bl-right">
-        <div class="bl-col-label">Characters</div>
-        <ul class="bl-char-list">
-          <li><span class="tier-dot common"></span>Witch Doctor</li>
-          <li><span class="tier-dot common"></span>Shaman</li>
-          <li><span class="tier-dot common"></span>Necromancer</li>
-          <li><span class="tier-dot common"></span>Warlock</li>
-          <li><span class="tier-dot common"></span>Sorceress</li>
-          <li><span class="tier-dot rare"></span>Oracle</li>
-          <li><span class="tier-dot rare"></span>Plague Doctor</li>
-          <li><span class="tier-dot rare"></span>Alchemist</li>
-          <li><span class="tier-dot epic"></span>Beast</li>
-        </ul>
-        <div class="bl-col-label">Supply</div>
-        <div class="bl-supply">
-          <div class="supply-row"><span class="supply-label">Practitioners</span><span class="supply-val">25</span></div>
-          <div class="supply-row"><span class="supply-label">Specialists</span><span class="supply-val">9</span></div>
-          <div class="supply-row"><span class="supply-label">Ascended</span><span class="supply-val">1</span></div>
-          <div class="supply-row"><span class="supply-label">Total</span><span class="supply-val">35</span></div>
+        <div class="bloodline-full-desc">He governs the dead, but the dead do not stay neatly where they are put. They wander. They cling. They get lost in doorways, bedrooms, mirrors, and places where grief has worn a path into the floor. So he made a deal. The price is belonging. They live between two worlds and are claimed by neither. The living feel something wrong before they can name it. The dead know exactly what they are.</div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Necromancer</li>
+            <li><span class="char-tier-dot common"></span>Warlock</li>
+            <li><span class="char-tier-dot common"></span>Sorceress</li>
+            <li><span class="char-tier-dot rare"></span>Oracle</li>
+            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
+            <li><span class="char-tier-dot rare"></span>Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>Ghost</li>
+          </ul>
         </div>
-      </div>
-    </div>
-
-    <div class="bl-block cursed" data-reveal>
-      <div class="bl-left">
-        <div class="bl-block-num">05 / 05</div>
-        <div class="bl-block-name">Cursed</div>
-        <div class="bl-block-desc">
-          <p>The Cursed bloodline never made a deal. Someone before them did. The terms were broken. The debt went unpaid. He does not forgive debts. He passes them down.</p>
-          <p>They were born already owing. He could end it. He just has not decided they are worth the answer.</p>
-        </div>
-      </div>
-      <div class="bl-right">
-        <div class="bl-col-label">Characters</div>
-        <ul class="bl-char-list">
-          <li><span class="tier-dot common"></span>Witch Doctor</li>
-          <li><span class="tier-dot common"></span>Shaman</li>
-          <li><span class="tier-dot common"></span>Necromancer</li>
-          <li><span class="tier-dot common"></span>Warlock</li>
-          <li><span class="tier-dot common"></span>Sorceress</li>
-          <li><span class="tier-dot rare"></span>Oracle</li>
-          <li><span class="tier-dot rare"></span>Plague Doctor</li>
-          <li><span class="tier-dot rare"></span>Alchemist</li>
-          <li><span class="tier-dot epic"></span>Condemned</li>
-        </ul>
-        <div class="bl-col-label">Supply</div>
-        <div class="bl-supply">
-          <div class="supply-row"><span class="supply-label">Practitioners</span><span class="supply-val">5</span></div>
-          <div class="supply-row"><span class="supply-label">Specialists</span><span class="supply-val">3</span></div>
-          <div class="supply-row"><span class="supply-label">Ascended</span><span class="supply-val">1</span></div>
-          <div class="supply-row"><span class="supply-label">Total</span><span class="supply-val">9</span></div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="bloodline-full wild" data-reveal data-delay="240">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
+          <div class="bloodline-full-name">Wild</div>
+        </div>
+        <div class="bloodline-full-desc">The Wild bloodline wanted to stop being human. Not to die. To be done with the weakness of being one person in one body for one short life. He rules what the ground receives and what it gives back. He let them become part of that cycle. It starts in the skin and works inward. Quietly. Most do not notice what is missing until they reach for it and find nothing there.</div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Necromancer</li>
+            <li><span class="char-tier-dot common"></span>Warlock</li>
+            <li><span class="char-tier-dot common"></span>Sorceress</li>
+            <li><span class="char-tier-dot rare"></span>Oracle</li>
+            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
+            <li><span class="char-tier-dot rare"></span>Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>Beast</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">25 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">9 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">35 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloodline-full cursed" data-reveal data-delay="320">
+      <div class="bloodline-full-inner">
+                <div class="bloodline-identity">
+          <div class="bloodline-full-name">Cursed</div>
+        </div>
+        <div class="bloodline-full-desc">The Cursed bloodline never made a deal. Someone before them did. The terms were broken. The debt went unpaid. He does not forgive debts. He passes them down. They were born already owing. He could end it. He just has not decided they are worth the answer.</div>
+        <div class="bloodline-characters">
+          <div class="bloodline-col-label">Characters</div>
+          <ul class="bloodline-char-list">
+            <li><span class="char-tier-dot common"></span>Witch Doctor</li>
+            <li><span class="char-tier-dot common"></span>Shaman</li>
+            <li><span class="char-tier-dot common"></span>Necromancer</li>
+            <li><span class="char-tier-dot common"></span>Warlock</li>
+            <li><span class="char-tier-dot common"></span>Sorceress</li>
+            <li><span class="char-tier-dot rare"></span>Oracle</li>
+            <li><span class="char-tier-dot rare"></span>Plague Doctor</li>
+            <li><span class="char-tier-dot rare"></span>Alchemist</li>
+            <li><span class="char-tier-dot epic"></span>Condemned</li>
+          </ul>
+        </div>
+        <div class="bloodline-supply">
+          <div class="bloodline-col-label">Supply</div>
+          <div class="supply-detail">
+            <div class="supply-row"><span class="supply-row-label">Practitioners</span><span class="supply-row-val">5 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Specialists</span><span class="supply-row-val">3 characters</span></div>
+            <div class="supply-row"><span class="supply-row-label">Ascended</span><span class="supply-row-val">1 character</span></div>
+            <div class="supply-row"><span class="supply-row-label">Total</span><span class="supply-row-val">9 pieces</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="totals-bar">
+    <div class="totals-divider"><span>Total Pieces Per Bloodline</span></div>
+    <div class="totals-inner">
+      <div class="total-cell crimson">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Crimson</div>
+        
+      </div>
+      <div class="total-cell mystic">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Mystic</div>
+        
+      </div>
+      <div class="total-cell spirit">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Spirit</div>
+        
+      </div>
+      <div class="total-cell wild">
+        <div class="total-cell-num">35</div>
+        <div class="total-cell-name">Wild</div>
+        
+      </div>
+      <div class="total-cell cursed">
+        <div class="total-cell-num">9</div>
+        <div class="total-cell-name">Cursed</div>
+        
+      </div>
+    </div>
   </div>
 
   <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">The Covenant</div>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
       <ul class="footer-links">
         <li><a href="bloodlines.html">Bloodlines</a></li>
         <li><a href="characters.html">Characters</a></li>
         <li><a href="lore.html">Lore</a></li>
         <li><a href="collection.html">Collection</a></li>
+        <li><a href="mint.html">Mint</a></li>
       </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank">X / Twitter</a>
+        <a href="#" target="_blank">OpenSea</a>
+      </div>
       <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
     </div>
   </footer>
