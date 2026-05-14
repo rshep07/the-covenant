@@ -295,10 +295,55 @@
       .totals-inner { grid-template-columns: repeat(3, 1fr); }
     }
 
-    @media (max-width: 600px) {
-      .bloodline-full-inner { grid-template-columns: 1fr; }
-      .totals-inner { grid-template-columns: 1fr 1fr; }
+    /* BLOODLINE QUICK-NAV */
+    .bloodline-quicknav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 64px;
+      z-index: 50;
     }
+
+    .bl-quicknav-item {
+      background: var(--deep);
+      padding: 18px 12px 16px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      border-top: 2px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .bl-quicknav-item:hover { background: rgba(255,255,255,0.03); }
+
+    .bl-quicknav-item.crimson { border-top-color: #e84057; }
+    .bl-quicknav-item.mystic  { border-top-color: #b06ac4; }
+    .bl-quicknav-item.spirit  { border-top-color: #5b8fe0; }
+    .bl-quicknav-item.wild    { border-top-color: #4db85e; }
+    .bl-quicknav-item.cursed  { border-top-color: #777; }
+
+    .bl-quicknav-label {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .bl-quicknav-item.crimson .bl-quicknav-label { color: #e84057; }
+    .bl-quicknav-item.mystic  .bl-quicknav-label { color: #b06ac4; }
+    .bl-quicknav-item.spirit  .bl-quicknav-label { color: #5b8fe0; }
+    .bl-quicknav-item.wild    .bl-quicknav-label { color: #4db85e; }
+    .bl-quicknav-item.cursed  .bl-quicknav-label { color: #aaa; }
+
+    @media (max-width: 600px) {
+      .bloodline-quicknav { grid-template-columns: repeat(3, 1fr); }
+    }
+
   </style>
 </head>
 <body>
@@ -321,9 +366,17 @@
     <p class="page-hero-sub">Five bloodlines. Each carries its own power, its own curse, its own rarity. Choose wisely.</p>
   </div>
 
+  <div class="bloodline-quicknav">
+    <a href="#section-crimson" class="bl-quicknav-item crimson"><span class="bl-quicknav-label">Crimson</span></a>
+    <a href="#section-mystic"  class="bl-quicknav-item mystic" ><span class="bl-quicknav-label">Mystic</span></a>
+    <a href="#section-spirit"  class="bl-quicknav-item spirit" ><span class="bl-quicknav-label">Spirit</span></a>
+    <a href="#section-wild"    class="bl-quicknav-item wild"   ><span class="bl-quicknav-label">Wild</span></a>
+    <a href="#section-cursed"  class="bl-quicknav-item cursed" ><span class="bl-quicknav-label">Cursed</span></a>
+  </div>
+
   <div class="bloodlines-section">
 
-    <div class="bloodline-full crimson" data-reveal>
+    <div class="bloodline-full crimson" id="section-crimson" data-reveal>
       <div class="bloodline-full-inner">
                 <div class="bloodline-identity">
           <div class="bloodline-full-name">Crimson</div>
@@ -349,7 +402,7 @@
       </div>
     </div>
 
-    <div class="bloodline-full mystic" data-reveal data-delay="80">
+    <div class="bloodline-full mystic" id="section-mystic" data-reveal data-delay="80">
       <div class="bloodline-full-inner">
                 <div class="bloodline-identity">
           <div class="bloodline-full-name">Mystic</div>
@@ -374,7 +427,7 @@
       </div>
     </div>
 
-    <div class="bloodline-full spirit" data-reveal data-delay="160">
+    <div class="bloodline-full spirit" id="section-spirit" data-reveal data-delay="160">
       <div class="bloodline-full-inner">
                 <div class="bloodline-identity">
           <div class="bloodline-full-name">Spirit</div>
@@ -399,7 +452,7 @@
       </div>
     </div>
 
-    <div class="bloodline-full wild" data-reveal data-delay="240">
+    <div class="bloodline-full wild" id="section-wild" data-reveal data-delay="240">
       <div class="bloodline-full-inner">
                 <div class="bloodline-identity">
           <div class="bloodline-full-name">Wild</div>
@@ -425,7 +478,7 @@
       </div>
     </div>
 
-    <div class="bloodline-full cursed" data-reveal data-delay="320">
+    <div class="bloodline-full cursed" id="section-cursed" data-reveal data-delay="320">
       <div class="bloodline-full-inner">
                 <div class="bloodline-identity">
           <div class="bloodline-full-name">Cursed</div>
