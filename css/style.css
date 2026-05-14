@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700;1,900&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600&family=Space+Mono&display=swap');
 
 /* ── TOKENS ── */
 :root {
@@ -8,9 +8,9 @@
   --surface-2:  #131313;
   --surface-3:  #1A1A1A;
 
-  --red:        #B01820;
-  --red-mid:    #CC1C26;
-  --red-bright: #E02030;
+  --red:        #C01828;
+  --red-mid:    #DD2030;
+  --red-bright: #F02840;
   --red-dim:    rgba(176,24,32,0.18);
   --red-glow:   rgba(176,24,32,0.07);
 
@@ -24,7 +24,7 @@
   --border-mid: rgba(176,24,32,0.32);
   --border-hi:  rgba(176,24,32,0.6);
 
-  --font-display: 'Playfair Display', serif;
+  --font-display: 'Pirata One', serif;
   --font-body:    'Spectral', serif;
   --font-ui:      'Cinzel', serif;
   --font-mono:    'Space Mono', monospace;
@@ -82,13 +82,14 @@ body::after {
 
 .nav-brand {
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--bone);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
   text-decoration: none;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   transition: color 0.2s;
+  opacity: 1;
 }
 
 .nav-brand:hover { color: #fff; }
@@ -104,7 +105,7 @@ body::after {
   font-size: 9.5px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: rgba(184,176,160,0.75);
   text-decoration: none;
   transition: color 0.2s;
   position: relative;
@@ -240,12 +241,12 @@ footer {
   font-size: 8px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(204,196,176,0.5);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer-links a:hover { color: var(--red-mid); }
+.footer-links a:hover { color: var(--red-bright); }
 
 .footer-copy {
   font-family: var(--font-mono);
@@ -256,17 +257,59 @@ footer {
 /* ── BLOODLINE PILLS ── */
 .char-bloodline-pill {
   font-family: var(--font-ui);
-  font-size: 7.5px;
+  font-size: 8.5px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border: 1px solid;
 }
 
-.char-bloodline-pill.crimson { border-color: rgba(176,24,32,0.5); color: #cc2030; }
-.char-bloodline-pill.mystic  { border-color: rgba(140,80,180,0.4); color: #9966cc; }
-.char-bloodline-pill.spirit  { border-color: rgba(60,100,180,0.4); color: #5577cc; }
-.char-bloodline-pill.wild    { border-color: rgba(40,120,60,0.4);  color: #449955; }
-.char-bloodline-pill.cursed  { border-color: rgba(100,100,100,0.3); color: #777; }
-.char-bloodline-pill.none    { border-color: var(--border-mid); color: var(--red-mid); }
+.char-bloodline-pill.crimson { border-color: rgba(224,64,80,0.6); color: #E84060; background: rgba(224,64,80,0.06); }
+.char-bloodline-pill.mystic  { border-color: rgba(170,100,210,0.5); color: #BB88EE; background: rgba(170,100,210,0.06); }
+.char-bloodline-pill.spirit  { border-color: rgba(80,120,220,0.5); color: #7799EE; background: rgba(80,120,220,0.06); }
+.char-bloodline-pill.wild    { border-color: rgba(60,160,80,0.5);  color: #55CC66; background: rgba(60,160,80,0.06); }
+.char-bloodline-pill.cursed  { border-color: rgba(140,140,140,0.4); color: #AAAAAA; background: rgba(140,140,140,0.04); }
+.char-bloodline-pill.none    { border-color: var(--border-mid); color: var(--red-bright); }
 
+
+/* ── CHROMATIC ABERRATION ── */
+.chroma {
+  position: relative;
+  display: inline-block;
+}
+
+.chroma::before,
+.chroma::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.chroma::before {
+  color: rgba(255, 20, 40, 0.7);
+  animation: ca-r 5s infinite;
+}
+
+.chroma::after {
+  color: rgba(30, 80, 255, 0.65);
+  animation: ca-b 5s infinite;
+}
+
+@keyframes ca-r {
+  0%, 85%, 100% { transform: translate(0,0); clip-path: none; opacity: 0; }
+  86% { transform: translate(-3px, 1px); clip-path: inset(15% 0 55% 0); opacity: 1; }
+  88% { transform: translate(3px, -1px); clip-path: inset(60% 0 8% 0);  opacity: 1; }
+  90% { transform: translate(-2px, 0);  clip-path: inset(35% 0 30% 0);  opacity: 1; }
+  92% { transform: translate(0,0);      clip-path: none;                 opacity: 0; }
+}
+
+@keyframes ca-b {
+  0%, 87%, 100% { transform: translate(0,0); clip-path: none; opacity: 0; }
+  88% { transform: translate(3px, -2px); clip-path: inset(25% 0 45% 0);  opacity: 1; }
+  90% { transform: translate(-3px, 1px); clip-path: inset(70% 0 5% 0);   opacity: 1; }
+  92% { transform: translate(2px, 0);    clip-path: inset(5% 0 65% 0);    opacity: 1; }
+  94% { transform: translate(0,0);       clip-path: none;                  opacity: 0; }
+}
