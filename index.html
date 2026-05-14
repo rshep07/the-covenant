@@ -95,38 +95,6 @@
       animation: fadeUp 0.8s ease 1.5s forwards;
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fadeIn 1s ease 2.2s forwards;
-    }
-
-    .hero-scroll-text {
-      font-family: var(--font-title);
-      font-size: 8px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold-dim), transparent);
-      animation: scrollPulse 2s ease infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { transform: scaleY(1); opacity: 0.5; }
-      50% { transform: scaleY(1.3); opacity: 1; }
-    }
 
     /* ── BLOODLINE STRIP ── */
     .bloodline-strip {
@@ -500,10 +468,7 @@
       <a href="lore.html" class="btn btn-outline">Read the Lore</a>
     </div>
 
-    <div class="hero-scroll">
-      <span class="hero-scroll-text">Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
+
   </section>
 
   <!-- BLOODLINE STRIP -->
