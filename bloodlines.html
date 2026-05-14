@@ -84,7 +84,7 @@
 
     .bloodline-full-inner {
       display: grid;
-      grid-template-columns: 260px 1fr 1fr;
+      grid-template-columns: 260px 1fr;
       grid-template-rows: auto auto;
       align-items: start;
       padding: 36px 36px 36px 48px;
@@ -97,12 +97,15 @@
     }
 
     .bloodline-characters {
-      grid-column: 2;
-      grid-row: 1;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
     }
 
     .bloodline-supply {
-      grid-column: 3;
+      grid-column: 2;
       grid-row: 1;
     }
 
@@ -327,7 +330,12 @@
         </div>
         <div class="bloodline-characters">
           <div class="bloodline-col-label">About</div>
-          <p style="font-family:\'IM Fell English\',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">The thing about power over flesh is that it starts small, and it starts quiet, and it starts with something that doesn&#39;t feel like power at all. It feels like confidence. It feels like the room adjusting around you when you walk in, giving you a little more space than you need, the way people give space to a big dog even when it&#39;s not doing anything. Then one afternoon you want something, and the universe decides to provide it, and the way it provides it isn&#39;t clean, and you should feel worse about that than you do. He marks it all down. Every use, every life taken, every life kept breathing. His name is on all of it, which means his name is on you, and that was the deal. What you lose doesn&#39;t announce itself going. The hesitation is first. Then the mercy. Then the part of you that used to sit with what you&#39;d done in the quiet afterward.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">The thing about power over flesh is that it starts small, and it starts quiet, and it starts with something that doesn&#39;t feel like power at all. It feels like confidence. It feels like the room adjusting around you when you walk in, giving you a little more space than you need, the way people give space to a big dog even when it&#39;s not doing anything. It feels like your hands knowing things the rest of you hasn&#39;t figured out yet.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">Then one afternoon you want something, and the universe decides to provide it, and the way it provides it isn&#39;t clean, and you should feel worse about that than you do.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">That&#39;s the beginning.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">He marks it all down. Every use, every life taken, every life kept breathing. His name is on all of it, which means his name is on you, and that was the deal, and you understood it when you agreed to it even if you didn&#39;t want to look at it straight on.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">What you lose doesn&#39;t announce itself going. The hesitation is first, and good riddance to it, that&#39;s what you think. Then the mercy, and that feels cleaner too, at the time. Then the part of you that used to sit with what you&#39;d done in the quiet afterward. You don&#39;t notice that one leaving until years later, reaching for it the way you&#39;d reach for a tool you&#39;ve misplaced, and the shelf is bare, and you realize it&#39;s been bare for a while and you never noticed.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Demon is what Crimson looks like when it&#39;s done with you.</p>
           </div>
         <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
@@ -348,7 +356,11 @@
         </div>
         <div class="bloodline-characters">
           <div class="bloodline-col-label">About</div>
-          <p style="font-family:\'IM Fell English\',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">Here&#39;s the thing nobody tells you about knowledge: ignorance isn&#39;t just comfortable. It&#39;s load-bearing. The things people don&#39;t know are holding up the things they think they know, and when you start pulling at the hidden ones, the visible ones start to shift. The Mystic bloodline is for the ones who couldn&#39;t stop pulling. He gave them a key to the rooms that key was never meant to open, and what he gets in return is first look at everything they find. He knows what they know before they&#39;ve had time to understand what it means. The cost doesn&#39;t announce itself. One morning you start seeing things that aren&#39;t there. Then you realize they are. The life you had before you started looking is still out there somewhere, like a house you grew up in that still stands but isn&#39;t yours anymore.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">Here&#39;s the thing nobody tells you about knowledge: ignorance isn&#39;t just comfortable. It&#39;s load-bearing. The things people don&#39;t know are holding up the things they think they know, and when you start pulling at the hidden ones, the visible ones start to shift.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Mystic bloodline is for the ones who couldn&#39;t stop pulling.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">He sees everything that moves between worlds. He gave them a key to the rooms that key was never meant to open, and what he gets in return is first look at everything they find. He knows what they know before they&#39;ve had time to understand what it means. They are his researchers. His eyes in places he can&#39;t always get to.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The cost doesn&#39;t announce itself. One morning you start seeing things that aren&#39;t there. Then you realize they are. The life you had before you started looking, the person you were in it, that&#39;s still out there somewhere, like a house you grew up in that still stands but isn&#39;t yours anymore. You can drive past it. The lights might even be on. But you can&#39;t go inside, because going inside requires being the person who left, and that person is gone.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Fallen Angel went past where the key was supposed to open and reached for something that wasn&#39;t part of the deal. You can probably work out how that went.</p>
           </div>
         <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
@@ -369,7 +381,11 @@
         </div>
         <div class="bloodline-characters">
           <div class="bloodline-col-label">About</div>
-          <p style="font-family:\'IM Fell English\',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">Here&#39;s something nobody tells you about the dead: most of them are confused. Not scary. Not dangerous. Just stuck. They died in the middle of something, or they don&#39;t know they&#39;re dead, or they know and haven&#39;t figured out what to do about it yet, and so they wander. Doorways. Bedrooms. The kind of room where someone grieved for a long time, where the pacing wore a groove in the floor that you can still feel even after the carpet&#39;s been replaced. He made a deal. The Spirit bloodline gets to move between the living and the dead the way the rest of us move between rooms. The price is belonging. They live in two worlds and own a piece of neither. The dead know exactly what they are.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">Here&#39;s something nobody tells you about the dead: most of them are confused.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">Not scary. Not dangerous. Just stuck. They died in the middle of something, or they don&#39;t know they&#39;re dead, or they know and haven&#39;t figured out what to do about it yet, and so they wander. Doorways. Bedrooms. The kind of room where someone grieved for a long time, where the pacing wore a groove in the floor that you can still feel even after the carpet&#39;s been replaced. They&#39;re not haunting anything, really. They&#39;re just going through the motions of a life that isn&#39;t there anymore.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">He runs the dead, but the dead are everywhere, and he&#39;s only got the one place to be. So he made a deal. The Spirit bloodline gets to move between the living and the dead the way the rest of us move between rooms. They talk to the ones who won&#39;t leave. They move along the ones who can&#39;t find the door. They do the work that doesn&#39;t stop just because he isn&#39;t watching.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The price is belonging. They live in two worlds and own a piece of neither. Living people feel something wrong about them before they can name it, the way you feel watched in a room you know is empty. The dead know exactly what they are the moment they see them.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Ghost stopped moving between a long time ago. The line is what they are now.</p>
           </div>
         <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
@@ -390,7 +406,12 @@
         </div>
         <div class="bloodline-characters">
           <div class="bloodline-col-label">About</div>
-          <p style="font-family:\'IM Fell English\',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">You ever stand at the edge of something genuinely large and feel the pull? The ocean at night, or a canyon, or one of those old-growth forests where the trees are wider around than a car and the ground smells like something that&#39;s been doing the same job for ten thousand years. Not the dark kind. The other one. The one that says: you could stop being so much yourself for a while. Most people step back from that. The Wild bloodline is for the ones who leaned in. They wanted to be done with the exhaustion of one short life in a world that doesn&#39;t particularly notice you&#39;re there. The deal starts in the skin and works inward, quiet and thorough, replacing what&#39;s human with whatever was living there before humans came along.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">You ever stand at the edge of something genuinely large and feel the pull? The ocean at night, or a canyon, or one of those old-growth forests where the trees are wider around than a car and the ground smells like something that&#39;s been doing the same job for ten thousand years. That pull. Not the dark kind, not the falling kind. The other one. The one that says: you could stop being so much yourself for a while. You could be part of this instead.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">Most people step back from that.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Wild bloodline is for the ones who leaned in.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">They wanted to be done with the exhaustion of one short life in a world that doesn&#39;t particularly notice you&#39;re there. They wanted to belong to something that was here before the first city got built and will be here long after the last one falls. He runs what goes into the ground and what comes back up. He let them in. They tend the cycle now, the long ugly loop of death feeding life feeding death.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">It starts in the skin. Works inward. Quiet, thorough, patient. Replaces what&#39;s human with whatever was living there before humans came along. Some of them are genuinely relieved. Most are fine with it, or tell themselves they are, right up until they reach for something familiar and nothing&#39;s there.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Beast is what&#39;s left when the replacement is finished.</p>
           </div>
         <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
@@ -411,7 +432,12 @@
         </div>
         <div class="bloodline-characters">
           <div class="bloodline-col-label">About</div>
-          <p style="font-family:\'IM Fell English\',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">My grandfather used to say every family has a skeleton in the closet. He meant it as a figure of speech. A secret. Some old shame getting passed down because nobody wants to drag it out into the light. The Cursed bloodline is literal about it. Somewhere back in the tree, somebody made a deal they couldn&#39;t keep. They took what he was offering and didn&#39;t hold up their end, and he doesn&#39;t do forgiveness. What he does is inheritance. The debt passes down, quiet as bad eyes or a weak heart, until there&#39;s someone alive to collect from. Every other bloodline at least chose. The Cursed came into the world already on the hook.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:8px;">My grandfather used to say every family has a skeleton in the closet. He meant it as a figure of speech. A secret. Some old shame getting passed down because nobody wants to be the one to drag it out into the light.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Cursed bloodline is literal about it.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">Somewhere back in the tree, somebody made a deal they couldn&#39;t keep. They took what he was offering and then didn&#39;t hold up their end, and he doesn&#39;t do forgiveness. What he does is inheritance. The debt doesn&#39;t die with the person who ran it up. It passes down, quiet as bad eyes or a weak heart, until there&#39;s someone alive to collect from.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">So they carry it. The whole weight of it, and they don&#39;t know the original terms, and they don&#39;t know what was promised, and they don&#39;t know the name of the ancestor who thought they could get away with it. They just know they owe. They know it the way you know a headache is coming before it arrives, that pressure building from somewhere behind you that you can&#39;t quite turn around to see. Every other bloodline at least chose. Every one of them walked to that crossroads wanting something badly enough to pay for it. The Cursed came into the world already on the hook.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">He knows the original deal down to the handshake. He could close the whole thing out tomorrow. He hasn&#39;t decided they&#39;re worth the trouble yet.</p>
+          <p style="font-family:'IM Fell English',serif;font-size:14px;line-height:1.85;color:var(--text);margin-top:16px;">The Condemned is what you become when you&#39;ve spent your whole life paying off a bill you never ran up.</p>
           </div>
         <div class="bloodline-supply">
           <div class="bloodline-col-label">Supply</div>
