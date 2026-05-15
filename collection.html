@@ -380,7 +380,57 @@
     color: var(--gold);
   }
 
-  /* ── TEASER ── */
+    @media (max-width: 768px) {
+
+      /* bloodline cards — horizontal scroll row */
+      .bloodlines-grid {
+        grid-template-columns: repeat(5, minmax(100px, 1fr));
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* characters — stack to single column */
+      .characters-block {
+        grid-template-columns: 1fr;
+      }
+
+      /* supply bar — 2 columns */
+      .supply-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* teaser rows — drop the right-aligned label into its own line */
+      .teaser-item {
+        grid-template-columns: 32px 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .teaser-reveals {
+        grid-column: 2;
+        text-align: left;
+        opacity: 0.5;
+        font-size: 9px;
+        margin-top: 2px;
+      }
+
+      /* character rows — shrink right column */
+      .character-row {
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+      }
+
+      .char-supply {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .supply-bar {
+        grid-template-columns: 1fr;
+      }
+
+    }
   .teaser-sequence {
     display: flex;
     flex-direction: column;

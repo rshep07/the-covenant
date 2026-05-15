@@ -290,12 +290,20 @@
     }
 
     @media (max-width: 900px) {
-      .bloodline-full-inner { grid-template-columns: 1fr 1fr; }
-      .bloodline-identity { grid-column: 1 / -1; }
+      .bloodline-full-inner { grid-template-columns: 1fr; }
+      .bloodline-identity,
+      .bloodline-supply,
+      .bloodline-characters { grid-column: 1; }
       .totals-inner { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* BLOODLINE QUICK-NAV */
+    @media (max-width: 600px) {
+      .bloodline-quicknav { grid-template-columns: repeat(3, 1fr); }
+      .bl-quicknav-item { padding: 14px 6px 12px; }
+      .bl-quicknav-label { font-size: 9px; letter-spacing: 2px; }
+      .totals-inner { grid-template-columns: 1fr 1fr; }
+      .bloodline-full-name { font-size: 22px; }
+    }
     .bloodline-quicknav {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -339,10 +347,6 @@
     .bl-quicknav-item.spirit  .bl-quicknav-label { color: #5b8fe0; }
     .bl-quicknav-item.wild    .bl-quicknav-label { color: #4db85e; }
     .bl-quicknav-item.cursed  .bl-quicknav-label { color: #aaa; }
-
-    @media (max-width: 600px) {
-      .bloodline-quicknav { grid-template-columns: repeat(3, 1fr); }
-    }
 
   </style>
 </head>

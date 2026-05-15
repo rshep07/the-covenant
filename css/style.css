@@ -397,14 +397,14 @@ body::before {
     flex-direction: column;
     position: fixed;
     inset: 0;
-    background: rgba(8,8,8,0.98);
+    background: rgba(8,8,8,0.99);
     justify-content: center;
     align-items: center;
     gap: 40px;
-    z-index: 99;
+    z-index: 999;
   }
 
-  .nav-links.open a { font-size: 14px; }
+  .nav-links.open a { font-size: 14px; letter-spacing: 4px; }
 
   .footer {
     grid-template-columns: 1fr;
