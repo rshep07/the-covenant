@@ -394,20 +394,23 @@ body::before {
   .nav-links.open {
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    top: 100%;
     right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(8,8,8,0.99);
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
+    background: rgba(8,8,8,0.98);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 24px 32px 28px;
+    gap: 24px;
     z-index: 9998;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    min-width: 200px;
+    align-items: flex-end;
+    animation: navDrop 0.2s ease;
+  }
+
+  @keyframes navDrop {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .nav-links.open a { font-size: 14px; letter-spacing: 4px; }
