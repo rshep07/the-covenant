@@ -399,7 +399,21 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      /* teaser rows — drop the right-aligned label into its own line */
+      /* cursed order table — tighten up and allow wrapping */
+      .tier-name { white-space: normal; font-size: 12px; }
+      .tier-label { font-size: 9px; letter-spacing: 2px; }
+      .cursed-order th { padding: 0 8px 10px; font-size: 8px; letter-spacing: 2px; }
+      .cursed-order td { padding: 12px 8px; font-size: 12px; }
+      .cursed-order td:last-child { font-size: 11px; }
+      .pill { font-size: 8px; padding: 2px 5px; }
+
+      /* wrap the table to allow horizontal scroll if still needed */
+      .cursed-order-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* teaser rows */
       .teaser-item {
         grid-template-columns: 32px 1fr;
         grid-template-rows: auto auto;
@@ -413,23 +427,17 @@
         margin-top: 2px;
       }
 
-      /* character rows — shrink right column */
+      /* character rows */
       .character-row {
         grid-template-columns: 1fr auto;
         gap: 8px;
       }
 
-      .char-supply {
-        font-size: 10px;
-      }
+      .char-supply { font-size: 10px; }
     }
 
     @media (max-width: 480px) {
-
-      .supply-bar {
-        grid-template-columns: 1fr;
-      }
-
+      .supply-bar { grid-template-columns: 1fr; }
     }
   .teaser-sequence {
     display: flex;
@@ -665,6 +673,7 @@
   <!-- THE CURSED ORDER -->
   <div class="section">
     <div class="section-title">The Cursed Order — Rarity Hierarchy</div>
+    <div class="cursed-order-wrap">
     <table class="cursed-order">
       <thead>
         <tr>
@@ -749,6 +758,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- CHARACTERS -->
