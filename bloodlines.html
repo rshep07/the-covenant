@@ -138,15 +138,7 @@
 
     <div class="bl-grid" data-reveal data-delay="100">
 
-      <div class="bl-card" data-bl="crimson" onclick="openModal('Bloodline · I','Crimson',[
-        'Crimson is the bloodline of flesh, blood, and control.',
-        'They wanted power over the living body. The power to heal it, break it, keep it breathing, or make it obey. He gave them that power, but nothing given by him stays clean for long.',
-        'At first, Crimson can look almost merciful. A wound closes. A fever breaks. Someone who should have died keeps breathing. Then the same power starts asking for darker uses. A body can be saved, but it can also be bent, opened, punished, and taught to answer.',
-        'He keeps count of all of it. Every life taken. Every life spared. Every time blood moves when it should not. Crimson learns quickly that power over flesh comes with a price, and the first thing it takes is hesitation.',
-        'Then mercy.',
-        'Then the part of you that still knows the difference.',
-        'The Demon is what Crimson becomes when there is still a body standing, but nothing human left inside it.'
-      ], '#cc2828')">        <div class="bl-num">Bloodline I</div>
+      <div class="bl-card" data-bl="crimson" onclick="openBl_Cursed()">        <div class="bl-num">Bloodline I</div>
         <div class="bl-name">Crimson</div>
         <div class="bl-hook">Power over the body. The breath. The thing that keeps it all running.</div>
         <div class="bl-ascended">Ascended — The Demon</div>
@@ -252,21 +244,20 @@
   <script src="js/main.js"></script>
 
   <script>
-  function openCursedModal() {
-    openModal('Bloodline · V', 'Cursed', [
-      'The Cursed did not ask for any of this.',
-      'That is what makes them different.',
-      'Crimson asked. Mystic asked. Spirit asked. Wild asked. They all walked up to the dark with their hands out and wanted something badly enough to pay for it.',
-      'The Cursed were born with the bill already waiting.',
-      'Somewhere back in the family, somebody made a deal. Maybe they were desperate. Maybe they were greedy. Maybe they thought they were smarter than the thing across from them.',
-      'They were not.',
-      'The deal went bad. The debt stayed open. And he does not forget what he is owed.',
-      'So it passed down. Not like a story. Stories can be changed. Not like money. Money can be lost. This passed down like a bad heart. Like a stain in the blood. Like a thing sleeping under the floorboards that wakes up every time another child is born.',
-      'The Cursed do not know the original terms. They do not know what was taken. They do not know who signed first. They only know they owe, and that the owing has been there longer than they have.',
-      'He could tell them. He could name the ancestor. He could settle the debt, burn the paper, close the door.',
-      'He has not.',
-      "The Condemned is what you become when your whole life is spent paying for someone else's handshake."
-    ], '#6a6058');
+  function openBl_Crimson() {
+    openModal("Bloodline \u00b7 I", "Crimson", ["Crimson is the bloodline of flesh, blood, and control.", "They wanted power over the living body. The power to heal it, harm it, keep it breathing, or make it obey. The Architect gave them access to that power, but every use carries a cost.", "At first, Crimson can almost look merciful. A wound closes. A fever breaks. Someone who should have died survives. But the same power that saves a body can also bend it, break it, and teach it to answer.", "The Architect keeps count of every life taken, every life spared, and every time blood moves when it should not.", "Crimson loses hesitation first. Then mercy. Then the part that still knows the difference.", "The Demon is what Crimson becomes when the body is still alive, but the person inside is gone."], "#cc2828");
+  }
+  function openBl_Mystic() {
+    openModal("Bloodline \u00b7 II", "Mystic", ["Mystic is the bloodline of forbidden knowledge.", "They wanted to see what was hidden. Not simple secrets, but the things buried because knowing them changes the person who finds them. The Architect gave them sight, but not comfort.", "Mystic sees what stands behind the locked door. The buried name. The symbol that was never meant to be read. The thing in the room that everyone else was spared from noticing.", "Every secret they uncover belongs to The Architect first.", "The cost is distance. Mystic does not lose the world all at once. It starts with voices under running water, shapes in empty rooms, and mirrors that feel slightly wrong. Eventually, the life they had before is still there, but they no longer know how to stand inside it.", "The Fallen Angel is what Mystic becomes when it looks past the final warning and reaches anyway."], "#9e44bb");
+  }
+  function openBl_Spirit() {
+    openModal("Bloodline \u00b7 III", "Spirit", ["Spirit is the bloodline of passage.", "The dead do not always leave cleanly. Some remain where they died. Some follow the people who loved them. Some wander because they never understood they were gone.", "The Architect gave Spirit the ability to move between the living and the dead. They speak to what lingers, guide what refuses to move, and stand at the crossing where one world ends and the next begins.", "It sounds noble until you see the price.", "Spirit never fully belongs anywhere again. The living feel something wrong before they understand why. The dead understand immediately.", "To the living, Spirit feels like a cold room. To the dead, Spirit looks like a door.", "The Ghost is what Spirit becomes when it stops crossing between worlds and becomes the crossing itself."], "#3468c8");
+  }
+  function openBl_Wild() {
+    openModal("Bloodline \u00b7 IV", "Wild", ["Wild is the bloodline of rot, growth, and old earth.", "They wanted release from the human shape. Not death exactly, but something older. They wanted to become part of the cycle that takes the body, breaks it down, and feeds it back into the ground.", "The Architect opened the way to that cycle.", "Wild does not change a person all at once. It starts quietly. Dirt under the nails. Skin that feels damp. Dreams of roots, teeth, and things growing where they should not.", "Then it moves deeper. Memory dulls. Hunger sharpens. Names matter less. The body begins to follow instructions older than language.", "Some fight it. Some welcome it. Most only notice what they have lost when they reach for something human and find nothing left.", "The Beast is what Wild becomes when the body remembers what came before humanity."], "#28a03c");
+  }
+  function openBl_Cursed() {
+    openModal("Bloodline \u00b7 V", "Cursed", ["Cursed is the bloodline that never made the deal.", "That is what separates them from the others.", "Crimson wanted control. Mystic wanted knowledge. Spirit wanted passage. Wild wanted release. Each of them walked toward The Architect asking for something.", "The Cursed were born already owing.", "Somewhere in their bloodline, someone made a bargain and failed to pay the price. The debt did not die with them. It moved forward through the family, blood to blood, name to name.", "The Cursed do not know the original terms. They do not know what was promised. They do not know which ancestor doomed them. They only know something has been waiting for them since before they were born.", "The Architect knows the truth. He knows the name. He knows how to end it.", "He has not.", "The Condemned is what Cursed becomes after a lifetime of paying for someone else's debt."], "#6a6058");
   }
   </script>
 </body>
