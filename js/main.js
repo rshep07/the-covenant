@@ -53,14 +53,16 @@ const modalLabel = document.getElementById('modal-label');
 const modalTitle = document.getElementById('modal-title');
 const modalBody  = document.getElementById('modal-body');
 
-function openModal(label, title, paragraphs) {
+function openModal(label, title, paragraphs, scrollColor) {
   if (!modalWrap) return;
   modalLabel.textContent = label;
   modalTitle.textContent = title;
   modalBody.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+  const modal = modalWrap.querySelector('.modal');
+  modal.style.setProperty('--scroll-thumb', scrollColor || '#5c0e0e');
   modalWrap.classList.add('open');
   document.body.style.overflow = 'hidden';
-  modalWrap.querySelector('.modal').scrollTop = 0;
+  modal.scrollTop = 0;
 }
 
 function closeModal() {

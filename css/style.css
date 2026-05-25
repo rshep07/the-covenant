@@ -362,7 +362,7 @@ body::after {
   transform: translateY(16px);
   transition: transform 0.3s;
   scrollbar-width: thin;
-  scrollbar-color: var(--crimson-dk) var(--card);
+  scrollbar-color: var(--scroll-thumb, var(--crimson-dk)) var(--card);
 }
 
 .modal-wrap.open .modal { transform: translateY(0); }
@@ -420,7 +420,7 @@ body::after {
 
 .modal::-webkit-scrollbar { width: 3px; }
 .modal::-webkit-scrollbar-track { background: var(--card); }
-.modal::-webkit-scrollbar-thumb { background: var(--crimson-dk); }
+.modal::-webkit-scrollbar-thumb { background: var(--scroll-thumb, var(--crimson-dk)); }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
