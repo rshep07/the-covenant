@@ -4,99 +4,354 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE COVENANT — Characters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .char-wrap {
-      padding: 130px var(--page-pad) 100px;
-      max-width: var(--max-width);
-      margin: 0 auto;
+
+    .page-hero {
+      padding: 160px var(--page-pad) 80px;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid var(--border);
     }
 
-    .char-header {
-      max-width: 560px;
-      margin-bottom: 64px;
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,45,139,0.07) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .char-group { margin-bottom: 56px; }
-
-    .char-group-label {
+    .page-hero-label {
       font-family: var(--font-title);
-      font-size: 9px;
-      letter-spacing: 0.4em;
+      font-size: 10px;
+      letter-spacing: 6px;
       text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .page-hero-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 12px;
+      text-shadow: 0 0 40px rgba(201,168,76,0.25);
+      margin-bottom: 20px;
+    }
+
+    .page-hero-sub {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 16px;
       color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── TIER LEGEND ── */
+    .tier-legend {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 30px var(--page-pad);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
+      gap: 8px;
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
-    .char-group-label::before {
-      content: '';
-      width: 14px;
-      height: 1px;
-      background: var(--border-mid);
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
     }
 
-    .char-group-label::after {
+    .legend-dot.common    { background: rgba(200,190,170,0.6); }
+    .legend-dot.rare      { background: #7ec8e3; }
+    .legend-dot.epic      { background: #d4a0e8; }
+    .legend-dot.legendary { background: var(--gold); box-shadow: 0 0 8px rgba(201,168,76,0.6); }
+
+    /* ── CHARACTERS SECTION ── */
+    .characters-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 80px var(--page-pad);
+    }
+
+    .tier-section {
+      margin-bottom: 60px;
+    }
+
+    .tier-section-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .tier-section-header::after {
       content: '';
       flex: 1;
       height: 1px;
       background: var(--border);
     }
 
-    .char-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
-      gap: 2px;
-      background: var(--border);
-      border: 1px solid var(--border);
+    .tier-badge {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 6px 16px;
+      border: 1px solid;
+      white-space: nowrap;
     }
 
-    .char-card {
-      background: var(--black);
-      padding: 22px 20px;
-      cursor: pointer;
-      transition: background 0.22s;
-    }
+    .tier-badge.common   { color: var(--text); border-color: rgba(200,190,170,0.45); }
+    .tier-badge.rare     { color: #a8dff0; border-color: rgba(126,200,227,0.3); }
+    .tier-badge.epic     { color: #e0c0f0; border-color: rgba(208,160,232,0.3); }
+    .tier-badge.legendary { color: var(--gold-light); border-color: var(--border-mid); }
 
-    .char-card:hover { background: var(--surface); }
-
-    .char-card.locked {
-      cursor: default;
-      opacity: 0.36;
-    }
-
-    .char-card.locked:hover { background: var(--black); }
-
-    .char-name {
+    .tier-section-name {
       font-family: var(--font-title);
       font-size: 13px;
-      letter-spacing: 0.06em;
-      color: var(--gold-light);
-      margin-bottom: 5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--text-dim);
     }
 
-    .char-order {
-      font-style: italic;
+    /* ── CHARACTER CARDS ── */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .character-grid.rare-grid   { grid-template-columns: repeat(3, 1fr); }
+    .character-grid.epic-grid   { grid-template-columns: repeat(5, 1fr); }
+    .character-grid.legend-grid { grid-template-columns: 1fr; }
+
+    .char-card {
+      background: var(--deep);
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+      transition: background 0.3s;
+      overflow: hidden;
+    }
+
+    .char-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .char-card.common::before   { background: rgba(200,190,170,0.3); }
+    .char-card.rare::before     { background: #7ec8e3; }
+    .char-card.epic::before     { background: #d4a0e8; }
+    .char-card.legendary::before { background: var(--gold); box-shadow: 0 0 10px rgba(201,168,76,0.5); }
+
+    .char-card:hover { background: rgba(255,255,255,0.025); }
+
+    .char-card-name {
+      font-family: var(--font-title);
       font-size: 12px;
-      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
       margin-bottom: 12px;
     }
 
-    .char-cta {
-      font-family: var(--font-title);
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      transition: color 0.2s;
+    .char-card.common .char-card-name   { color: var(--text); }
+    .char-card.rare .char-card-name     { color: #a8dff0; }
+    .char-card.epic .char-card-name     { color: #e0c0f0; }
+    .char-card.legendary .char-card-name { color: var(--gold-light); font-size: 16px; letter-spacing: 3px; }
+
+    .char-card-bloodlines {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
     }
 
-    .char-card:hover .char-cta { color: var(--gold); }
+    .char-bloodline-pill {
+      font-family: var(--font-title);
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border: 1px solid;
+    }
 
-    @media (max-width: 640px) {
-      .char-grid { grid-template-columns: repeat(2, 1fr); }
+    .char-bloodline-pill.crimson { border-color: var(--crimson-dim); color: #e84057; }
+    .char-bloodline-pill.mystic  { border-color: var(--mystic-dim);  color: #b06ac4; }
+    .char-bloodline-pill.spirit  { border-color: var(--spirit-dim);  color: #5b8fe0; }
+    .char-bloodline-pill.wild    { border-color: var(--wild-dim);    color: #4db85e; }
+    .char-bloodline-pill.cursed  { border-color: #444; color: #999; }
+    .char-bloodline-pill.none    { border-color: var(--gold-dim); color: var(--gold); }
+
+    .char-card-supply {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .char-card.legendary {
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      padding: 40px;
+    }
+
+    .char-card.legendary .char-card-supply {
+      color: var(--gold);
+      font-size: 11px;
+    }
+
+    .char-desc-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-bottom: 40px;
+    }
+
+    .char-desc-entry {
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 32px 40px 32px 48px;
+      background: var(--deep);
+      display: none;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      align-items: start;
+      position: relative;
+    }
+
+    .char-desc-entry.active {
+      display: grid;
+    }
+
+    .char-desc-entry::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+    }
+
+    .char-desc-entry.common::before { background: rgba(200,190,170,0.2); }
+    .char-desc-entry.rare::before   { background: rgba(126,200,227,0.4); }
+
+    .char-desc-name {
+      font-family: 'Cormorant SC', serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text);
+      position: sticky;
+      top: 100px;
+      padding-top: 3px;
+    }
+
+    .char-desc-entry.rare .char-desc-name { color: #a8dff0; }
+
+    .char-desc-text p {
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .char-desc-text p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .char-card-more {
+      display: block;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .char-card-more::after {
+      content: ' ↓';
+    }
+
+    .char-card:hover .char-card-more {
+      opacity: 1;
+    }
+
+    .char-card.active .char-card-more {
+      opacity: 1;
+    }
+
+    .char-card.active .char-card-more::after {
+      content: ' ↑';
+    }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex !important; }
+      .nav-links { display: none !important; }
+      .nav-links.open { display: flex !important; }
+      .nav-cta { display: none !important; }
+
+      .tier-section-header {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tier-section-header::after { display: none; }
+
+      .tier-section-name {
+        font-size: 10px;
+        letter-spacing: 1px;
+        width: 100%;
+      }
+
+      .character-grid { grid-template-columns: repeat(2, 1fr); }
+      .character-grid.rare-grid { grid-template-columns: repeat(2, 1fr); }
+      .character-grid.epic-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .character-grid { grid-template-columns: repeat(3, 1fr); }
+      .character-grid.rare-grid { grid-template-columns: repeat(3, 1fr); }
+      .character-grid.epic-grid { grid-template-columns: repeat(3, 1fr); }
+      .char-desc-entry { grid-template-columns: 1fr; gap: 16px; padding: 24px 24px 24px 32px; }
+      .char-desc-name { position: static; }
+    }
+
+    @media (max-width: 600px) {
+      .character-grid { grid-template-columns: repeat(2, 1fr); }
+      .character-grid.epic-grid { grid-template-columns: repeat(2, 1fr); }
+      .tier-legend { gap: 16px; }
     }
   </style>
 </head>
@@ -114,193 +369,271 @@
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <div class="char-wrap">
+  <div class="page-hero">
+    <div class="page-hero-label">THE COVENANT</div>
+    <div class="page-hero-title">The Characters</div>
+    <p class="page-hero-sub">Fourteen beings across four tiers of power. Each bound to a bloodline. One bound to none.</p>
+  </div>
 
-    <div class="char-header" data-reveal>
-      <span class="section-label">The Order</span>
-      <div class="section-title">Characters</div>
-      <p class="section-body">Those who carry the old knowledge. Those who found the pattern. Those who paid the full price. And the one who set the price to begin with.</p>
-    </div>
+  <!-- LEGEND -->
+  <div class="tier-legend">
+    <div class="legend-item"><span class="legend-dot common"></span>Common — The Practitioners</div>
+    <div class="legend-item"><span class="legend-dot rare"></span>Rare — The Specialists</div>
+    <div class="legend-item"><span class="legend-dot epic"></span>Epic — The Ascended</div>
+    <div class="legend-item"><span class="legend-dot legendary"></span>Legendary — The Creator</div>
+  </div>
 
-    <!-- PRACTITIONERS -->
-    <div class="char-group" data-reveal data-delay="80">
-      <div class="char-group-label">Practitioners</div>
-      <div class="char-grid">
+  <div class="characters-wrap">
 
-        <div class="char-card" onclick="openModal('Practitioner','Witch Doctor',[
-          'The Witch Doctor knows things they shouldn\'t know. Not the big things. Not the secrets of the universe. The small things. The specific, terrible, useful small things. Which root combined with which other root does what to which organ. Where the thin places are between here and whatever comes next. What to say, exactly how to say it, when you need something from the other side to pay attention and cooperate. They learned all of it the hard way, because there is no other way this particular curriculum gets taught, and every lesson cost something they can\'t get back.',
-          'They carry the tools of the trade on their person at all times because in this line of work there is no leaving things at the office. The feathers, the cord, the beads worn smooth from years of handling, the small bones and wrapped bundles that smell like something you can\'t quite name but recognize somewhere below the level of thinking. None of it is decoration. Every piece has a job. They know the job and they know the cost and they do the job anyway.',
-          'Their face looks the way it looks because you cannot make that many trips to the place between the living and the dead and come back looking the same as when you left. Nobody does. The skull isn\'t a costume. It\'s just what they look like now.',
-          'The staff hits the ground once. Somewhere, something pays attention. It always does.'
-        ])">
-          <div class="char-name">Witch Doctor</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
+    <!-- COMMON -->
+    <div class="tier-section" data-reveal>
+      <div class="tier-section-header">
+        <span class="tier-badge common">Common</span>
+        <span class="tier-section-name">The Practitioners · 5 Characters · 105 Pieces</span>
+      </div>
+      <div class="character-grid">
+        <div class="char-card common" data-char="witch-doctor">
+          <div class="char-card-name">Witch Doctor</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Shaman',[
-          'The Shaman made a decision that most people make by accident, if they make it at all. They decided to stop pretending.',
-          'They\'d been pretending for years, the way everybody pretends, the way it\'s basically required: that the thin places don\'t get thinner at certain hours, that the feeling of being watched in an empty room is just nerves, that the things moving at the edge of your vision when you haven\'t slept are your mind filling in blanks. One day the Shaman set that down. Just left it on the ground and walked away. It was like putting down a bag you\'d been carrying so long you forgot it was heavy.',
-          'They covered their eyes not because the world went dark but because it got too crowded, too full of things that eyes were not built to handle. The skull is a reminder, mostly to themselves: you crossed a line. You know you crossed it. Don\'t start pretending otherwise.',
-          'They are wide and heavy and they stand like something that grew where it\'s standing rather than walked there. When they move, it is with the patience of something that was here before your city was an idea and will be here long after. Not slowly exactly. More like they\'ve decided that hurrying is a kind of lie.',
-          'The deal doesn\'t make Shamans. It finds them partway through and finishes the job.'
-        ])">
-          <div class="char-name">Shaman</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card common" data-char="shaman">
+          <div class="char-card-name">Shaman</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Necromancer',[
-          'The Necromancer is, at their core, very good company for the dead. That sounds like the setup to a joke. It isn\'t.',
-          'Most people are terrible at it. They come to the dead with need and grief and the human selfishness that expects even dead people to perform on a schedule. The Necromancer comes with patience and without agenda, the way a good listener comes to a conversation, and the dead respond to that the way anyone responds to someone who isn\'t afraid of them and isn\'t trying to get something from them. They answer. They have always answered, long before any deal made it official.',
-          'They stand in the places where things ended, the fields and dead rooms and crossroads where the air still feels wrong years later, the way a room feels wrong after the bad thing happened in it even after the cleaning and the new paint and the hopeful furniture. The places find them. Something in the ground knows what they are and turns toward them.',
-          'What they do is not complicated. They call. Things answer. Some people mistake it for grief. It isn\'t. Grief is about loss, about the space where something used to be. This is much closer to ownership.',
-          'The flowers growing at their feet don\'t know any better.'
-        ])">
-          <div class="char-name">Necromancer</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card common" data-char="necromancer">
+          <div class="char-card-name">Necromancer</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Warlock',[
-          'The thing about the Warlock that separates them from everyone else who ever stood at that crossroads is that they brought a list. Not literally. But close enough to literal that it doesn\'t matter. They came prepared. They knew what they wanted, they\'d thought about what they were willing to give, and they had some notion of where their line was. They sat down with something that has been making these arrangements longer than anyone alive can remember, and they attempted to negotiate. To get a better deal than the standard one.',
-          'The remarkable thing — the thing that should bother you more than anything else about the Warlock — is that it worked. Partially. They got more. They paid more. The face was part of the cost, probably not the biggest part, and what\'s behind the face now burns green and cold in the dark where a person\'s face used to be, two points of light that are absolutely still and absolutely watching.',
-          'The earth is in the gaps of their clothing now, working inward the way water works into stone, patient because it has all the time there is. There are still two things behind those eyes. One of them knows what it is. The other one used to be a person.',
-          'The bill isn\'t paid yet. You can tell.'
-        ])">
-          <div class="char-name">Warlock</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card common" data-char="warlock">
+          <div class="char-card-name">Warlock</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Sorceress',[
-          'The Sorceress would tell you, if she trusted you, that the hardest part isn\'t what she sees. It\'s the silence after. Before the deal, when she found something out, she could tell someone. A friend, a sister, the person across the diner table at two in the morning. Not now. The things she knows aren\'t shareable over coffee. They\'re not shareable at all. So she carries them, every locked door she\'s opened and every sealed thing she\'s found the bottom of and every piece of knowledge that was buried for good reason that she dug up anyway, and it all hangs against her chest with the coins and the necklaces and the stones worn smooth from years of handling.',
-          'She doesn\'t hide her face because she decided a long time ago that hiding things costs energy she can\'t spare. There is nothing in her expression that will give you what you\'re looking for. She learned that the same place she learned everything else, which is by finding the door marked do not open and opening it anyway.',
-          'The hand extended outward is not performance. She is doing something, the same way you might reach for a glass of water. What you can see is just the surface of it, and the surface is never the dangerous part.'
-        ])">
-          <div class="char-name">Sorceress</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card common" data-char="sorceress">
+          <div class="char-card-name">Sorceress</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">5 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
+      </div>
+      <div class="char-desc-section">
+        <div class="char-desc-entry common" data-char="witch-doctor">
+          <div class="char-desc-name">Witch Doctor</div>
+          <div class="char-desc-text">
+            <p>The Witch Doctor knows things they shouldn&#39;t know. Not the big things. Not the secrets of the universe. The small things. The specific, terrible, useful small things. Which root combined with which other root does what to which organ. Where the thin places are between here and whatever comes next. What to say, exactly how to say it, when you need something from the other side to pay attention and cooperate. They learned all of it the hard way, because there is no other way this particular curriculum gets taught, and every lesson cost something they can&#39;t get back.</p>
+            <p>They carry the tools of the trade on their person at all times because in this line of work there is no leaving things at the office. The feathers, the cord, the beads worn smooth from years of handling, the small bones and wrapped bundles that smell like something you can&#39;t quite name but recognize somewhere below the level of thinking. None of it is decoration. Every piece has a job. They know the job and they know the cost and they do the job anyway.</p>
+            <p>Their face looks the way it looks because you cannot make that many trips to the place between the living and the dead and come back looking the same as when you left. Nobody does. The skull isn&#39;t a costume. It&#39;s just what they look like now.</p>
+            <p>The staff hits the ground once. Somewhere, something pays attention. It always does.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common" data-char="shaman">
+          <div class="char-desc-name">Shaman</div>
+          <div class="char-desc-text">
+            <p>The Shaman made a decision that most people make by accident, if they make it at all. They decided to stop pretending.</p>
+            <p>They&#39;d been pretending for years, the way everybody pretends, the way it&#39;s basically required: that the thin places don&#39;t get thinner at certain hours, that the feeling of being watched in an empty room is just nerves, that the things moving at the edge of your vision when you haven&#39;t slept are your mind filling in blanks. One day the Shaman set that down. Just left it on the ground and walked away. It was like putting down a bag you&#39;d been carrying so long you forgot it was heavy.</p>
+            <p>They covered their eyes not because the world went dark but because it got too crowded, too full of things that eyes were not built to handle. The skull is a reminder, mostly to themselves: you crossed a line. You know you crossed it. Don&#39;t start pretending otherwise.</p>
+            <p>They are wide and heavy and they stand like something that grew where it&#39;s standing rather than walked there. When they move, it is with the patience of something that was here before your city was an idea and will be here long after. Not slowly exactly. More like they&#39;ve decided that hurrying is a kind of lie. The deal doesn&#39;t make Shamans. It finds them partway through and finishes the job.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common" data-char="necromancer">
+          <div class="char-desc-name">Necromancer</div>
+          <div class="char-desc-text">
+            <p>The Necromancer is, at their core, very good company for the dead. That sounds like the setup to a joke. It isn&#39;t.</p>
+            <p>Most people are terrible at it. They come to the dead with need and grief and the human selfishness that expects even dead people to perform on a schedule. The Necromancer comes with patience and without agenda, the way a good listener comes to a conversation, and the dead respond to that the way anyone responds to someone who isn&#39;t afraid of them and isn&#39;t trying to get something from them. They answer. They have always answered, long before any deal made it official. The Necromancer was already standing in the empty places and hearing what lived there.</p>
+            <p>They stand in the places where things ended, the fields and dead rooms and crossroads where the air still feels wrong years later, the way a room feels wrong after the bad thing happened in it even after the cleaning and the new paint and the hopeful furniture. The places find them. Something in the ground knows what they are and turns toward them.</p>
+            <p>What they do is not complicated. They call. Things answer. Some people mistake it for grief. It isn&#39;t. Grief is about loss, about the space where something used to be. This is much closer to ownership. The flowers growing at their feet don&#39;t know any better.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common" data-char="warlock">
+          <div class="char-desc-name">Warlock</div>
+          <div class="char-desc-text">
+            <p>The thing about the Warlock that separates them from everyone else who ever stood at that crossroads is that they brought a list. Not literally. But close enough to literal that it doesn&#39;t matter. They came prepared. They knew what they wanted, they&#39;d thought about what they were willing to give, and they had some notion of where their line was. They sat down with something that has been making these arrangements longer than anyone alive can remember, and they attempted to negotiate. To get a better deal than the standard one.</p>
+            <p>The remarkable thing, the thing that should bother you more than anything else about the Warlock, is that it worked. Partially. They got more. They paid more. The face was part of the cost, probably not the biggest part, and what&#39;s behind the face now burns green and cold in the dark where a person&#39;s face used to be, two points of light that are absolutely still and absolutely watching.</p>
+            <p>The earth is in the gaps of their clothing now, working inward the way water works into stone, patient because it has all the time there is. There are still two things behind those eyes. One of them knows what it is. The other one used to be a person.</p>
+            <p>The bill isn&#39;t paid yet. You can tell.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry common" data-char="sorceress">
+          <div class="char-desc-name">Sorceress</div>
+          <div class="char-desc-text">
+            <p>The Sorceress would tell you, if she trusted you, that the hardest part isn&#39;t what she sees. It&#39;s the silence after. Before the deal, when she found something out, she could tell someone. A friend, a sister, the person across the diner table at two in the morning. Not now. The things she knows aren&#39;t shareable over coffee. They&#39;re not shareable at all. So she carries them, every locked door she&#39;s opened and every sealed thing she&#39;s found the bottom of and every piece of knowledge that was buried for good reason that she dug up anyway, and it all hangs against her chest with the coins and the necklaces and the stones worn smooth from years of handling.</p>
+            <p>She doesn&#39;t hide her face because she decided a long time ago that hiding things costs energy she can&#39;t spare. There is nothing in her expression that will give you what you&#39;re looking for. She learned that the same place she learned everything else, which is by finding the door marked do not open and opening it anyway.</p>
+            <p>The hand extended outward is not performance. She is doing something, the same way you might reach for a glass of water. What you can see is just the surface of it, and the surface is never the dangerous part.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SPECIALISTS -->
-    <div class="char-group" data-reveal data-delay="120">
-      <div class="char-group-label">Specialists</div>
-      <div class="char-grid">
-
-        <div class="char-card" onclick="openModal('Specialist','Oracle',[
-          'The hardest thing to get people to understand about the Oracle is that nobody made them do it. There\'s a kind of person who, when told not to look, looks. When told the truth will cost more than they can probably afford, pays anyway and worries about the debt later. When handed a thing that shows them everything they don\'t want to know, keeps looking because looking is the only thing that feels like any kind of control even when nothing is. The Oracle is that kind of person taken to its conclusion, and if you\'re being honest with yourself, you know someone like that. You might be a little like that yourself.',
-          'The marks on their face are preparation, the same as you\'d brace yourself before reading a letter you already know contains bad news. Not ritual. Not ceremony. Just getting ready, the same way anyone gets ready for something they know is going to cost them.',
-          'The orb shows them what\'s there, not what they\'d like to be there. They figured out the difference early and never made peace with it, which is probably why they keep opening it anyway. Everything they see they carry. Every vision, every face, every ending that rolled in exactly the way they watched it coming.',
-          'They don\'t get to put any of it down. They\'re still looking. They always are.'
-        ])">
-          <div class="char-name">Oracle</div>
-          <div class="char-order">Specialist</div>
-          <div class="char-cta">Read →</div>
+    <!-- RARE -->
+    <div class="tier-section" data-reveal data-delay="100">
+      <div class="tier-section-header">
+        <span class="tier-badge rare">Rare</span>
+        <span class="tier-section-name">The Specialists · 3 Characters · 39 Pieces</span>
+      </div>
+      <div class="character-grid rare-grid">
+        <div class="char-card rare" data-char="oracle">
+          <div class="char-card-name">Oracle</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
-        <div class="char-card" onclick="openModal('Specialist','Plague Doctor',[
-          'There is a type of person who runs toward the thing everyone else is running from, not because they aren\'t afraid but because the not-knowing is worse than the fear. The Plague Doctor is that type, turned up until the dial broke off.',
-          'They were doing this before any deal. They were already the one who went into the room, who looked at the thing spreading in the dark, who needed to find the pattern underneath what everyone else was calling random and terrible. The deal made them better at it. Sharper. The way a good lens makes things bigger and clearer and harder to look away from.',
-          'They see the spread before it starts. They see the system inside the sickness. They see the pattern. They stopped being grateful for that somewhere around the third or fourth time it showed them something they genuinely wished they didn\'t know, and they don\'t complain about it, and they still put the coat on every morning.',
-          'The mask was never for them. The herbs that used to go in the beak are long gone. Whatever it\'s keeping out now, it isn\'t bad air. They still show up. Whatever the seeing costs, they go where the sickness is. Nobody ever asks what happens when they arrive.'
-        ])">
-          <div class="char-name">Plague Doctor</div>
-          <div class="char-order">Specialist</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card rare" data-char="plague-doctor">
+          <div class="char-card-name">Plague Doctor</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
-        <div class="char-card" onclick="openModal('Specialist','Alchemist',[
-          'The Alchemist is not evil. They are not cruel and they don\'t mean to cause harm and this is worth understanding before you look at the bottles. They are simply, completely, interested. In everything. In what happens when this combines with that. In what the stuff between worlds is actually made of, and whether you can break it down to its parts, and whether those parts behave differently alone than they do together. In whether something new comes out the other end of the process.',
-          'The bottles are the evidence of years of that interest and there are a lot of bottles. The coat is stained because the work doesn\'t stay clean, and they stopped caring about clean when it stopped being relevant to what they were doing, which happened sometime in the first year. Maybe the second.',
-          'The deal opened the door between the living and the dead and let them through whenever the work required it. Most people with that ability cross and come back and talk about what they saw. The Alchemist crosses and comes back with samples. That tells you most of what you need to know about how they approach things.',
-          'They\'re recording everything in handwriting nobody else can read. There are always more questions than answers. That\'s fine. That\'s the point. The face behind the mask is just overhead now. The work is the thing.'
-        ])">
-          <div class="char-name">Alchemist</div>
-          <div class="char-order">Specialist</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card rare" data-char="alchemist">
+          <div class="char-card-name">Alchemist</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+            <span class="char-bloodline-pill mystic">Mystic</span>
+            <span class="char-bloodline-pill spirit">Spirit</span>
+            <span class="char-bloodline-pill wild">Wild</span>
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">3 per bloodline<br>1 cursed</div>
+          <span class="char-card-more">Full Details</span>
         </div>
-
+      </div>
+      <div class="char-desc-section">
+        <div class="char-desc-entry rare" data-char="oracle">
+          <div class="char-desc-name">Oracle</div>
+          <div class="char-desc-text">
+            <p>The hardest thing to get people to understand about the Oracle is that nobody made them do it. There&#39;s a kind of person who, when told not to look, looks. When told the truth will cost more than they can probably afford, pays anyway and worries about the debt later. When handed a thing that shows them everything they don&#39;t want to know, keeps looking because looking is the only thing that feels like any kind of control even when nothing is. The Oracle is that kind of person taken to its conclusion, and if you&#39;re being honest with yourself, you know someone like that. You might be a little like that yourself.</p>
+            <p>The marks on their face are preparation, the same as you&#39;d brace yourself before reading a letter you already know contains bad news. Not ritual. Not ceremony. Just getting ready, the same way anyone gets ready for something they know is going to cost them.</p>
+            <p>The orb shows them what&#39;s there, not what they&#39;d like to be there. They figured out the difference early and never made peace with it, which is probably why they keep opening it anyway. Everything they see they carry. Every vision, every face, every ending that rolled in exactly the way they watched it coming. They don&#39;t get to put any of it down.</p>
+            <p>They&#39;re still looking. They always are.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry rare" data-char="plague-doctor">
+          <div class="char-desc-name">Plague Doctor</div>
+          <div class="char-desc-text">
+            <p>There is a type of person who runs toward the thing everyone else is running from, not because they aren&#39;t afraid but because the not-knowing is worse than the fear. The Plague Doctor is that type, turned up until the dial broke off.</p>
+            <p>They were doing this before any deal. They were already the one who went into the room, who looked at the thing spreading in the dark, who needed to find the pattern underneath what everyone else was calling random and terrible. The deal made them better at it. Sharper. The way a good lens makes things bigger and clearer and harder to look away from.</p>
+            <p>They see the spread before it starts. They see the system inside the sickness. They see the pattern. They stopped being grateful for that somewhere around the third or fourth time it showed them something they genuinely wished they didn&#39;t know, and they don&#39;t complain about it, and they still put the coat on every morning.</p>
+            <p>The mask was never for them. The herbs that used to go in the beak are long gone. Whatever it&#39;s keeping out now, it isn&#39;t bad air. They still show up. Whatever the seeing costs, they go where the sickness is. Nobody ever asks what happens when they arrive.</p>
+          </div>
+        </div>
+        <div class="char-desc-entry rare" data-char="alchemist">
+          <div class="char-desc-name">Alchemist</div>
+          <div class="char-desc-text">
+            <p>The Alchemist is not evil. They are not cruel and they don&#39;t mean to cause harm and this is worth understanding before you look at the bottles. They are simply, completely, interested. In everything. In what happens when this combines with that. In what the stuff between worlds is actually made of, and whether you can break it down to its parts, and whether those parts behave differently alone than they do together. In whether something new comes out the other end of the process.</p>
+            <p>The bottles are the evidence of years of that interest and there are a lot of bottles. The coat is stained because the work doesn&#39;t stay clean, and they stopped caring about clean when it stopped being relevant to what they were doing, which happened sometime in the first year. Maybe the second.</p>
+            <p>The deal opened the door between the living and the dead and let them through whenever the work required it. Most people with that ability cross and come back and talk about what they saw. The Alchemist crosses and comes back with samples. That tells you most of what you need to know about how they approach things.</p>
+            <p>They&#39;re recording everything in handwriting nobody else can read. There are always more questions than answers. That&#39;s fine. That&#39;s the point. The face behind the mask is just overhead now. The work is the thing.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- ASCENDED -->
-    <div class="char-group" data-reveal data-delay="160">
-      <div class="char-group-label">Ascended</div>
-      <div class="char-grid">
-
-        <div class="char-card" onclick="openModal('Ascended · Crimson','The Demon',[
-          'The Demon is what Crimson becomes when the body is still alive, but the person inside has already been spent.',
-          'There is no ceremony for it. No moment of transformation you can point to. It happens the same way everything in Crimson happens: incrementally, then all at once. The hesitation goes. Then the mercy. Then the last thing, the thing that was keeping the rest of it together, and after that there is only the blood and what it can be made to do.',
-          'The Demon is not a monster in the way people mean when they use that word. It is not large or loud or given to spectacle. It is precise. It is patient. It knows exactly what the body can do and exactly how long it can be made to last and it sees no reason to waste either.',
-          'What it wants is what Crimson always wanted. The wanting didn\'t change. The part of the person that felt bad about it did.'
-        ])">
-          <div class="char-name">The Demon</div>
-          <div class="char-order">Ascended Crimson</div>
-          <div class="char-cta">Read →</div>
+    <!-- EPIC -->
+    <div class="tier-section" data-reveal data-delay="200">
+      <div class="tier-section-header">
+        <span class="tier-badge epic">Epic</span>
+        <span class="tier-section-name">The Ascended · 5 Characters · 5 Pieces</span>
+      </div>
+      <div class="character-grid epic-grid">
+        <div class="char-card epic">
+          <div class="char-card-name">Demon</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill crimson">Crimson</span>
+          </div>
+          <div class="char-card-supply">1 of 1</div>
         </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Mystic','The Fallen Angel',[
-          'The Fallen Angel is what happens when Mystic looks past the last warning and reaches anyway.',
-          'There is always a last warning. It is not dramatic. It does not announce itself as a last warning. It is just a moment, the same as any other moment, where something in the back of the mind says: this is enough, turn back, you know enough now. The ones who become Fallen Angels are the ones who heard that voice and kept going anyway, because they always kept going, because stopping was never a thing they were capable of, not really, not when something was still left to know.',
-          'What they found on the other side of the last warning is not something that can be described to anyone who hasn\'t been there. They have tried. The words come out wrong. The closest any of them have gotten is this: it was like finally understanding a joke you\'ve been hearing your whole life.',
-          'They are not fallen in the way the name implies. They did not fail. They succeeded completely. That is the problem.'
-        ])">
-          <div class="char-name">The Fallen Angel</div>
-          <div class="char-order">Ascended Mystic</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card epic">
+          <div class="char-card-name">Fallen Angel</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill mystic">Mystic</span>
+          </div>
+          <div class="char-card-supply">1 of 1</div>
         </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Spirit','The Ghost',[
-          'The Ghost is what happens when someone stops crossing over and simply becomes the crossing.',
-          'It is not a death. The Ghost is not dead. That is perhaps the most unsettling thing about them, when you think about it long enough. They are not on either side of the door. They are the door. They are the in-between, the hallway, the place where the air goes wrong and the dogs start barking for no reason anyone can name.',
-          'The living feel them the same way they feel a change in weather coming. The dead recognize them immediately. To the dead, the Ghost looks like the last familiar thing, like the smell of a house you grew up in, like a road you have walked so many times your feet know the way without you.',
-          'Some of the dead follow. Most of them do.',
-          'The Ghost does not lead them anywhere in particular. The Ghost just is. And things that have been lost, and are still lost, and will be lost for a long time yet, they all drift toward the light of it. That is enough. That has always been enough. Even if the Ghost can\'t remember, anymore, what it felt like to have been something else.'
-        ])">
-          <div class="char-name">The Ghost</div>
-          <div class="char-order">Ascended Spirit</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card epic">
+          <div class="char-card-name">Ghost</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill spirit">Spirit</span>
+          </div>
+          <div class="char-card-supply">1 of 1</div>
         </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Wild','The Beast',[
-          'The Beast is what remains when Wild has finished correcting the mistake of being human.',
-          'What is left is not nothing. That is the first thing to understand. The Beast is not empty. It is not mindless. It is not a hollow shell doing what instinct tells it. What is left is older than thought, older than language, older than the particular way human beings have of making everything about themselves.',
-          'It knows the ground. It knows the sky. It knows which way water moves underground and where the sick trees are and what the smell of the air means before a storm that is still three days away. It knows things that took the body ten thousand years to learn and that were thrown away for abstract thought and indoor plumbing.',
-          'Some of them are relieved, at the end. Some of them, just before the last human thing closes the door, feel something that is not quite peace but is the closest they have ever come to it.',
-          'The forest does not mourn for what they were. It just takes them back. It always takes everything back, eventually.'
-        ])">
-          <div class="char-name">The Beast</div>
-          <div class="char-order">Ascended Wild</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card epic">
+          <div class="char-card-name">Beast</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill wild">Wild</span>
+          </div>
+          <div class="char-card-supply">1 of 1</div>
         </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Cursed','The Condemned',[
-          'The Condemned is what you become when your whole life is spent paying for someone else\'s handshake.',
-          'Not what you chose to become. Not what you worked toward or bargained for or even understood was coming. The Condemned arrive at their end the same way they arrived at everything else in their life: without having asked for it, without having been told what it would cost, because the cost was already set before they drew their first breath.',
-          'There is no peace in it. That would be too simple. The Condemned carry the full weight of the original debt plus interest, plus the weight of every year spent not knowing what they owed or why, plus the weight of whatever they had to give up along the way just to keep the thing from taking it without asking.',
-          'He knows all of this. He has always known. He watches the Condemned the way you might watch something that cost you a great deal of patience, with a kind of investment that is not quite sympathy and not quite satisfaction but contains something of both.',
-          'He has not closed the debt. Not yet.'
-        ])">
-          <div class="char-name">The Condemned</div>
-          <div class="char-order">Ascended Cursed</div>
-          <div class="char-cta">Read →</div>
+        <div class="char-card epic">
+          <div class="char-card-name">Condemned</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill cursed">Cursed</span>
+          </div>
+          <div class="char-card-supply">1 of 1</div>
         </div>
-
       </div>
     </div>
 
-    <!-- CREATOR -->
-    <div class="char-group" data-reveal data-delay="200">
-      <div class="char-group-label">Creator</div>
-      <div class="char-grid">
-        <div class="char-card locked">
-          <div class="char-name">The Architect</div>
-          <div class="char-order">Creator</div>
-          <div class="char-cta">Coming Soon</div>
+    <!-- LEGENDARY -->
+    <div class="tier-section" data-reveal data-delay="300">
+      <div class="tier-section-header">
+        <span class="tier-badge legendary">Legendary</span>
+        <span class="tier-section-name">The Creator · 1 Character · 1 of 1</span>
+      </div>
+      <div class="character-grid legend-grid">
+        <div class="char-card legendary">
+          <div class="char-card-name">Architect</div>
+          <div class="char-card-bloodlines">
+            <span class="char-bloodline-pill none">No Bloodline</span>
+          </div>
+          <div class="char-card-supply">Unique — belongs to no bloodline</div>
         </div>
       </div>
     </div>
@@ -311,30 +644,43 @@
     <div class="footer">
       <div class="footer-brand">THE COVENANT</div>
       <ul class="footer-links">
-        <li><a href="lore.html">Lore</a></li>
         <li><a href="bloodlines.html">Bloodlines</a></li>
         <li><a href="characters.html">Characters</a></li>
+        <li><a href="lore.html">Lore</a></li>
         <li><a href="collection.html">Collection</a></li>
-        <li><a href="mint.html">Collect</a></li>
+        <li><a href="mint.html">Mint</a></li>
       </ul>
       <div class="footer-social">
-        <a href="https://x.com/pixeljunkie" target="_blank" rel="noopener">X</a>
-        <a href="https://opensea.io" target="_blank" rel="noopener">OpenSea</a>
+        <a href="https://x.com/pixeljunkie" target="_blank">X / Twitter</a>
+        <a href="#" target="_blank">OpenSea</a>
       </div>
       <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
     </div>
   </footer>
 
-  <!-- MODAL -->
-  <div class="modal-wrap" id="modal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-label" id="modal-label"></div>
-      <div class="modal-title" id="modal-title"></div>
-      <div class="modal-body" id="modal-body"></div>
-    </div>
-  </div>
-
   <script src="js/main.js"></script>
+  <script>
+    // Character card click to expand description
+    document.querySelectorAll('.char-card[data-char]').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.dataset.char;
+        const desc = document.querySelector(`.char-desc-entry[data-char="${key}"]`);
+        const isActive = card.classList.contains('active');
+
+        // Close all open entries in this tier
+        const tier = card.closest('.tier-section');
+        tier.querySelectorAll('.char-card').forEach(c => c.classList.remove('active'));
+        tier.querySelectorAll('.char-desc-entry').forEach(d => d.classList.remove('active'));
+
+        // If it wasn't active, open it
+        if (!isActive && desc) {
+          card.classList.add('active');
+          desc.classList.add('active');
+          // Scroll into view smoothly
+          setTimeout(() => desc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
