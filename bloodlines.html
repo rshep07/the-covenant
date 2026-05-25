@@ -200,23 +200,13 @@
         <div class="bl-read">Read More →</div>
       </div>
 
-      <div class="bl-card" data-bl="cursed" onclick="openModal('Bloodline · V','Cursed',[
-        'Cursed is the bloodline that never made the deal.',
-        'That is what separates them from the others.',
-        'Crimson wanted power. Mystic wanted knowledge. Spirit wanted passage. Wild wanted release. Each of them walked toward the dark asking for something.',
-        'The Cursed were born already owing.',
-        'Somewhere in their bloodline, someone made a bargain and failed to pay the price. Maybe they were desperate. Maybe they were greedy. Maybe they thought they could cheat him.',
-        'They could not.',
-        'The debt did not die with them. It moved forward. Parent to child. Name to name. Blood to blood. The Cursed inherit the punishment without ever knowing the terms.',
-        'They do not know what was promised. They do not know what was taken. They do not know which ancestor doomed them. They only know something has been waiting for them since before they were born.',
-        'He knows the original bargain. He knows the name. He knows exactly how to end it.',
-        'He has not.',
-        'The Condemned is what Cursed becomes after a lifetime of paying for someone else&#39;s debt.'
-      ], '#6a6058')">        <div class="bl-num">Bloodline V</div>
+      <div class="bl-card" data-bl="cursed" onclick="openCursedModal()">
+        <div class="bl-num">Bloodline V</div>
         <div class="bl-name">Cursed</div>
         <div class="bl-hook">They never asked. The debt was already there when they were born into it.</div>
         <div class="bl-ascended">Ascended — The Condemned</div>
         <div class="bl-read">Read More →</div>
+      </div>
       </div>
 
     </div>
@@ -260,5 +250,24 @@
   </div>
 
   <script src="js/main.js"></script>
+
+  <script>
+  function openCursedModal() {
+    openModal('Bloodline · V', 'Cursed', [
+      'The Cursed did not ask for any of this.',
+      'That is what makes them different.',
+      'Crimson asked. Mystic asked. Spirit asked. Wild asked. They all walked up to the dark with their hands out and wanted something badly enough to pay for it.',
+      'The Cursed were born with the bill already waiting.',
+      'Somewhere back in the family, somebody made a deal. Maybe they were desperate. Maybe they were greedy. Maybe they thought they were smarter than the thing across from them.',
+      'They were not.',
+      'The deal went bad. The debt stayed open. And he does not forget what he is owed.',
+      'So it passed down. Not like a story. Stories can be changed. Not like money. Money can be lost. This passed down like a bad heart. Like a stain in the blood. Like a thing sleeping under the floorboards that wakes up every time another child is born.',
+      'The Cursed do not know the original terms. They do not know what was taken. They do not know who signed first. They only know they owe, and that the owing has been there longer than they have.',
+      'He could tell them. He could name the ancestor. He could settle the debt, burn the paper, close the door.',
+      'He has not.',
+      "The Condemned is what you become when your whole life is spent paying for someone else's handshake."
+    ], '#6a6058');
+  }
+  </script>
 </body>
 </html>
