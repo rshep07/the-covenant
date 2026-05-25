@@ -1,1146 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Covenant</title>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Pirata+One&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
-:root{
-  --black:#060402;
-  --dark:#0d0907;
-  --card:#100b07;
-  --crimson:#9e1c1c;
-  --crimson-dk:#5c0e0e;
-  --crimson-br:#cc2828;
-  --gold:#7c6233;
-  --gold-lt:#b8943c;
-  --bone:#d4bfa0;
-  --bone-dim:#8c7a65;
-  --text:#bfaa8e;
-  --text-dim:#6a5a48;
-  --border:#241810;
-  --border-lt:#3a2416;
-}
-
-body{
-  background:var(--black);
-  color:var(--text);
-  font-family:'IM Fell English',Georgia,serif;
-  font-size:17px;
-  line-height:1.85;
-  overflow-x:hidden;
-  min-height:100vh;
-}
-
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  opacity:0.038;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:200px;
-}
-
-/* ── NAV ── */
-nav{
-  position:fixed;
-  inset:0 0 auto 0;
-  z-index:800;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 52px;
-  height:60px;
-  background:rgba(6,4,2,0.96);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(6px);
-}
-
-.nav-brand{
-  font-family:'Pirata One',serif;
-  font-size:12px;
-  letter-spacing:0.14em;
-  color:var(--bone);
-  cursor:pointer;
-  user-select:none;
-  transition:opacity .25s;
-}
-.nav-brand:hover{opacity:.8;}
-
-.nav-menu{
-  display:flex;
-  gap:38px;
-  list-style:none;
-}
-
-.nav-menu a{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.25em;
-  color:var(--bone-dim);
-  text-decoration:none;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:color .25s;
-  position:relative;
-  padding-bottom:4px;
-}
-
-.nav-menu a::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;
-  width:0;height:1px;
-  background:var(--crimson);
-  transition:width .3s;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active{color:var(--bone);}
-.nav-menu a:hover::after,
-.nav-menu a.active::after{width:100%;}
-
-/* ── PAGES ── */
-.page{
-  min-height:100vh;
-  padding-top:60px;
-  display:none;
-}
-.page.visible{display:block;}
-
-/* ── HOME ── */
-#home{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
-}
-
-.home-bg{
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse 80% 65% at 50% 44%, #1e0c06 0%, var(--black) 68%);
-}
-
-.home-sigil{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:.055;
-}
-
-.home-sigil svg{
-  width:min(560px,88vw);
-  height:min(560px,88vw);
-}
-
-.home-content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:100px 24px 80px;
-  max-width:740px;
-  animation:rise 1.3s ease forwards;
-}
-
-@keyframes rise{
-  from{opacity:0;transform:translateY(22px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-.home-eyebrow{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.42em;
-  color:var(--crimson);
-  text-transform:uppercase;
-  margin-bottom:24px;
-}
-
-.home-title{
-  font-family:'UnifrakturMaguntia',serif;
-  font-size:clamp(56px,11vw,122px);
-  font-weight:700;
-  color:var(--bone);
-  line-height:1;
-  letter-spacing:0.04em;
-  text-shadow:0 0 120px rgba(156,28,28,.22);
-  margin-bottom:30px;
-}
-
-.home-rule{
-  width:90px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--crimson),transparent);
-  margin:0 auto 30px;
-}
-
-.home-tagline{
-  font-family:'Cinzel',serif;
-  font-size:12px;
-  letter-spacing:0.18em;
-  color:var(--bone-dim);
-  line-height:2.3;
-  margin-bottom:46px;
-}
-
-.home-excerpt{
-  font-style:italic;
-  font-size:15.5px;
-  color:var(--text-dim);
-  max-width:460px;
-  margin:0 auto 50px;
-  line-height:1.95;
-  text-align:left;
-  border-left:1px solid var(--crimson-dk);
-  padding-left:22px;
-}
-
-.home-cta{
-  display:inline-block;
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.32em;
-  text-transform:uppercase;
-  color:var(--bone);
-  padding:14px 42px;
-  border:1px solid var(--border-lt);
-  cursor:pointer;
-  background:transparent;
-  transition:all .4s;
-  position:relative;
-  overflow:hidden;
-}
-
-.home-cta::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:var(--crimson-dk);
-  opacity:0;
-  transition:opacity .4s;
-}
-
-.home-cta:hover{border-color:var(--crimson);}
-.home-cta:hover::before{opacity:1;}
-.home-cta span{position:relative;}
-
-/* ── INNER PAGES ── */
-.container{
-  max-width:840px;
-  margin:0 auto;
-  padding:72px 44px 100px;
-}
-
-.pg-header{
-  text-align:center;
-  margin-bottom:68px;
-}
-
-.pg-eyebrow{
-  display:block;
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.42em;
-  color:var(--crimson);
-  text-transform:uppercase;
-  margin-bottom:18px;
-}
-
-.pg-title{
-  font-family:'Pirata One',serif;
-  font-size:clamp(30px,5vw,48px);
-  color:var(--bone);
-  font-weight:400;
-  line-height:1.2;
-}
-
-.pg-rule{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  margin-top:22px;
-}
-
-.pg-rule::before,
-.pg-rule::after{
-  content:'';
-  display:block;
-  width:56px;
-  height:1px;
-  background:var(--border-lt);
-}
-
-.rule-glyph{
-  color:var(--crimson-dk);
-  font-size:14px;
-  line-height:1;
-}
-
-/* ── LORE ── */
-.lore-summary{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-left:2px solid var(--crimson-dk);
-  padding:26px 30px;
-  margin-bottom:60px;
-  font-size:15.5px;
-  color:var(--text-dim);
-  line-height:2;
-  font-style:italic;
-}
-
-.lore-section{margin-bottom:60px;}
-
-.lore-label{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.32em;
-  color:var(--crimson);
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  margin-bottom:28px;
-}
-
-.lore-label::after{
-  content:'';
-  flex:1;
-  height:1px;
-  background:var(--border);
-}
-
-.lore-body{
-  color:var(--text);
-  font-size:16.5px;
-  line-height:2;
-}
-
-.lore-body p{margin-bottom:22px;}
-.lore-body p:last-child{margin-bottom:0;}
-
-.lore-pull{
-  border-left:2px solid var(--crimson-dk);
-  padding:14px 26px;
-  margin:36px 0;
-  font-style:italic;
-  color:var(--bone-dim);
-  font-size:17px;
-  line-height:1.85;
-}
-
-/* ── BLOODLINES ── */
-.bl-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(288px,1fr));
-  gap:18px;
-}
-
-.bl-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:30px 26px;
-  cursor:pointer;
-  transition:all .3s;
-  position:relative;
-  overflow:hidden;
-}
-
-.bl-card::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:2px;
-  background:var(--crimson-dk);
-  transition:background .3s;
-}
-
-.bl-card:hover{
-  border-color:var(--crimson-dk);
-  transform:translateY(-3px);
-  box-shadow:0 10px 40px rgba(0,0,0,.5);
-}
-
-.bl-card:hover::before{background:var(--crimson);}
-
-.bl-num{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.2em;
-  color:var(--text-dim);
-  margin-bottom:10px;
-}
-
-.bl-name{
-  font-family:'Pirata One',serif;
-  font-size:20px;
-  color:var(--bone);
-  margin-bottom:14px;
-}
-
-.bl-hook{
-  font-style:italic;
-  font-size:14px;
-  color:var(--text-dim);
-  line-height:1.75;
-  margin-bottom:16px;
-}
-
-.bl-ascended{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.18em;
-  color:var(--crimson-dk);
-  text-transform:uppercase;
-  margin-bottom:16px;
-}
-
-.bl-read{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.22em;
-  color:var(--crimson);
-  text-transform:uppercase;
-  transition:letter-spacing .3s;
-}
-
-.bl-card:hover .bl-read{letter-spacing:.3em;}
-
-/* ── CHARACTERS ── */
-.char-group{margin-bottom:52px;}
-
-.char-group-label{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.38em;
-  color:var(--bone-dim);
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:18px;
-}
-
-.char-group-label::before{
-  content:'';
-  width:14px;height:1px;
-  background:var(--border-lt);
-}
-
-.char-group-label::after{
-  content:'';
-  flex:1;height:1px;
-  background:var(--border);
-}
-
-.char-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(206px,1fr));
-  gap:10px;
-}
-
-.char-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:20px 20px;
-  cursor:pointer;
-  transition:all .25s;
-}
-
-.char-card:hover{
-  border-color:var(--crimson-dk);
-  background:#130907;
-}
-
-.char-card.locked{
-  cursor:default;
-  opacity:.38;
-}
-
-.char-card.locked:hover{
-  border-color:var(--border);
-  background:var(--card);
-}
-
-.char-name{
-  font-family:'Cinzel',serif;
-  font-size:13.5px;
-  color:var(--bone);
-  margin-bottom:5px;
-}
-
-.char-order{
-  font-style:italic;
-  font-size:12px;
-  color:var(--text-dim);
-  margin-bottom:12px;
-}
-
-.char-cta{
-  font-family:'Cinzel',serif;
-  font-size:9px;
-  letter-spacing:0.22em;
-  color:var(--crimson-dk);
-  text-transform:uppercase;
-  transition:color .25s;
-}
-
-.char-card:hover .char-cta{color:var(--crimson);}
-
-/* ── AFFLICTIONS ── */
-#afflictions{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  text-align:center;
-}
-
-#afflictions.visible{display:flex;}
-
-.aff-inner{max-width:360px;}
-
-.aff-title{
-  font-family:'Pirata One',serif;
-  font-size:clamp(28px,5vw,52px);
-  color:var(--bone);
-  opacity:.3;
-  margin-bottom:22px;
-  letter-spacing:.04em;
-}
-
-.aff-label{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.42em;
-  color:var(--crimson);
-  text-transform:uppercase;
-  margin-bottom:22px;
-  display:block;
-}
-
-.aff-copy{
-  font-style:italic;
-  font-size:15px;
-  color:var(--text-dim);
-  line-height:1.9;
-}
-
-/* ── MODAL ── */
-.modal-wrap{
-  position:fixed;
-  inset:0;
-  z-index:850;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(3,2,1,.93);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .28s;
-}
-
-.modal-wrap.open{
-  opacity:1;
-  pointer-events:all;
-}
-
-.modal{
-  background:var(--dark);
-  border:1px solid var(--border-lt);
-  max-width:650px;
-  width:100%;
-  max-height:88vh;
-  overflow-y:auto;
-  padding:50px 46px;
-  position:relative;
-  transform:translateY(18px);
-  transition:transform .32s;
-  scrollbar-width:thin;
-  scrollbar-color:var(--crimson-dk) var(--card);
-}
-
-.modal-wrap.open .modal{transform:translateY(0);}
-
-.modal::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--crimson),transparent);
-}
-
-.modal-close{
-  position:absolute;
-  top:18px;right:20px;
-  background:none;
-  border:none;
-  color:var(--text-dim);
-  font-family:'Cinzel',serif;
-  font-size:17px;
-  cursor:pointer;
-  padding:4px 8px;
-  transition:color .2s;
-  line-height:1;
-}
-
-.modal-close:hover{color:var(--bone);}
-
-.modal-label{
-  font-family:'Cinzel',serif;
-  font-size:10px;
-  letter-spacing:0.3em;
-  color:var(--crimson);
-  text-transform:uppercase;
-  margin-bottom:14px;
-}
-
-.modal-title{
-  font-family:'Pirata One',serif;
-  font-size:clamp(24px,4vw,34px);
-  color:var(--bone);
-  margin-bottom:30px;
-  line-height:1.2;
-}
-
-.modal-body{
-  font-size:16px;
-  line-height:2;
-  color:var(--text);
-}
-
-.modal-body p{margin-bottom:20px;}
-.modal-body p:last-child{margin-bottom:0;}
-
-.modal::-webkit-scrollbar{width:3px;}
-.modal::-webkit-scrollbar-track{background:var(--card);}
-.modal::-webkit-scrollbar-thumb{background:var(--crimson-dk);border-radius:2px;}
-
-/* ── RESPONSIVE ── */
-@media(max-width:640px){
-  nav{padding:0 20px;}
-  .nav-brand{font-size:10px;}
-  .nav-menu{gap:16px;}
-  .nav-menu a{font-size:9px;}
-  .container{padding:52px 20px 80px;}
-  .modal{padding:36px 22px;}
-  .bl-grid{grid-template-columns:1fr;}
-  .home-content{padding:80px 20px 60px;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE COVENANT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 75% 60% at 50% 45%, #1c0e06 0%, var(--black) 68%);
+    }
+
+    .hero-sigil {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .hero-sigil svg {
+      width: min(560px, 85vw);
+      height: min(560px, 85vw);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 100px 24px 80px;
+      max-width: 720px;
+      animation: heroRise 1.2s ease forwards;
+    }
+
+    @keyframes heroRise {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: var(--font-brand);
+      font-size: clamp(58px, 11vw, 118px);
+      color: var(--gold-light);
+      line-height: 1;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 80px rgba(184,144,64,0.22), 0 0 160px rgba(140,25,25,0.1);
+      margin-bottom: 28px;
+    }
+
+    .hero-rule {
+      width: 88px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 28px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-title);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--text-dim);
+      line-height: 2.3;
+      margin-bottom: 44px;
+    }
+
+    .hero-excerpt {
+      font-style: italic;
+      font-size: 15.5px;
+      color: var(--text-dim);
+      max-width: 460px;
+      margin: 0 auto 50px;
+      line-height: 1.95;
+      text-align: left;
+      border-left: 1px solid var(--crimson-dk);
+      padding-left: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── INTRO STRIP ── */
+    .intro {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .intro-item {
+      background: var(--black);
+      padding: 36px 28px;
+      text-align: center;
+      transition: background 0.25s;
+    }
+
+    .intro-item:hover { background: var(--surface); }
+
+    .intro-item a {
+      display: block;
+      height: 100%;
+    }
+
+    .intro-item-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .intro-item-title {
+      font-family: var(--font-title);
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+
+    .intro-item-desc {
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── COLLECTION TEASER ── */
+    .teaser {
+      padding: 80px 0 100px;
+    }
+
+    .teaser-inner {
+      border: 1px solid var(--border);
+      padding: 56px 52px;
+      text-align: center;
+      position: relative;
+      background: var(--surface);
+    }
+
+    .teaser-inner::before,
+    .teaser-inner::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-color: var(--gold-dim);
+      border-style: solid;
+      opacity: 0.5;
+    }
+
+    .teaser-inner::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .teaser-inner::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+    .teaser-title {
+      font-family: var(--font-brand);
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .teaser-body {
+      font-style: italic;
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.9;
+    }
+
+  </style>
 </head>
 <body>
 
-<!-- ── NAVIGATION ── -->
-<nav>
-  <span class="nav-brand" onclick="showPage('home')">The Covenant</span>
-  <ul class="nav-menu">
-    <li><a data-page="lore" onclick="showPage('lore')">Lore</a></li>
-    <li><a data-page="bloodlines" onclick="showPage('bloodlines')">Bloodlines</a></li>
-    <li><a data-page="characters" onclick="showPage('characters')">Characters</a></li>
-    <li><a data-page="afflictions" onclick="showPage('afflictions')">Afflictions</a></li>
-  </ul>
-</nav>
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">THE COVENANT</a>
+    <ul class="nav-links">
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="bloodlines.html">Bloodlines</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="collection.html">Collection</a></li>
+    </ul>
+    <a href="mint.html" class="nav-cta">Collect</a>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
 
-<!-- ── HOME ── -->
-<section class="page visible" id="home">
-  <div class="home-bg"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
 
-  <div class="home-sigil">
-    <svg viewBox="0 0 400 400" fill="none" stroke="#d4bfa0" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Outer rings -->
-      <circle cx="200" cy="200" r="172" stroke-width="0.55"/>
-      <circle cx="200" cy="200" r="163" stroke-width="0.28" stroke-dasharray="3 11"/>
-      <!-- Five radiating paths (72° apart, from north) -->
-      <!-- Path 1: North (0°) -->
-      <line x1="200" y1="178" x2="200" y2="30" stroke-width="0.65"/>
-      <!-- Path 2: 72° -->
-      <line x1="221" y1="193" x2="351" y2="152" stroke-width="0.65"/>
-      <!-- Path 3: 144° -->
-      <line x1="213" y1="217" x2="292" y2="327" stroke-width="0.65"/>
-      <!-- Path 4: 216° -->
-      <line x1="187" y1="217" x2="108" y2="327" stroke-width="0.65"/>
-      <!-- Path 5: 288° -->
-      <line x1="179" y1="193" x2="49" y2="152" stroke-width="0.65"/>
-      <!-- Center circle -->
-      <circle cx="200" cy="200" r="22" stroke-width="0.65"/>
-      <circle cx="200" cy="200" r="7" fill="#d4bfa0" stroke="none"/>
-      <!-- Crossbars at midpoints -->
-      <line x1="192" y1="108" x2="208" y2="108" stroke-width="0.45"/>
-      <line x1="284" y1="180" x2="276" y2="166" stroke-width="0.45"/>
-      <line x1="260" y1="279" x2="247" y2="268" stroke-width="0.45"/>
-      <line x1="140" y1="279" x2="153" y2="268" stroke-width="0.45"/>
-      <line x1="116" y1="180" x2="124" y2="166" stroke-width="0.45"/>
-      <!-- Terminal marks -->
-      <circle cx="200" cy="30" r="4" stroke-width="0.6"/>
-      <circle cx="351" cy="152" r="4" stroke-width="0.6"/>
-      <circle cx="292" cy="327" r="4" stroke-width="0.6"/>
-      <circle cx="108" cy="327" r="4" stroke-width="0.6"/>
-      <circle cx="49" cy="152" r="4" stroke-width="0.6"/>
-      <!-- Interior pentagon -->
-      <polygon points="200,130 267,178 241,257 159,257 133,178" stroke-width="0.35" stroke-dasharray="3 9"/>
-      <!-- Pentagon vertices -->
-      <circle cx="200" cy="130" r="3" stroke-width="0.5"/>
-      <circle cx="267" cy="178" r="3" stroke-width="0.5"/>
-      <circle cx="241" cy="257" r="3" stroke-width="0.5"/>
-      <circle cx="159" cy="257" r="3" stroke-width="0.5"/>
-      <circle cx="133" cy="178" r="3" stroke-width="0.5"/>
-      <!-- Outer arc marks at path termini -->
-      <path d="M194,22 A172,172 0 0,1 206,22" stroke-width="0.5"/>
-      <path d="M357,144 A172,172 0 0,1 361,156" stroke-width="0.5"/>
-    </svg>
+    <div class="hero-sigil">
+      <svg viewBox="0 0 400 400" fill="none" stroke="#d4b060" stroke-linecap="round">
+        <circle cx="200" cy="200" r="172" stroke-width="0.55"/>
+        <circle cx="200" cy="200" r="163" stroke-width="0.28" stroke-dasharray="3 11"/>
+        <line x1="200" y1="178" x2="200" y2="30" stroke-width="0.65"/>
+        <line x1="221" y1="193" x2="351" y2="152" stroke-width="0.65"/>
+        <line x1="213" y1="217" x2="292" y2="327" stroke-width="0.65"/>
+        <line x1="187" y1="217" x2="108" y2="327" stroke-width="0.65"/>
+        <line x1="179" y1="193" x2="49" y2="152" stroke-width="0.65"/>
+        <circle cx="200" cy="200" r="22" stroke-width="0.65"/>
+        <circle cx="200" cy="200" r="7" fill="#d4b060" stroke="none"/>
+        <line x1="192" y1="108" x2="208" y2="108" stroke-width="0.45"/>
+        <line x1="284" y1="180" x2="276" y2="166" stroke-width="0.45"/>
+        <line x1="260" y1="279" x2="247" y2="268" stroke-width="0.45"/>
+        <line x1="140" y1="279" x2="153" y2="268" stroke-width="0.45"/>
+        <line x1="116" y1="180" x2="124" y2="166" stroke-width="0.45"/>
+        <circle cx="200" cy="30" r="4" stroke-width="0.6"/>
+        <circle cx="351" cy="152" r="4" stroke-width="0.6"/>
+        <circle cx="292" cy="327" r="4" stroke-width="0.6"/>
+        <circle cx="108" cy="327" r="4" stroke-width="0.6"/>
+        <circle cx="49" cy="152" r="4" stroke-width="0.6"/>
+        <polygon points="200,130 267,178 241,257 159,257 133,178" stroke-width="0.35" stroke-dasharray="3 9"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner">
+      <span class="hero-eyebrow">A Dark Fantasy Collection</span>
+      <h1 class="hero-title">The Covenant</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">
+        Five bloodlines. Five deals.<br>
+        One crossroads that was always going to find you.
+      </p>
+      <p class="hero-excerpt">
+        There's a kind of wanting that lives in your bones. Not the regular kind. The other kind. The kind that wakes you up at three in the morning and doesn't go back to sleep when you do.
+      </p>
+      <div class="hero-actions">
+        <a href="lore.html" class="btn btn-primary">Read the Lore</a>
+        <a href="bloodlines.html" class="btn btn-outline">The Bloodlines</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO STRIP -->
+  <div class="page">
+    <section class="intro" data-reveal>
+      <div class="intro-grid">
+        <div class="intro-item">
+          <a href="lore.html">
+            <div class="intro-item-label">I</div>
+            <div class="intro-item-title">The Lore</div>
+            <div class="intro-item-desc">The crossroads. The figure with the tall hat. The ledger he keeps.</div>
+          </a>
+        </div>
+        <div class="intro-item">
+          <a href="bloodlines.html">
+            <div class="intro-item-label">II</div>
+            <div class="intro-item-title">The Bloodlines</div>
+            <div class="intro-item-desc">Five deals. Five different hungers. Five different prices.</div>
+          </a>
+        </div>
+        <div class="intro-item">
+          <a href="characters.html">
+            <div class="intro-item-label">III</div>
+            <div class="intro-item-title">The Characters</div>
+            <div class="intro-item-desc">Practitioners, Specialists, the Ascended. And the one who made the crossroads.</div>
+          </a>
+        </div>
+        <div class="intro-item">
+          <a href="collection.html">
+            <div class="intro-item-label">IV</div>
+            <div class="intro-item-title">The Collection</div>
+            <div class="intro-item-desc">The pieces. The editions. What has been released.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEASER -->
+    <section class="teaser" data-reveal data-delay="150">
+      <div class="teaser-inner">
+        <div class="section-label">He found it interesting</div>
+        <div class="teaser-title">The Architect</div>
+        <p class="teaser-body">He digs the graves himself, for who you were before you came here. He keeps the ledger. He is not the villain of this story. That's the thing that should keep you up at night.</p>
+        <a href="lore.html" class="btn btn-outline">Read the Origin</a>
+      </div>
+    </section>
   </div>
 
-  <div class="home-content">
-    <p class="home-eyebrow">A Dark Fantasy Collection</p>
-    <h1 class="home-title">The Covenant</h1>
-    <div class="home-rule"></div>
-    <p class="home-tagline">
-      Five bloodlines. Five deals.<br>
-      One crossroads that was always going to find you.
-    </p>
-    <p class="home-excerpt">
-      There's a kind of wanting that lives in your bones. Not the regular kind, not the kind you can talk yourself out of on a Tuesday morning when the coffee's hot and things look manageable. The other kind. The kind that wakes you up at three in the morning and doesn't go back to sleep when you do.
-    </p>
-    <button class="home-cta" onclick="showPage('lore')"><span>Read the Lore</span></button>
-  </div>
-</section>
-
-<!-- ── LORE ── -->
-<section class="page" id="lore">
-  <div class="container">
-    <div class="pg-header">
-      <span class="pg-eyebrow">The World</span>
-      <h2 class="pg-title">Lore</h2>
-      <div class="pg-rule"><span class="rule-glyph">✦</span></div>
-    </div>
-
-    <div class="lore-summary">
-      The Covenant is a dark fantasy collection built around a single origin point: a crossroads where deals are made with a figure who has been making arrangements longer than anyone alive can remember. The collection is built on five bloodlines — Crimson, Mystic, Spirit, Wild, and Cursed. Each one is a different kind of deal made at that crossing. Most of them walked up with their hands out. One of them was born already owing.
-    </div>
-
-    <div class="lore-section">
-      <div class="lore-label">The Crossroads</div>
-      <div class="lore-body">
-        <p>There's a kind of wanting that lives in your bones. Not the regular kind, not the kind you can talk yourself out of on a Tuesday morning when the coffee's hot and things look manageable. The other kind. The kind that wakes you up at three in the morning and doesn't go back to sleep when you do. The kind that makes you do things you swore you never would. The kind that makes you walk down a road you've walked a hundred times and find, and you're not as surprised as you probably should be, that tonight it has five paths where it used to have one.</p>
-
-        <p>He's already there when you arrive, and the first thing you notice is that he's laughing. Not at anything you can identify. Tall hat. A face that quit being a face a long time ago. A cigar that should have burned down hours ago and hasn't, and won't. The laugh sounds real, which is the part that gets you. You never find out what's funny. Part of you, the honest part, suspects it's you.</p>
-
-        <p>Here's what nobody thinks to warn you about: he could send you home. That's the thing they always leave out, and it matters. He can cure anything. Lift any curse. He can look at the want in someone and decide it's not interesting enough to write down, and the person walks home whole, a little confused, and spends the rest of their life unable to remember the road that shouldn't have had five paths. He does this. More often than you'd think.</p>
-
-        <div class="lore-pull">He looked at your want. He found it interesting.</div>
-
-        <p>Five deals have been made at this crossing. Five different hungers, five different prices, five different ways the thing gets into your blood and starts its work. There's no ceremony. No contract. You go home. You sleep. You wake up the next morning and something is slightly different. Not wrong exactly. Just different. You can explain it away.</p>
-
-        <p>Then the next morning, something else. Then the next. You keep telling yourself you're adjusting. Some of them are still telling themselves that when the last human thing quietly closes the door on its way out.</p>
-
-        <p>He digs the graves himself, for who you were before you came here. The cemetery kind isn't really his department. He's careful about it the way someone is careful when they've done the same job ten thousand times and caring is just how they do it now. He doesn't lose a single thing you were.</p>
-
-        <p>He keeps the ledger. Every name, every want, every cost. He already knows what you're giving up. He could tell you. He won't, because the not-telling is more interesting, and he has a long memory and a lot of patience and absolutely nowhere else to be.</p>
-
-        <div class="lore-pull">He is not the villain of this story. That's the thing that should keep you up at night.</div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
+      <ul class="footer-links">
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="bloodlines.html">Bloodlines</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="mint.html">Collect</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank" rel="noopener">X</a>
+        <a href="https://opensea.io" target="_blank" rel="noopener">OpenSea</a>
       </div>
+      <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
     </div>
+  </footer>
 
-    <div class="lore-section">
-      <div class="lore-label">The Order</div>
-      <div class="lore-body">
-        <p>The people who move through The Covenant's world are sorted not by what they want, but by what they do with it. Practitioners carry the old knowledge the hard way — in their hands, in their scars, in the things they can't put down because there is no putting them down. Specialists found the pattern inside the darkness and couldn't stop looking once they started. The Ascended are what happens at the end of a bloodline, when everything that made a person has been paid out and only the power remains. And then there is the Architect, who made the crossroads, who keeps the ledger, who has never once needed anything from anyone and finds all of this very interesting.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── BLOODLINES ── -->
-<section class="page" id="bloodlines">
-  <div class="container">
-    <div class="pg-header">
-      <span class="pg-eyebrow">The Five</span>
-      <h2 class="pg-title">Bloodlines</h2>
-      <div class="pg-rule"><span class="rule-glyph">✦</span></div>
-    </div>
-
-    <div class="bl-grid">
-
-      <div class="bl-card" onclick="openModal('Bloodline · Crimson','Crimson',
-        'Crimson starts with the body.',
-        'Not the soul. Not the mind. The body. The soft stuff. The meat. The pulse in the neck. The fingers twitching on a table. The breath that can be pulled back in or taken away.',
-        'That is what he gave them.',
-        'At first, it feels almost decent. Useful, even. A cut closes faster than it should. A fever breaks. A dying thing keeps breathing because somebody in Crimson wanted it to. You tell yourself that is mercy, and maybe once or twice it is.',
-        'Then comes the other side of it.',
-        'A body can be helped. A body can also be made to hurt. It can be stopped. Bent. Opened. Taught to obey.',
-        'He keeps count. Of course he does. Every life spared. Every life taken. Every time the blood answered when it should not have. Nothing is free, especially not from him.',
-        'The first thing Crimson loses is hesitation. They usually mistake that for strength. The second thing is mercy. They mistake that for clarity. The last thing is worse, because by the time it leaves, there is no one left inside decent enough to miss it.',
-        'The Demon is what Crimson becomes when the body is still alive, but the person inside has already been spent.'
-      )">
-        <div class="bl-num">Bloodline I</div>
-        <div class="bl-name">Crimson</div>
-        <div class="bl-hook">Power over the body. Over the breath. Over the thing that keeps it all running.</div>
-        <div class="bl-ascended">Ascended — The Demon</div>
-        <div class="bl-read">Read More →</div>
-      </div>
-
-      <div class="bl-card" onclick="openModal('Bloodline · Mystic','Mystic',
-        'Mystic is what happens when somebody opens a door they were warned about.',
-        'Everybody wants to know things. That part is ordinary. Who loved you. Who lied. What waits after the last breath. Whether the dead remember us. Whether anything is watching.',
-        'Most people ask once and get scared of the answer.',
-        'The Mystic bloodline kept asking.',
-        'He gave them sight, but not the soft kind. Not visions wrapped in candles and pretty smoke. He gave them the kind that peels paint off the world. The kind that shows you what has been standing in the corner the whole time. The kind that makes you understand why some doors were locked from both sides.',
-        'In return, he gets the first look. Every secret they uncover passes through him before it belongs to them. Every hidden thing, every buried name, every little truth with teeth.',
-        'At first, they think they can handle it. That is how it always starts. They see shapes in rooms where nothing should be. Hear voices under running water. Dream of places they have never been and wake up knowing the way there.',
-        'Then the old life starts to thin out. Friends feel like strangers. Mirrors take too long to give back the right face. The world is still there, same as before, but Mystic is not standing in the same version of it anymore.',
-        'The Fallen Angel is what happens when Mystic looks past the last warning and reaches anyway.'
-      )">
-        <div class="bl-num">Bloodline II</div>
-        <div class="bl-name">Mystic</div>
-        <div class="bl-hook">Forbidden knowledge. The kind that shows you what was standing there the whole time.</div>
-        <div class="bl-ascended">Ascended — The Fallen Angel</div>
-        <div class="bl-read">Read More →</div>
-      </div>
-
-      <div class="bl-card" onclick="openModal('Bloodline · Spirit','Spirit',
-        'The dead are not gone the way people think they are.',
-        'Some leave clean. Most do not.',
-        'They hang around in stupid places. Kitchens. Backseats. Hospital rooms. The foot of a bed. A hallway where bad news was given. They keep doing the last thing they understood, because death does not make everyone wise. Sometimes it only makes them lost.',
-        'He rules the dead, but the dead are everywhere. Too many rooms. Too many graves. Too many people who died with something still stuck in their mouth.',
-        'So he made the Spirit bloodline.',
-        'They go where he cannot be bothered to go. They speak to what lingers. They move along what refuses to move. They stand in the doorway between here and there and keep the traffic from piling up.',
-        'It sounds noble until you understand the price.',
-        'Spirit never really comes home. Not all the way. The living can feel it. They get quiet when Spirit enters a room, though they do not know why. Dogs stare. Babies cry. Old people look away.',
-        'The dead know right away. To them, Spirit shines like a porch light at the end of a long road.',
-        'The Ghost is what happens when someone stops crossing over and simply becomes the crossing.'
-      )">
-        <div class="bl-num">Bloodline III</div>
-        <div class="bl-name">Spirit</div>
-        <div class="bl-hook">Passage between the living and the dead. A porch light at the end of a long road.</div>
-        <div class="bl-ascended">Ascended — The Ghost</div>
-        <div class="bl-read">Read More →</div>
-      </div>
-
-      <div class="bl-card" onclick="openModal('Bloodline · Wild','Wild',
-        'Wild is older than people.',
-        'Older than names. Older than houses. Older than the first poor fool who looked at the dark line of trees and decided the world could be owned.',
-        'Wild was there before that. Waiting. Growing. Eating what fell. Turning bone to dirt and dirt to root and root to hunger.',
-        'He did not create that cycle. Nobody did. But he knows it. He knows what the ground takes. He knows what crawls back out of it.',
-        'The Wild bloodline wanted in.',
-        'That is the part people get wrong. They were not dragged. Not at first. They looked at the short, noisy little business of being human and decided they had enough of it. Enough worry. Enough memory. Enough waking up every day trapped in the same skin.',
-        'So he opened the door.',
-        'Wild does not change you all at once. It is patient. It starts with the skin. A rash that is not a rash. A smell like wet leaves. Dirt under the nails even after washing. Dreams of roots pushing through ribs.',
-        'Then it gets deeper. Names stop mattering. Faces stop mattering. Hunger gets simple. Fear gets simple. The body learns old instructions.',
-        'Some of them are relieved. That may be the worst part.',
-        'The Beast is what remains when Wild has finished correcting the mistake of being human.'
-      )">
-        <div class="bl-num">Bloodline IV</div>
-        <div class="bl-name">Wild</div>
-        <div class="bl-hook">Older than names. Older than the idea that the world could be owned.</div>
-        <div class="bl-ascended">Ascended — The Beast</div>
-        <div class="bl-read">Read More →</div>
-      </div>
-
-      <div class="bl-card" onclick="openModal('Bloodline · Cursed','Cursed',
-        'The Cursed did not ask for any of this.',
-        'That is what makes them different.',
-        'Crimson asked. Mystic asked. Spirit asked. Wild asked. They all walked up to the dark with their hands out and wanted something badly enough to pay for it.',
-        'The Cursed were born with the bill already waiting.',
-        'Somewhere back in the family, somebody made a deal. Maybe they were desperate. Maybe they were greedy. Maybe they thought they were smarter than the thing across from them.',
-        'They were not.',
-        'The deal went bad. The debt stayed open. And he does not forget what he is owed.',
-        'So it passed down. Not like a story. Stories can be changed. Not like money. Money can be lost. This passed down like a bad heart. Like a stain in the blood. Like a thing sleeping under the floorboards that wakes up every time another child is born.',
-        'The Cursed do not know the original terms. They do not know what was taken. They do not know who signed first. They only know they owe, and that the owing has been there longer than they have.',
-        'He could tell them. He could name the ancestor. He could settle the debt, burn the paper, close the door.',
-        'He has not.',
-        'The Condemned is what you become when your whole life is spent paying for someone else\'s handshake.'
-      )">
-        <div class="bl-num">Bloodline V</div>
-        <div class="bl-name">Cursed</div>
-        <div class="bl-hook">They never asked. The debt was already there when they were born into it.</div>
-        <div class="bl-ascended">Ascended — The Condemned</div>
-        <div class="bl-read">Read More →</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── CHARACTERS ── -->
-<section class="page" id="characters">
-  <div class="container">
-    <div class="pg-header">
-      <span class="pg-eyebrow">The Order</span>
-      <h2 class="pg-title">Characters</h2>
-      <div class="pg-rule"><span class="rule-glyph">✦</span></div>
-    </div>
-
-    <!-- PRACTITIONERS -->
-    <div class="char-group">
-      <div class="char-group-label">Practitioners</div>
-      <div class="char-grid">
-
-        <div class="char-card" onclick="openModal('Practitioner','Witch Doctor',
-          'The Witch Doctor knows things they shouldn\'t know. Not the big things. Not the secrets of the universe. The small things. The specific, terrible, useful small things. Which root combined with which other root does what to which organ. Where the thin places are between here and whatever comes next. What to say, exactly how to say it, when you need something from the other side to pay attention and cooperate. They learned all of it the hard way, because there is no other way this particular curriculum gets taught, and every lesson cost something they can\'t get back.',
-          'They carry the tools of the trade on their person at all times because in this line of work there is no leaving things at the office. The feathers, the cord, the beads worn smooth from years of handling, the small bones and wrapped bundles that smell like something you can\'t quite name but recognize somewhere below the level of thinking. None of it is decoration. Every piece has a job. They know the job and they know the cost and they do the job anyway.',
-          'Their face looks the way it looks because you cannot make that many trips to the place between the living and the dead and come back looking the same as when you left. Nobody does. The skull isn\'t a costume. It\'s just what they look like now.',
-          'The staff hits the ground once. Somewhere, something pays attention. It always does.'
-        )">
-          <div class="char-name">Witch Doctor</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Shaman',
-          'The Shaman made a decision that most people make by accident, if they make it at all. They decided to stop pretending.',
-          'They\'d been pretending for years, the way everybody pretends, the way it\'s basically required: that the thin places don\'t get thinner at certain hours, that the feeling of being watched in an empty room is just nerves, that the things moving at the edge of your vision when you haven\'t slept are your mind filling in blanks. One day the Shaman set that down. Just left it on the ground and walked away. It was like putting down a bag you\'d been carrying so long you forgot it was heavy.',
-          'They covered their eyes not because the world went dark but because it got too crowded, too full of things that eyes were not built to handle. The skull is a reminder, mostly to themselves: you crossed a line. You know you crossed it. Don\'t start pretending otherwise.',
-          'They are wide and heavy and they stand like something that grew where it\'s standing rather than walked there. When they move, it is with the patience of something that was here before your city was an idea and will be here long after. Not slowly exactly. More like they\'ve decided that hurrying is a kind of lie.',
-          'The deal doesn\'t make Shamans. It finds them partway through and finishes the job.'
-        )">
-          <div class="char-name">Shaman</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Necromancer',
-          'The Necromancer is, at their core, very good company for the dead. That sounds like the setup to a joke. It isn\'t.',
-          'Most people are terrible at it. They come to the dead with need and grief and the human selfishness that expects even dead people to perform on a schedule. The Necromancer comes with patience and without agenda, the way a good listener comes to a conversation, and the dead respond to that the way anyone responds to someone who isn\'t afraid of them and isn\'t trying to get something from them. They answer. They have always answered, long before any deal made it official. The Necromancer was already standing in the empty places and hearing what lived there.',
-          'They stand in the places where things ended, the fields and dead rooms and crossroads where the air still feels wrong years later, the way a room feels wrong after the bad thing happened in it even after the cleaning and the new paint and the hopeful furniture. The places find them. Something in the ground knows what they are and turns toward them.',
-          'What they do is not complicated. They call. Things answer. Some people mistake it for grief. It isn\'t. Grief is about loss, about the space where something used to be. This is much closer to ownership.',
-          'The flowers growing at their feet don\'t know any better.'
-        )">
-          <div class="char-name">Necromancer</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Warlock',
-          'The thing about the Warlock that separates them from everyone else who ever stood at that crossroads is that they brought a list. Not literally. But close enough to literal that it doesn\'t matter. They came prepared. They knew what they wanted, they\'d thought about what they were willing to give, and they had some notion of where their line was. They sat down with something that has been making these arrangements longer than anyone alive can remember, and they attempted to negotiate. To get a better deal than the standard one.',
-          'The remarkable thing — the thing that should bother you more than anything else about the Warlock — is that it worked. Partially. They got more. They paid more. The face was part of the cost, probably not the biggest part, and what\'s behind the face now burns green and cold in the dark where a person\'s face used to be, two points of light that are absolutely still and absolutely watching.',
-          'The earth is in the gaps of their clothing now, working inward the way water works into stone, patient because it has all the time there is. There are still two things behind those eyes. One of them knows what it is. The other one used to be a person.',
-          'The bill isn\'t paid yet. You can tell.'
-        )">
-          <div class="char-name">Warlock</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Practitioner','Sorceress',
-          'The Sorceress would tell you, if she trusted you, that the hardest part isn\'t what she sees. It\'s the silence after. Before the deal, when she found something out, she could tell someone. A friend, a sister, the person across the diner table at two in the morning. Not now. The things she knows aren\'t shareable over coffee. They\'re not shareable at all. So she carries them, every locked door she\'s opened and every sealed thing she\'s found the bottom of and every piece of knowledge that was buried for good reason that she dug up anyway, and it all hangs against her chest with the coins and the necklaces and the stones worn smooth from years of handling.',
-          'She doesn\'t hide her face because she decided a long time ago that hiding things costs energy she can\'t spare. There is nothing in her expression that will give you what you\'re looking for. She learned that the same place she learned everything else, which is by finding the door marked do not open and opening it anyway.',
-          'The hand extended outward is not performance. She is doing something, the same way you might reach for a glass of water. What you can see is just the surface of it, and the surface is never the dangerous part.'
-        )">
-          <div class="char-name">Sorceress</div>
-          <div class="char-order">Practitioner</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- SPECIALISTS -->
-    <div class="char-group">
-      <div class="char-group-label">Specialists</div>
-      <div class="char-grid">
-
-        <div class="char-card" onclick="openModal('Specialist','Oracle',
-          'The hardest thing to get people to understand about the Oracle is that nobody made them do it. There\'s a kind of person who, when told not to look, looks. When told the truth will cost more than they can probably afford, pays anyway and worries about the debt later. When handed a thing that shows them everything they don\'t want to know, keeps looking because looking is the only thing that feels like any kind of control even when nothing is. The Oracle is that kind of person taken to its conclusion, and if you\'re being honest with yourself, you know someone like that. You might be a little like that yourself.',
-          'The marks on their face are preparation, the same as you\'d brace yourself before reading a letter you already know contains bad news. Not ritual. Not ceremony. Just getting ready, the same way anyone gets ready for something they know is going to cost them.',
-          'The orb shows them what\'s there, not what they\'d like to be there. They figured out the difference early and never made peace with it, which is probably why they keep opening it anyway. Everything they see they carry. Every vision, every face, every ending that rolled in exactly the way they watched it coming.',
-          'They don\'t get to put any of it down. They\'re still looking. They always are.'
-        )">
-          <div class="char-name">Oracle</div>
-          <div class="char-order">Specialist</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Specialist','Plague Doctor',
-          'There is a type of person who runs toward the thing everyone else is running from, not because they aren\'t afraid but because the not-knowing is worse than the fear. The Plague Doctor is that type, turned up until the dial broke off.',
-          'They were doing this before any deal. They were already the one who went into the room, who looked at the thing spreading in the dark, who needed to find the pattern underneath what everyone else was calling random and terrible. The deal made them better at it. Sharper. The way a good lens makes things bigger and clearer and harder to look away from.',
-          'They see the spread before it starts. They see the system inside the sickness. They see the pattern. They stopped being grateful for that somewhere around the third or fourth time it showed them something they genuinely wished they didn\'t know, and they don\'t complain about it, and they still put the coat on every morning.',
-          'The mask was never for them. The herbs that used to go in the beak are long gone. Whatever it\'s keeping out now, it isn\'t bad air. They still show up. Whatever the seeing costs, they go where the sickness is. Nobody ever asks what happens when they arrive.'
-        )">
-          <div class="char-name">Plague Doctor</div>
-          <div class="char-order">Specialist</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Specialist','Alchemist',
-          'The Alchemist is not evil. They are not cruel and they don\'t mean to cause harm and this is worth understanding before you look at the bottles. They are simply, completely, interested. In everything. In what happens when this combines with that. In what the stuff between worlds is actually made of, and whether you can break it down to its parts, and whether those parts behave differently alone than they do together. In whether something new comes out the other end of the process.',
-          'The bottles are the evidence of years of that interest and there are a lot of bottles. The coat is stained because the work doesn\'t stay clean, and they stopped caring about clean when it stopped being relevant to what they were doing, which happened sometime in the first year. Maybe the second.',
-          'The deal opened the door between the living and the dead and let them through whenever the work required it. Most people with that ability cross and come back and talk about what they saw. The Alchemist crosses and comes back with samples. That tells you most of what you need to know about how they approach things.',
-          'They\'re recording everything in handwriting nobody else can read. There are always more questions than answers. That\'s fine. That\'s the point. The face behind the mask is just overhead now. The work is the thing.'
-        )">
-          <div class="char-name">Alchemist</div>
-          <div class="char-order">Specialist</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ASCENDED -->
-    <div class="char-group">
-      <div class="char-group-label">Ascended</div>
-      <div class="char-grid">
-
-        <div class="char-card" onclick="openModal('Ascended · Crimson','The Demon',
-          'The Demon is what Crimson becomes when the body is still alive, but the person inside has already been spent.',
-          'There is no ceremony for it. No moment of transformation you can point to. It happens the same way everything in Crimson happens: incrementally, then all at once. The hesitation goes. Then the mercy. Then the last thing, the thing that was keeping the rest of it together, and after that there is only the blood and what it can be made to do.',
-          'The Demon is not a monster in the way people mean when they use that word. It is not large or loud or given to spectacle. It is precise. It is patient. It knows exactly what the body can do and exactly how long it can be made to last and it sees no reason to waste either.',
-          'What it wants is what Crimson always wanted. The wanting didn\'t change. The part of the person that felt bad about it did.'
-        )">
-          <div class="char-name">The Demon</div>
-          <div class="char-order">Ascended Crimson</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Mystic','The Fallen Angel',
-          'The Fallen Angel is what happens when Mystic looks past the last warning and reaches anyway.',
-          'There is always a last warning. It is not dramatic. It does not announce itself as a last warning. It is just a moment, the same as any other moment, where something in the back of the mind says: this is enough, turn back, you know enough now. The ones who become Fallen Angels are the ones who heard that voice and kept going anyway, because they always kept going, because stopping was never a thing they were capable of, not really, not when something was still left to know.',
-          'What they found on the other side of the last warning is not something that can be described to anyone who hasn\'t been there. They have tried. The words come out wrong. The closest any of them have gotten is this: it was like finally understanding a joke you\'ve been hearing your whole life.',
-          'They are not fallen in the way the name implies. They did not fail. They succeeded completely. That is the problem.'
-        )">
-          <div class="char-name">The Fallen Angel</div>
-          <div class="char-order">Ascended Mystic</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Spirit','The Ghost',
-          'The Ghost is what happens when someone stops crossing over and simply becomes the crossing.',
-          'It is not a death. The Ghost is not dead. That is perhaps the most unsettling thing about them, when you think about it long enough. They are not on either side of the door. They are the door. They are the in-between, the hallway, the place where the air goes wrong and the dogs start barking for no reason anyone can name.',
-          'The living feel them the same way they feel a change in weather coming. The dead recognize them immediately. To the dead, the Ghost looks like the last familiar thing, like the smell of a house you grew up in, like a road you have walked so many times your feet know the way without you.',
-          'Some of the dead follow. Most of them do.',
-          'The Ghost does not lead them anywhere in particular. The Ghost just is. And things that have been lost, and are still lost, and will be lost for a long time yet, they all drift toward the light of it. That is enough. That has always been enough. Even if the Ghost can\'t remember, anymore, what it felt like to have been something else.'
-        )">
-          <div class="char-name">The Ghost</div>
-          <div class="char-order">Ascended Spirit</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Wild','The Beast',
-          'The Beast is what remains when Wild has finished correcting the mistake of being human.',
-          'What is left is not nothing. That is the first thing to understand. The Beast is not empty. It is not mindless. It is not a hollow shell doing what instinct tells it. What is left is older than thought, older than language, older than the particular way human beings have of making everything about themselves.',
-          'It knows the ground. It knows the sky. It knows which way water moves underground and where the sick trees are and what the smell of the air means before a storm that is still three days away. It knows things that took the body ten thousand years to learn and that were thrown away for abstract thought and indoor plumbing.',
-          'Some of them are relieved, at the end. Some of them, just before the last human thing closes the door, feel something that is not quite peace but is the closest they have ever come to it.',
-          'The forest does not mourn for what they were. It just takes them back. It always takes everything back, eventually.'
-        )">
-          <div class="char-name">The Beast</div>
-          <div class="char-order">Ascended Wild</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-        <div class="char-card" onclick="openModal('Ascended · Cursed','The Condemned',
-          'The Condemned is what you become when your whole life is spent paying for someone else\'s handshake.',
-          'Not what you chose to become. Not what you worked toward or bargained for or even understood was coming. The Condemned arrive at their end the same way they arrived at everything else in their life: without having asked for it, without having been told what it would cost, because the cost was already set before they drew their first breath and the only question was how long the paying would take.',
-          'There is no peace in it. That would be too simple. The Condemned carry the full weight of the original debt plus interest, plus the weight of every year spent not knowing what they owed or why, plus the weight of whatever they had to give up along the way just to keep the thing from taking it without asking.',
-          'He knows all of this. He has always known. He watches the Condemned the way you might watch something that cost you a great deal of patience, with a kind of investment that is not quite sympathy and not quite satisfaction but contains something of both.',
-          'He has not closed the debt.',
-          'Not yet.'
-        )">
-          <div class="char-name">The Condemned</div>
-          <div class="char-order">Ascended Cursed</div>
-          <div class="char-cta">Read →</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- CREATOR -->
-    <div class="char-group">
-      <div class="char-group-label">Creator</div>
-      <div class="char-grid">
-        <div class="char-card locked">
-          <div class="char-name">The Architect</div>
-          <div class="char-order">Creator</div>
-          <div class="char-cta">Coming Soon</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── AFFLICTIONS ── -->
-<section class="page" id="afflictions">
-  <div class="aff-inner">
-    <h2 class="aff-title">Afflictions</h2>
-    <span class="aff-label">Coming Soon</span>
-    <p class="aff-copy">Something is coming. It has been coming for a while now. You will know it when it gets here.</p>
-  </div>
-</section>
-
-<!-- ── MODAL ── -->
-<div class="modal-wrap" id="modal" onclick="handleModalClick(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-label" id="modal-label"></div>
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
-</div>
-
-<script>
-// ── NAVIGATION ──
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('visible');
-  });
-  document.querySelectorAll('.nav-menu a').forEach(a => {
-    a.classList.remove('active');
-  });
-
-  const page = document.getElementById(id);
-  if (page) page.classList.add('visible');
-
-  const link = document.querySelector(`.nav-menu a[data-page="${id}"]`);
-  if (link) link.classList.add('active');
-
-  window.scrollTo(0, 0);
-}
-
-// ── MODAL ──
-function openModal(label, title, ...paragraphs) {
-  document.getElementById('modal-label').textContent = label;
-  document.getElementById('modal-title').textContent = title;
-  document.getElementById('modal-body').innerHTML = paragraphs
-    .map(p => `<p>${p}</p>`)
-    .join('');
-
-  const modal = document.getElementById('modal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  // scroll modal to top
-  modal.querySelector('.modal').scrollTop = 0;
-}
-
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function handleModalClick(e) {
-  if (e.target === document.getElementById('modal')) closeModal();
-}
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-});
-
-// init
-showPage('home');
-</script>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,30 +1,39 @@
-# The Covenant
+# THE COVENANT
 
-A dark fantasy collection website built around five bloodlines and a single crossroads.
+Official website for THE COVENANT collection by pixeljunkie.
+
+## Stack
+Pure HTML / CSS / JS — no build step required.
 
 ## Structure
+```
+/
+├── index.html          Landing page
+├── lore.html           Origin story & world lore
+├── bloodlines.html     The five bloodlines
+├── characters.html     Full character roster
+├── collection.html     Collection overview
+├── mint.html           Collect hub
+├── css/
+│   └── style.css       Shared design system
+├── js/
+│   └── main.js         Shared JS (nav, scroll reveal, modal)
+├── assets/
+│   └── images/         Art assets
+└── vercel.json         Deployment config
+```
 
-Single-file site (`index.html`) — no dependencies, no build step. All CSS and JS are inline.
+## Deploy to Vercel
+1. Push repo to GitHub
+2. Connect to Vercel — no build settings needed
+3. Live at `yourdomain.com`
 
-## Pages
-
-- **Home** — Hero with origin excerpt
-- **Lore** — The crossroads origin story and world overview
-- **Bloodlines** — Five bloodlines with click-to-reveal modal entries
-- **Characters** — Full roster grouped by order (Practitioners, Specialists, Ascended, Creator)
-- **Afflictions** — Coming soon
-
-## Hosting on GitHub Pages
-
-1. Push this repo to GitHub
-2. Go to **Settings → Pages**
-3. Set source to **main branch / root**
-4. Site will be live at `https://yourusername.github.io/repo-name`
+## Deploy to GitHub Pages
+1. Push repo to GitHub
+2. Settings → Pages → Source: main branch / root
+3. Live at `yourusername.github.io/repo-name`
 
 ## Fonts
-
-Loaded from Google Fonts:
-- UnifrakturMaguntia — hero title
-- Pirata One — section/page titles
-- Cinzel — navigation and labels
-- IM Fell English — body copy
+- Pirata One — brand / hero title
+- Cinzel — navigation, labels, section titles
+- IM Fell English — all body copy

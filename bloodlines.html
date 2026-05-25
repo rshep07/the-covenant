@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE COVENANT — Bloodlines</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .bl-wrap {
+      padding: 130px var(--page-pad) 100px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .bl-header {
+      max-width: 560px;
+      margin-bottom: 64px;
+    }
+
+    .bl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 60px;
+    }
+
+    .bl-card {
+      background: var(--black);
+      padding: 36px 30px;
+      cursor: pointer;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bl-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--crimson-dk);
+      transition: background 0.25s;
+    }
+
+    .bl-card:hover { background: var(--surface); }
+    .bl-card:hover::before { background: var(--crimson); }
+
+    .bl-num {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .bl-name {
+      font-family: var(--font-brand);
+      font-size: 26px;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+
+    .bl-hook {
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .bl-ascended {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--crimson-dk);
+      margin-bottom: 20px;
+    }
+
+    .bl-read {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      transition: opacity 0.2s, letter-spacing 0.25s;
+    }
+
+    .bl-card:hover .bl-read {
+      opacity: 1;
+      letter-spacing: 0.34em;
+    }
+
+    @media (max-width: 640px) {
+      .bl-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">THE COVENANT</a>
+    <ul class="nav-links">
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="bloodlines.html" class="active">Bloodlines</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="collection.html">Collection</a></li>
+    </ul>
+    <a href="mint.html" class="nav-cta">Collect</a>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="bl-wrap">
+
+    <div class="bl-header" data-reveal>
+      <span class="section-label">The Five</span>
+      <div class="section-title">Bloodlines</div>
+      <p class="section-body">Each bloodline is a different kind of deal made at the crossroads. Five hungers. Five prices. Five ways the thing gets into your blood and starts its work.</p>
+    </div>
+
+    <div class="bl-grid" data-reveal data-delay="100">
+
+      <div class="bl-card" onclick="openModal('Bloodline · I','Crimson',[
+        'Crimson starts with the body.',
+        'Not the soul. Not the mind. The body. The soft stuff. The meat. The pulse in the neck. The fingers twitching on a table. The breath that can be pulled back in or taken away.',
+        'That is what he gave them.',
+        'At first, it feels almost decent. Useful, even. A cut closes faster than it should. A fever breaks. A dying thing keeps breathing because somebody in Crimson wanted it to. You tell yourself that is mercy, and maybe once or twice it is.',
+        'Then comes the other side of it.',
+        'A body can be helped. A body can also be made to hurt. It can be stopped. Bent. Opened. Taught to obey.',
+        'He keeps count. Of course he does. Every life spared. Every life taken. Every time the blood answered when it should not have. Nothing is free, especially not from him.',
+        'The first thing Crimson loses is hesitation. They usually mistake that for strength. The second thing is mercy. They mistake that for clarity. The last thing is worse, because by the time it leaves, there is no one left inside decent enough to miss it.',
+        'The Demon is what Crimson becomes when the body is still alive, but the person inside has already been spent.'
+      ])">
+        <div class="bl-num">Bloodline I</div>
+        <div class="bl-name">Crimson</div>
+        <div class="bl-hook">Power over the body. The breath. The thing that keeps it all running.</div>
+        <div class="bl-ascended">Ascended — The Demon</div>
+        <div class="bl-read">Read More →</div>
+      </div>
+
+      <div class="bl-card" onclick="openModal('Bloodline · II','Mystic',[
+        'Mystic is what happens when somebody opens a door they were warned about.',
+        'Everybody wants to know things. That part is ordinary. Who loved you. Who lied. What waits after the last breath. Whether the dead remember us. Whether anything is watching.',
+        'Most people ask once and get scared of the answer.',
+        'The Mystic bloodline kept asking.',
+        'He gave them sight, but not the soft kind. Not visions wrapped in candles and pretty smoke. He gave them the kind that peels paint off the world. The kind that shows you what has been standing in the corner the whole time. The kind that makes you understand why some doors were locked from both sides.',
+        'In return, he gets the first look. Every secret they uncover passes through him before it belongs to them. Every hidden thing, every buried name, every little truth with teeth.',
+        'At first, they think they can handle it. That is how it always starts. They see shapes in rooms where nothing should be. Hear voices under running water. Dream of places they have never been and wake up knowing the way there.',
+        'Then the old life starts to thin out. Friends feel like strangers. Mirrors take too long to give back the right face. The world is still there, same as before, but Mystic is not standing in the same version of it anymore.',
+        'The Fallen Angel is what happens when Mystic looks past the last warning and reaches anyway.'
+      ])">
+        <div class="bl-num">Bloodline II</div>
+        <div class="bl-name">Mystic</div>
+        <div class="bl-hook">Forbidden knowledge. The kind that shows you what was standing there the whole time.</div>
+        <div class="bl-ascended">Ascended — The Fallen Angel</div>
+        <div class="bl-read">Read More →</div>
+      </div>
+
+      <div class="bl-card" onclick="openModal('Bloodline · III','Spirit',[
+        'The dead are not gone the way people think they are.',
+        'Some leave clean. Most do not.',
+        'They hang around in stupid places. Kitchens. Backseats. Hospital rooms. The foot of a bed. A hallway where bad news was given. They keep doing the last thing they understood, because death does not make everyone wise. Sometimes it only makes them lost.',
+        'He rules the dead, but the dead are everywhere. Too many rooms. Too many graves. Too many people who died with something still stuck in their mouth.',
+        'So he made the Spirit bloodline.',
+        'They go where he cannot be bothered to go. They speak to what lingers. They move along what refuses to move. They stand in the doorway between here and there and keep the traffic from piling up.',
+        'It sounds noble until you understand the price.',
+        'Spirit never really comes home. Not all the way. The living can feel it. They get quiet when Spirit enters a room, though they do not know why. Dogs stare. Babies cry. Old people look away.',
+        'The dead know right away. To them, Spirit shines like a porch light at the end of a long road.',
+        'The Ghost is what happens when someone stops crossing over and simply becomes the crossing.'
+      ])">
+        <div class="bl-num">Bloodline III</div>
+        <div class="bl-name">Spirit</div>
+        <div class="bl-hook">Passage between the living and the dead. A porch light at the end of a long road.</div>
+        <div class="bl-ascended">Ascended — The Ghost</div>
+        <div class="bl-read">Read More →</div>
+      </div>
+
+      <div class="bl-card" onclick="openModal('Bloodline · IV','Wild',[
+        'Wild is older than people.',
+        'Older than names. Older than houses. Older than the first poor fool who looked at the dark line of trees and decided the world could be owned.',
+        'Wild was there before that. Waiting. Growing. Eating what fell. Turning bone to dirt and dirt to root and root to hunger.',
+        'He did not create that cycle. Nobody did. But he knows it. He knows what the ground takes. He knows what crawls back out of it.',
+        'The Wild bloodline wanted in.',
+        'That is the part people get wrong. They were not dragged. Not at first. They looked at the short, noisy little business of being human and decided they had enough of it. Enough worry. Enough memory. Enough waking up every day trapped in the same skin.',
+        'So he opened the door.',
+        'Wild does not change you all at once. It is patient. It starts with the skin. A rash that is not a rash. A smell like wet leaves. Dirt under the nails even after washing. Dreams of roots pushing through ribs.',
+        'Then it gets deeper. Names stop mattering. Faces stop mattering. Hunger gets simple. Fear gets simple. The body learns old instructions.',
+        'Some of them are relieved. That may be the worst part.',
+        'The Beast is what remains when Wild has finished correcting the mistake of being human.'
+      ])">
+        <div class="bl-num">Bloodline IV</div>
+        <div class="bl-name">Wild</div>
+        <div class="bl-hook">Older than names. Older than the idea that the world could be owned.</div>
+        <div class="bl-ascended">Ascended — The Beast</div>
+        <div class="bl-read">Read More →</div>
+      </div>
+
+      <div class="bl-card" onclick="openModal('Bloodline · V','Cursed',[
+        'The Cursed did not ask for any of this.',
+        'That is what makes them different.',
+        'Crimson asked. Mystic asked. Spirit asked. Wild asked. They all walked up to the dark with their hands out and wanted something badly enough to pay for it.',
+        'The Cursed were born with the bill already waiting.',
+        'Somewhere back in the family, somebody made a deal. Maybe they were desperate. Maybe they were greedy. Maybe they thought they were smarter than the thing across from them.',
+        'They were not.',
+        'The deal went bad. The debt stayed open. And he does not forget what he is owed.',
+        'So it passed down. Not like a story. Stories can be changed. Not like money. Money can be lost. This passed down like a bad heart. Like a stain in the blood. Like a thing sleeping under the floorboards that wakes up every time another child is born.',
+        'The Cursed do not know the original terms. They do not know what was taken. They do not know who signed first. They only know they owe, and that the owing has been there longer than they have.',
+        'He could tell them. He could name the ancestor. He could settle the debt, burn the paper, close the door.',
+        'He has not.',
+        'The Condemned is what you become when your whole life is spent paying for someone else\'s handshake.'
+      ])">
+        <div class="bl-num">Bloodline V</div>
+        <div class="bl-name">Cursed</div>
+        <div class="bl-hook">They never asked. The debt was already there when they were born into it.</div>
+        <div class="bl-ascended">Ascended — The Condemned</div>
+        <div class="bl-read">Read More →</div>
+      </div>
+
+    </div>
+
+    <div class="divider" data-reveal data-delay="200">
+      <span class="divider-glyph">✦</span>
+    </div>
+
+    <div data-reveal data-delay="250" style="text-align:center;">
+      <a href="characters.html" class="btn btn-outline">View All Characters</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
+      <ul class="footer-links">
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="bloodlines.html">Bloodlines</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="mint.html">Collect</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank" rel="noopener">X</a>
+        <a href="https://opensea.io" target="_blank" rel="noopener">OpenSea</a>
+      </div>
+      <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-wrap" id="modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-label" id="modal-label"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
