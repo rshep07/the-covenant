@@ -2,7 +2,7 @@
    THE COVENANT — Design System
    ═══════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;0,800&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap');
 
 :root {
   --black:         #070504;
@@ -28,7 +28,7 @@
   --border-mid:    rgba(184,144,64,0.32);
   --border-strong: rgba(184,144,64,0.55);
 
-  --font-brand:    'Uncial Antiqua', serif;
+  --font-brand:    'Spectral', serif;
   --font-title:    'Cinzel', serif;
   --font-body:     'IM Fell English', Georgia, serif;
 
