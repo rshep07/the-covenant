@@ -48,6 +48,10 @@
     .char-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+    }
+
+    .char-grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .char-grid-3 { grid-template-columns: repeat(3, 1fr); }
       gap: 2px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -96,7 +100,7 @@
     .char-card:hover .char-cta { color: var(--gold); }
 
     @media (max-width: 640px) {
-      .char-grid { grid-template-columns: repeat(2, 1fr); }
+      .char-grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
   </style>
 </head>
@@ -125,7 +129,7 @@
     <!-- PRACTITIONERS -->
     <div class="char-group" data-reveal data-delay="80">
       <div class="char-group-label">Practitioners</div>
-      <div class="char-grid">
+      <div class="char-grid char-grid-5">
 
         <div class="char-card" onclick="openModal('Practitioner','Witch Doctor',[
           'The Witch Doctor knows things they shouldn\'t know. Not the big things. Not the secrets of the universe. The small things. The specific, terrible, useful small things. Which root combined with which other root does what to which organ. Where the thin places are between here and whatever comes next. What to say, exactly how to say it, when you need something from the other side to pay attention and cooperate. They learned all of it the hard way, because there is no other way this particular curriculum gets taught, and every lesson cost something they can\'t get back.',
@@ -189,7 +193,7 @@
     <!-- SPECIALISTS -->
     <div class="char-group" data-reveal data-delay="120">
       <div class="char-group-label">Specialists</div>
-      <div class="char-grid">
+      <div class="char-grid char-grid-3">
 
         <div class="char-card" onclick="openModal('Specialist','Oracle',[
           'The hardest thing to get people to understand about the Oracle is that nobody made them do it. There\'s a kind of person who, when told not to look, looks. When told the truth will cost more than they can probably afford, pays anyway and worries about the debt later. When handed a thing that shows them everything they don\'t want to know, keeps looking because looking is the only thing that feels like any kind of control even when nothing is. The Oracle is that kind of person taken to its conclusion, and if you\'re being honest with yourself, you know someone like that. You might be a little like that yourself.',
@@ -230,7 +234,7 @@
     <!-- ASCENDED -->
     <div class="char-group" data-reveal data-delay="160">
       <div class="char-group-label">Ascended</div>
-      <div class="char-grid">
+      <div class="char-grid char-grid-5">
 
         <div class="char-card" onclick="openModal('Ascended · Crimson','The Demon',[
           'The Demon is what Crimson becomes when the body is still alive, but the person inside has already been spent.',
