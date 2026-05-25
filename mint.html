@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE COVENANT — Mint</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <title>THE COVENANT — Collect</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .coming-soon {
+    .coming {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -16,17 +15,20 @@
       text-align: center;
       padding: 120px var(--page-pad) 80px;
     }
-    .coming-soon h1 {
-      font-family: 'Cormorant SC', serif;
-      font-size: clamp(32px, 5vw, 60px);
+    .coming-title {
+      font-family: var(--font-brand);
+      font-size: clamp(36px, 6vw, 64px);
       color: var(--gold-light);
-      letter-spacing: 4px;
-      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+      opacity: 0.5;
     }
-    .coming-soon p {
-      color: var(--text-dim);
+    .coming-body {
       font-style: italic;
       font-size: 16px;
+      color: var(--text-dim);
+      max-width: 360px;
+      line-height: 1.9;
       margin-bottom: 40px;
     }
   </style>
@@ -40,13 +42,13 @@
       <li><a href="characters.html">Characters</a></li>
       <li><a href="collection.html">Collection</a></li>
     </ul>
-    <a href="mint.html" class="nav-cta">Collect</a>
+    <a href="mint.html" class="nav-cta active">Collect</a>
     <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
-  <div class="coming-soon">
-    <div class="section-label">THE COVENANT</div>
-    <h1>Mint</h1>
-    <p>The seal has not yet been broken on this page. It is coming.</p>
+  <div class="coming" data-reveal>
+    <span class="section-label">The Covenant</span>
+    <div class="coming-title">Collect</div>
+    <p class="coming-body">The seal has not yet been broken on this page. It is coming.</p>
     <a href="index.html" class="btn btn-outline">Return Home</a>
   </div>
   <script src="js/main.js"></script>

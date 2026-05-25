@@ -1,6 +1,6 @@
 # THE COVENANT
 
-Official website for THE COVENANT NFT collection by pixeljunkie.
+Official website for THE COVENANT collection by pixeljunkie.
 
 ## Stack
 Pure HTML / CSS / JS — no build step required.
@@ -9,23 +9,31 @@ Pure HTML / CSS / JS — no build step required.
 ```
 /
 ├── index.html          Landing page
+├── lore.html           Origin story & world lore
 ├── bloodlines.html     The five bloodlines
 ├── characters.html     Full character roster
-├── lore.html          World lore & mythology  
-├── collection.html     Collection breakdown & supply
-├── mint.html          Collect / mint hub
+├── collection.html     Collection overview
+├── mint.html           Collect hub
 ├── css/
-│   └── style.css      Shared design system
+│   └── style.css       Shared design system
 ├── js/
-│   └── main.js        Shared JS (nav, animations)
-└── assets/
-    └── images/        Art assets
+│   └── main.js         Shared JS (nav, scroll reveal, modal)
+├── assets/
+│   └── images/         Art assets
+└── vercel.json         Deployment config
 ```
 
-## Deploy
-1. Push to GitHub
-2. Connect repo to Vercel
-3. Deploy — no build settings needed (static HTML)
+## Deploy to Vercel
+1. Push repo to GitHub
+2. Connect to Vercel — no build settings needed
+3. Live at `yourdomain.com`
 
-## Domain
-Point your custom domain in Vercel dashboard → Settings → Domains
+## Deploy to GitHub Pages
+1. Push repo to GitHub
+2. Settings → Pages → Source: main branch / root
+3. Live at `yourusername.github.io/repo-name`
+
+## Fonts
+- Pirata One — brand / hero title
+- Cinzel — navigation, labels, section titles
+- IM Fell English — all body copy

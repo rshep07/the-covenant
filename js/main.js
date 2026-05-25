@@ -5,7 +5,7 @@ const nav = document.querySelector('.nav');
 if (nav) {
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
+  }, { passive: true });
 }
 
 // ── MOBILE HAMBURGER ──
@@ -14,7 +14,6 @@ const navLinks  = document.querySelector('.nav-links');
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
-    hamburger.classList.toggle('open');
   });
   navLinks.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => navLinks.classList.remove('open'));
@@ -34,22 +33,48 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 const revealEls = document.querySelectorAll('[data-reveal]');
 if (revealEls.length) {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
+        const delay = Number(entry.target.dataset.delay || 0);
         setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          entry.target.classList.add('revealed');
         }, delay);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
 
-  revealEls.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(el);
+  revealEls.forEach(el => observer.observe(el));
+}
+
+// ── MODAL ──
+const modalWrap  = document.getElementById('modal');
+const modalLabel = document.getElementById('modal-label');
+const modalTitle = document.getElementById('modal-title');
+const modalBody  = document.getElementById('modal-body');
+
+function openModal(label, title, paragraphs) {
+  if (!modalWrap) return;
+  modalLabel.textContent = label;
+  modalTitle.textContent = title;
+  modalBody.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+  modalWrap.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalWrap.querySelector('.modal').scrollTop = 0;
+}
+
+function closeModal() {
+  if (!modalWrap) return;
+  modalWrap.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+if (modalWrap) {
+  modalWrap.addEventListener('click', e => {
+    if (e.target === modalWrap) closeModal();
   });
 }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
