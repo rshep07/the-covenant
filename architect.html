@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE COVENANT — The Architect</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .arch-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px var(--page-pad) 80px;
+      position: relative;
+    }
+
+    .arch-sigil {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    .arch-sigil svg {
+      width: min(500px, 80vw);
+      height: min(500px, 80vw);
+    }
+
+    .arch-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 480px;
+    }
+
+    .arch-title {
+      font-family: var(--font-brand);
+      font-size: clamp(36px, 7vw, 72px);
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      line-height: 1;
+    }
+
+    .arch-rule {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 28px;
+    }
+
+    .arch-body {
+      font-style: italic;
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.95;
+      margin-bottom: 48px;
+    }
+
+    .arch-quote {
+      border-left: 1px solid var(--crimson-dk);
+      padding: 12px 22px;
+      text-align: left;
+      margin-bottom: 48px;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">THE COVENANT</a>
+    <ul class="nav-links">
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="bloodlines.html">Bloodlines</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="architect.html" class="active">The Architect</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="mint.html" class="nav-cta">Collect</a>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="arch-wrap" data-reveal>
+
+    <div class="arch-sigil">
+      <svg viewBox="0 0 400 400" fill="none" stroke="#d4b060" stroke-linecap="round">
+        <circle cx="200" cy="200" r="172" stroke-width="0.55"/>
+        <circle cx="200" cy="200" r="163" stroke-width="0.28" stroke-dasharray="3 11"/>
+        <line x1="200" y1="178" x2="200" y2="30" stroke-width="0.65"/>
+        <line x1="221" y1="193" x2="351" y2="152" stroke-width="0.65"/>
+        <line x1="213" y1="217" x2="292" y2="327" stroke-width="0.65"/>
+        <line x1="187" y1="217" x2="108" y2="327" stroke-width="0.65"/>
+        <line x1="179" y1="193" x2="49" y2="152" stroke-width="0.65"/>
+        <circle cx="200" cy="200" r="22" stroke-width="0.65"/>
+        <circle cx="200" cy="200" r="7" fill="#d4b060" stroke="none"/>
+        <polygon points="200,130 267,178 241,257 159,257 133,178" stroke-width="0.35" stroke-dasharray="3 9"/>
+      </svg>
+    </div>
+
+    <div class="arch-inner">
+      <span class="section-label">Creator</span>
+      <div class="arch-title">The Architect</div>
+      <div class="arch-rule"></div>
+      <blockquote class="arch-quote">
+        The Architect is the one outside the bloodlines. Not Crimson. Not Mystic. Not Spirit. Not Wild. Not Cursed. The Covenant is not his prison. It is his design.
+      </blockquote>
+      <p class="arch-body">Details to come.</p>
+      <a href="lore.html" class="btn btn-outline">Read the Lore</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
+      <ul class="footer-links">
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="bloodlines.html">Bloodlines</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="architect.html">The Architect</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank" rel="noopener">X</a>
+        <a href="https://opensea.io" target="_blank" rel="noopener">OpenSea</a>
+      </div>
+      <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -100,7 +100,7 @@ body::after {
 
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 24px;
   list-style: none;
 }
 
