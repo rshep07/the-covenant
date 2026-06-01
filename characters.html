@@ -56,10 +56,10 @@
 
     .char-card {
       background: #0e0a07;
-      padding: 22px 20px;
+      padding: 28px 24px;
       cursor: pointer;
-      transition: background 0.22s;
-      border: 1px solid rgba(184,144,64,0.3);
+      transition: background 0.25s;
+      border: 1px solid rgba(184,144,64,0.28);
       position: relative;
     }
 
@@ -67,13 +67,18 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1px;
-      background: rgba(184,144,64,0.5);
+      height: 2px;
+      background: rgba(184,144,64,0.4);
+      transition: background 0.25s;
     }
 
     .char-card:hover {
       background: var(--surface);
       border-color: rgba(184,144,64,0.5);
+    }
+
+    .char-card:hover::before {
+      background: rgba(184,144,64,0.7);
     }
 
     .char-card.locked {
@@ -83,36 +88,60 @@
 
     .char-card.locked:hover {
       background: #0e0a07;
-      border-color: rgba(184,144,64,0.3);
+      border-color: rgba(184,144,64,0.28);
     }
 
+    /* Ascended cards inherit bloodline color */
+    .char-card[data-bl="crimson"]::before  { background: #8b1515; }
+    .char-card[data-bl="mystic"]::before   { background: #6a2480; }
+    .char-card[data-bl="spirit"]::before   { background: #1a4090; }
+    .char-card[data-bl="wild"]::before     { background: #196626; }
+    .char-card[data-bl="cursed"]::before   { background: #3e3830; }
+
+    .char-card[data-bl="crimson"]:hover::before  { background: #cc2828; }
+    .char-card[data-bl="mystic"]:hover::before   { background: #9e44bb; }
+    .char-card[data-bl="spirit"]:hover::before   { background: #3468c8; }
+    .char-card[data-bl="wild"]:hover::before     { background: #28a03c; }
+    .char-card[data-bl="cursed"]:hover::before   { background: #6a6058; }
+
+    .char-card[data-bl="crimson"] .char-order  { color: #cc2828; opacity: 0.75; }
+    .char-card[data-bl="mystic"] .char-order   { color: #9e44bb; opacity: 0.75; }
+    .char-card[data-bl="spirit"] .char-order   { color: #3468c8; opacity: 0.75; }
+    .char-card[data-bl="wild"] .char-order     { color: #28a03c; opacity: 0.75; }
+    .char-card[data-bl="cursed"] .char-order   { color: #6a6058; opacity: 0.75; }
+
     .char-name {
-      font-family: var(--font-title);
-      font-size: 13px;
-      letter-spacing: 0.06em;
+      font-family: var(--font-brand);
+      font-size: 22px;
       color: var(--gold-light);
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
     }
 
     .char-order {
       font-style: italic;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      transition: color 0.25s;
     }
 
     .char-cta {
       font-family: var(--font-title);
       font-size: 9px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold-dim);
-      transition: color 0.25s;
+      transition: color 0.25s, letter-spacing 0.25s;
     }
 
-    .char-card:hover .char-cta { color: var(--gold); }
+    .char-card:hover .char-cta {
+      color: var(--gold);
+      letter-spacing: 0.32em;
+    }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .char-grid,
       .char-grid-5,
       .char-grid-3 { grid-template-columns: repeat(2, 1fr); }
@@ -212,31 +241,31 @@
       <div class="char-group-label">Ascended</div>
       <div class="char-grid char-grid-5">
 
-        <div class="char-card" onclick="openChar_The_Demon()">
+        <div class="char-card" data-bl="crimson" onclick="openChar_The_Demon()">
           <div class="char-name">The Demon</div>
           <div class="char-order">Ascended Crimson</div>
           <div class="char-cta">Read →</div>
         </div>
 
-        <div class="char-card" onclick="openChar_The_Fallen_Angel()">
+        <div class="char-card" data-bl="mystic" onclick="openChar_The_Fallen_Angel()">
           <div class="char-name">The Fallen Angel</div>
           <div class="char-order">Ascended Mystic</div>
           <div class="char-cta">Read →</div>
         </div>
 
-        <div class="char-card" onclick="openChar_The_Ghost()">
+        <div class="char-card" data-bl="spirit" onclick="openChar_The_Ghost()">
           <div class="char-name">The Ghost</div>
           <div class="char-order">Ascended Spirit</div>
           <div class="char-cta">Read →</div>
         </div>
 
-        <div class="char-card" onclick="openChar_The_Beast()">
+        <div class="char-card" data-bl="wild" onclick="openChar_The_Beast()">
           <div class="char-name">The Beast</div>
           <div class="char-order">Ascended Wild</div>
           <div class="char-cta">Read →</div>
         </div>
 
-        <div class="char-card" onclick="openChar_The_Condemned()">
+        <div class="char-card" data-bl="cursed" onclick="openChar_The_Condemned()">
           <div class="char-name">The Condemned</div>
           <div class="char-order">Ascended Cursed</div>
           <div class="char-cta">Read →</div>
