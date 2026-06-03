@@ -118,16 +118,24 @@
     .intro-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
+      gap: 8px;
     }
 
     .intro-item {
-      background: var(--black);
+      background: #0e0a07;
       padding: 36px 28px;
       text-align: center;
       transition: background 0.25s;
+      border: 1px solid rgba(184,144,64,0.28);
+      position: relative;
+    }
+
+    .intro-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: rgba(184,144,64,0.4);
     }
 
     .intro-item:hover { background: var(--surface); }
