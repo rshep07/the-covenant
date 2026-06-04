@@ -259,7 +259,7 @@
         </div>
 
         <div class="char-card" data-bl="wild" onclick="openChar_The_Beast()">
-          <div class="char-name">The Beast</div>
+          <div class="char-name">The Shapeshifter</div>
           <div class="char-order">Ascended Wild</div>
           <div class="char-cta">Read →</div>
         </div>
@@ -351,7 +351,372 @@
     openModal("Ascended \u00b7 Spirit", "The Ghost", ["The Ghost is the final shape of Spirit.", "It no longer moves between the living and the dead.", "It is the between.", "The living feel it before they see it. A cold shift in the room. A sound that stops too suddenly. The sense that something has opened nearby.", "The dead know it immediately. To them, The Ghost is not a person. It is a passage.", "The Ghost does not call the dead.", "They drift toward it anyway."]);
   }
   function openChar_The_Beast() {
-    openModal("Ascended \u00b7 Wild", "The Beast", ["The Beast is the final shape of Wild.", "It is not mindless. It is not empty. It is what remains when the human part has been replaced by something older and more honest.", "The Beast knows the ground, the roots, the weather, the rot under the leaves, and the hunger inside all living things.", "It does not think the way people think.", "It does not need to.", "Wild did not destroy the person.", "It corrected them."]);
+    openModal("Ascended \u00b7 Wild", "The Shapeshifter", ["The Shapeshifter is the final shape of Wild.", "It is not mindless. It is not empty. It is what remains when the human part has been replaced by something older and more honest.", "The Shapeshifter knows the ground, the roots, the weather, the rot under the leaves, and the hunger inside all living things.", "It does not think the way people think.", "It does not need to.", "Wild did not destroy the person.", "It corrected them."]);
+  }
+  function openChar_The_Condemned() {
+    openModal("Ascended \u00b7 Cursed", "The Condemned", ["The Condemned is the final shape of Cursed.", "They did not choose the Covenant. They inherited it.", "Every debt. Every broken promise. Every unpaid price. All of it passed down until it found a body strong enough to carry it and weak enough to suffer for it.", "The Condemned does not know the first bargain. They do not know who made it or what was taken.", "They only know the punishment never stopped coming.", "The Architect knows the truth.", "The Architect has not ended it."]);
+  }
+  function openChar_The_Architect() {
+    openModal("Creator", "The Architect", ["The Architect is the one outside the bloodlines.", "Not Crimson. Not Mystic. Not Spirit. Not Wild. Not Cursed.", "The Architect created the Covenant: the system of bargains, debts, rituals, relics, materials, and consequences that binds everything else together.", "Every bloodline began with a desire. Every desire became a bargain. Every bargain became a debt.", "The Architect does not need to appear often.", "The Covenant is not his prison.", "It is his design."]);
+  }
+  </script>
+</body>
+</html>function openChar_The_Shapeshifter() {
+    openModal("Ascended · Wild", "The Shapeshifter", ["The Wild bloodline was never meant to stay human.", "Those who carried it too long began to change in ways the body could not explain. Skin splitting into bark. Teeth growing where teeth should not be. Bones bending toward old animal shapes remembered by the earth.", "The Shapeshifter is what remains when the Wild bloodline stops resisting.", "It is not one creature. It is every creature. A body borrowed by rot, instinct, hunger, moss, fang, and old forest memory.", "Some say The Shapeshifter was once a man. Others say it was never a man at all, only the forest wearing one long enough to enter The Covenant.", "It does not hunt for sport. It does not kill from anger. It changes because change is what the Wild demands.", "And when it stands before the altar, no one knows what shape will answer."]);
+  }DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE COVENANT — Characters</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .char-wrap {
+      padding: 130px var(--page-pad) 100px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .char-header {
+      max-width: 560px;
+      margin-bottom: 64px;
+    }
+
+    .char-group { margin-bottom: 56px; }
+
+    .char-group-label {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .char-group-label::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--border-mid);
+    }
+
+    .char-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+      gap: 8px;
+    }
+
+    .char-grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .char-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .char-card {
+      background: #0e0a07;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: background 0.25s;
+      border: 1px solid rgba(184,144,64,0.28);
+      position: relative;
+    }
+
+    .char-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: rgba(184,144,64,0.4);
+      transition: background 0.25s;
+    }
+
+    .char-card:hover {
+      background: var(--surface);
+      border-color: rgba(184,144,64,0.5);
+    }
+
+    .char-card:hover::before {
+      background: rgba(184,144,64,0.7);
+    }
+
+    .char-card.locked {
+      cursor: default;
+      opacity: 0.36;
+    }
+
+    .char-card.locked:hover {
+      background: #0e0a07;
+      border-color: rgba(184,144,64,0.28);
+    }
+
+    /* Ascended cards inherit bloodline color */
+    .char-card[data-bl="crimson"]::before  { background: #8b1515; }
+    .char-card[data-bl="mystic"]::before   { background: #6a2480; }
+    .char-card[data-bl="spirit"]::before   { background: #1a4090; }
+    .char-card[data-bl="wild"]::before     { background: #196626; }
+    .char-card[data-bl="cursed"]::before   { background: #3e3830; }
+
+    .char-card[data-bl="crimson"]:hover::before  { background: #cc2828; }
+    .char-card[data-bl="mystic"]:hover::before   { background: #9e44bb; }
+    .char-card[data-bl="spirit"]:hover::before   { background: #3468c8; }
+    .char-card[data-bl="wild"]:hover::before     { background: #28a03c; }
+    .char-card[data-bl="cursed"]:hover::before   { background: #6a6058; }
+
+    .char-card[data-bl="crimson"] .char-order  { color: #cc2828; opacity: 0.75; }
+    .char-card[data-bl="mystic"] .char-order   { color: #9e44bb; opacity: 0.75; }
+    .char-card[data-bl="spirit"] .char-order   { color: #3468c8; opacity: 0.75; }
+    .char-card[data-bl="wild"] .char-order     { color: #28a03c; opacity: 0.75; }
+    .char-card[data-bl="cursed"] .char-order   { color: #6a6058; opacity: 0.75; }
+
+    .char-name {
+      font-family: var(--font-brand);
+      font-size: 15px;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .char-order {
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      transition: color 0.25s;
+    }
+
+    .char-cta {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      transition: color 0.25s, letter-spacing 0.25s;
+    }
+
+    .char-card:hover .char-cta {
+      color: var(--gold);
+      letter-spacing: 0.32em;
+    }
+
+    @media (max-width: 768px) {
+      .char-grid,
+      .char-grid-5,
+      .char-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">THE COVENANT</a>
+    <ul class="nav-links">
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="bloodlines.html">Bloodlines</a></li>
+      <li><a href="characters.html" class="active">Characters</a></li>
+      <li><a href="architect.html">The Architect</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="char-wrap">
+
+    <div class="char-header" data-reveal>
+      <span class="section-label">The Order</span>
+      <div class="section-title">Characters</div>
+      <p class="section-body">Those who carry the old knowledge. Those who found the pattern. Those who paid the full price. And the one who set the price to begin with.</p>
+    </div>
+
+    <!-- PRACTITIONERS -->
+    <div class="char-group" data-reveal data-delay="80">
+      <div class="char-group-label">Practitioners</div>
+      <div class="char-grid char-grid-5">
+
+        <div class="char-card" onclick="openChar_Witch_Doctor()">
+          <div class="char-name">Witch Doctor</div>
+          <div class="char-order">Practitioner</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" onclick="openChar_Shaman()">
+          <div class="char-name">Shaman</div>
+          <div class="char-order">Practitioner</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" onclick="openChar_Necromancer()">
+          <div class="char-name">Necromancer</div>
+          <div class="char-order">Practitioner</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" onclick="openChar_Warlock()">
+          <div class="char-name">Warlock</div>
+          <div class="char-order">Practitioner</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" onclick="openChar_Sorceress()">
+          <div class="char-name">Sorceress</div>
+          <div class="char-order">Practitioner</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SPECIALISTS -->
+    <div class="char-group" data-reveal data-delay="120">
+      <div class="char-group-label">Specialists</div>
+      <div class="char-grid char-grid-3">
+
+        <div class="char-card" onclick="openChar_Oracle()">
+          <div class="char-name">Oracle</div>
+          <div class="char-order">Specialist</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" onclick="openChar_Plague_Doctor()">
+          <div class="char-name">Plague Doctor</div>
+          <div class="char-order">Specialist</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" onclick="openChar_Alchemist()">
+          <div class="char-name">Alchemist</div>
+          <div class="char-order">Specialist</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ASCENDED -->
+    <div class="char-group" data-reveal data-delay="160">
+      <div class="char-group-label">Ascended</div>
+      <div class="char-grid char-grid-5">
+
+        <div class="char-card" data-bl="crimson" onclick="openChar_The_Demon()">
+          <div class="char-name">The Demon</div>
+          <div class="char-order">Ascended Crimson</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" data-bl="mystic" onclick="openChar_The_Fallen_Angel()">
+          <div class="char-name">The Fallen Angel</div>
+          <div class="char-order">Ascended Mystic</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" data-bl="spirit" onclick="openChar_The_Ghost()">
+          <div class="char-name">The Ghost</div>
+          <div class="char-order">Ascended Spirit</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" data-bl="wild" onclick="openChar_The_Beast()">
+          <div class="char-name">The Shapeshifter</div>
+          <div class="char-order">Ascended Wild</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+        <div class="char-card" data-bl="cursed" onclick="openChar_The_Condemned()">
+          <div class="char-name">The Condemned</div>
+          <div class="char-order">Ascended Cursed</div>
+          <div class="char-cta">Read →</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CREATOR -->
+    <div class="char-group" data-reveal data-delay="200">
+      <div class="char-group-label">Creator</div>
+      <div class="char-grid">
+        <div class="char-card" onclick="openChar_The_Architect()">
+          <div class="char-name">The Architect</div>
+          <div class="char-order">Creator</div>
+          <div class="char-cta">Read →</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer">
+      <div class="footer-brand">THE COVENANT</div>
+      <ul class="footer-links">
+        <li><a href="lore.html">Lore</a></li>
+        <li><a href="bloodlines.html">Bloodlines</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="architect.html">The Architect</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://x.com/pixeljunkie" target="_blank" rel="noopener">X</a>
+        <a href="https://opensea.io" target="_blank" rel="noopener">OpenSea</a>
+      </div>
+      <div class="footer-copy">© THE COVENANT by pixeljunkie. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-wrap" id="modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-label" id="modal-label"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+  function openChar_Witch_Doctor() {
+    openModal("Practitioner", "Witch Doctor", ["The Witch Doctor works closest to the raw practice of the Covenant.", "They know what to burn, what to bind, what to bury, and what words to use when something on the other side needs to listen. Their tools are not decoration. Feathers, beads, cords, bones, charms, and wrapped bundles all have a purpose.", "The Witch Doctor does not separate healing from harm. Both require the same knowledge. Both ask for the same price.", "The skull face is not a mask. Not anymore.", "It is what comes back after too many visits to the place between the living and the dead."]);
+  }
+  function openChar_Shaman() {
+    openModal("Practitioner", "Shaman", ["The Shaman stopped pretending the world was empty.", "They heard the things moving where nothing should move. They felt the old presence under the ground and stopped calling it nerves, grief, or imagination.", "The Spirit Mask is not ceremony. It is a reminder of the line they crossed and the person they did not come back as.", "The Shaman stands heavy and patient, half in the world of people and half in something older. The Covenant did not make them what they are.", "It found them halfway there and finished the work."]);
+  }
+  function openChar_Necromancer() {
+    openModal("Practitioner", "Necromancer", ["The Necromancer does not fear the dead.", "That is why the dead answer.", "Most people come to death full of grief, panic, or need. The Necromancer comes with patience. They know death is not silence. It is a language, and they have spent a long time learning how to speak it.", "They are drawn to places where something ended badly: empty rooms, dead fields, crossroads that still feel wrong years later.", "What they do is simple.", "They call. The dead answer.", "This is not mourning. Mourning is about loss.", "Necromancy is about possession."]);
+  }
+  function openChar_Warlock() {
+    openModal("Practitioner", "Warlock", ["The Warlock made a deal on purpose.", "They did not stumble into the Covenant. They came prepared. They knew what they wanted, knew what they were willing to give, and believed they could bargain with something older than mercy.", "The worst part is that it worked.", "They got more than others did. More power. More access. More permission. But the cost was higher too, and the bill is still open.", "The Warlock is not fully controlled by the pact.", "Not exactly.", "That is what makes them dangerous."]);
+  }
+  function openChar_Sorceress() {
+    openModal("Practitioner", "Sorceress", ["The Sorceress collects what was meant to stay hidden.", "Locked rooms. Buried names. Old charms. Sealed objects. Truths people died protecting. She finds them anyway.", "Her power does not come from spectacle. It comes from knowing what others do not and knowing exactly when to use it.", "The jewelry, coins, stones, and charms she carries are not decoration. They are proof. Each one came from somewhere it was never supposed to leave.", "When she raises her hand, it is not performance.", "It means something has already started."]);
+  }
+  function openChar_Oracle() {
+    openModal("Specialist", "Oracle", ["The Oracle sees what others were spared from seeing.", "They are not blessed. They asked for the truth and kept looking after it started to hurt.", "The marks on their face are not decoration. They are preparation. A way to brace the body before opening the mind to something it was never built to hold.", "The Oracle does not see what they want. They see what is there: the ending, the betrayal, the face in the dark, the thing waiting at the edge of the vision.", "People come to them for answers.", "The Oracle gives the answer away, but keeps the weight of seeing it."]);
+  }
+  function openChar_Plague_Doctor() {
+    openModal("Specialist", "Plague Doctor", ["The Plague Doctor goes where sickness has already entered.", "They were doing it before the Covenant. Walking into sealed rooms. Studying what spread. Looking for the pattern beneath the fear while everyone else tried to escape.", "The Covenant made them sharper. Better at seeing what moves through blood, breath, rot, and touch. Better at finding the source. Worse at looking away.", "The mask was never really for them. Not after the change.", "The Plague Doctor understands the line between medicine and infection better than anyone.", "They also know how easy it is to cross."]);
+  }
+  function openChar_Alchemist() {
+    openModal("Specialist", "Alchemist", ["The Alchemist wants to know what everything becomes when it is taken apart.", "Blood. Bone. Breath. Spirit. Rot. Memory. Death.", "Nothing is sacred once it can be studied.", "They are not driven by cruelty. That would be easier to understand. They are driven by interest, and interest can be worse when it has no natural stopping point.", "The bottles are not ingredients. They are results.", "The Covenant gave them access to places most people only reach once. The Alchemist went there and came back with samples.", "The work is what remains."]);
+  }
+  function openChar_The_Demon() {
+    openModal("Ascended \u00b7 Crimson", "The Demon", ["The Demon is the final shape of Crimson.", "It is what remains when power over the body has taken everything else away.", "No hesitation. No mercy. No disgust. No fear of what flesh can be made to do.", "The Demon is not wild. It is controlled, patient, and exact. It understands the body as a tool, a weapon, a door, and a debt.", "What Crimson wanted never changed.", "Only the part that felt bad about wanting it."]);
+  }
+  function openChar_The_Fallen_Angel() {
+    openModal("Ascended \u00b7 Mystic", "The Fallen Angel", ["The Fallen Angel is the final shape of Mystic.", "It is what happens when forbidden knowledge stops being a warning and becomes an invitation.", "They looked past the last boundary and found something that was never meant to be understood. Not by the living. Not by the dead. Maybe not even by The Architect.", "They are not fallen because they failed.", "They are fallen because they succeeded.", "The knowledge did not destroy them.", "It remade them into something that can never return to ignorance."]);
+  }
+  function openChar_The_Ghost() {
+    openModal("Ascended \u00b7 Spirit", "The Ghost", ["The Ghost is the final shape of Spirit.", "It no longer moves between the living and the dead.", "It is the between.", "The living feel it before they see it. A cold shift in the room. A sound that stops too suddenly. The sense that something has opened nearby.", "The dead know it immediately. To them, The Ghost is not a person. It is a passage.", "The Ghost does not call the dead.", "They drift toward it anyway."]);
+  }
+  function openChar_The_Beast() {
+    openModal("Ascended \u00b7 Wild", "The Shapeshifter", ["The Shapeshifter is the final shape of Wild.", "It is not mindless. It is not empty. It is what remains when the human part has been replaced by something older and more honest.", "The Shapeshifter knows the ground, the roots, the weather, the rot under the leaves, and the hunger inside all living things.", "It does not think the way people think.", "It does not need to.", "Wild did not destroy the person.", "It corrected them."]);
   }
   function openChar_The_Condemned() {
     openModal("Ascended \u00b7 Cursed", "The Condemned", ["The Condemned is the final shape of Cursed.", "They did not choose the Covenant. They inherited it.", "Every debt. Every broken promise. Every unpaid price. All of it passed down until it found a body strong enough to carry it and weak enough to suffer for it.", "The Condemned does not know the first bargain. They do not know who made it or what was taken.", "They only know the punishment never stopped coming.", "The Architect knows the truth.", "The Architect has not ended it."]);
