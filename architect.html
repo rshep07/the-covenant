@@ -7,70 +7,91 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     .arch-wrap {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px var(--page-pad) 80px;
-      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 130px var(--page-pad) 120px;
     }
 
-    .arch-sigil {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.03;
-      pointer-events: none;
-    }
-
-    .arch-sigil svg {
-      width: min(500px, 80vw);
-      height: min(500px, 80vw);
-    }
-
-    .arch-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 480px;
+    .arch-eyebrow {
+      font-family: var(--font-title);
+      font-size: 9px;
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 12px;
+      display: block;
     }
 
     .arch-title {
       font-family: var(--font-brand);
-      font-size: clamp(36px, 7vw, 72px);
+      font-size: clamp(32px, 5vw, 56px);
       color: var(--gold-light);
-      letter-spacing: 0.05em;
-      margin-bottom: 24px;
-      line-height: 1;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      line-height: 1.1;
     }
 
     .arch-rule {
-      width: 60px;
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+
+    .arch-prose p {
+      font-size: 17px;
+      line-height: 2.05;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .arch-prose p:last-child { margin-bottom: 0; }
+
+    .arch-prose p.pull {
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 17px;
+      opacity: 0.85;
+    }
+
+    .arch-number {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .arch-highlight {
+      background: #0e0a07;
+      border: 1px solid rgba(184,144,64,0.28);
+      border-left: 2px solid var(--crimson-dk);
+      padding: 28px 30px;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .arch-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 0 auto 28px;
+      background: rgba(184,144,64,0.35);
     }
 
-    .arch-body {
-      font-style: italic;
+    .arch-highlight p {
       font-size: 16px;
-      color: var(--text-dim);
       line-height: 1.95;
-      margin-bottom: 48px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
     }
 
-    .arch-quote {
-      border-left: 1px solid var(--crimson-dk);
-      padding: 12px 22px;
-      text-align: left;
-      margin-bottom: 48px;
-      font-style: italic;
-      font-size: 15px;
-      color: var(--text-dim);
-      line-height: 1.9;
+    .arch-highlight p:last-child { margin-bottom: 0; }
+
+    .arch-highlight .arch-number {
+      margin-bottom: 16px;
     }
   </style>
 </head>
@@ -90,30 +111,37 @@
 
   <div class="arch-wrap" data-reveal>
 
-    <div class="arch-sigil">
-      <svg viewBox="0 0 400 400" fill="none" stroke="#d4b060" stroke-linecap="round">
-        <circle cx="200" cy="200" r="172" stroke-width="0.55"/>
-        <circle cx="200" cy="200" r="163" stroke-width="0.28" stroke-dasharray="3 11"/>
-        <line x1="200" y1="178" x2="200" y2="30" stroke-width="0.65"/>
-        <line x1="221" y1="193" x2="351" y2="152" stroke-width="0.65"/>
-        <line x1="213" y1="217" x2="292" y2="327" stroke-width="0.65"/>
-        <line x1="187" y1="217" x2="108" y2="327" stroke-width="0.65"/>
-        <line x1="179" y1="193" x2="49" y2="152" stroke-width="0.65"/>
-        <circle cx="200" cy="200" r="22" stroke-width="0.65"/>
-        <circle cx="200" cy="200" r="7" fill="#d4b060" stroke="none"/>
-        <polygon points="200,130 267,178 241,257 159,257 133,178" stroke-width="0.35" stroke-dasharray="3 9"/>
-      </svg>
+    <span class="arch-eyebrow">Creator · Covenant #150</span>
+    <div class="arch-title">The Architect</div>
+
+    <hr class="arch-rule">
+
+    <div class="arch-highlight">
+      <span class="arch-number">The Piece</span>
+      <p>COVENANT #150 will be the final piece in the original collection. The first 149 pieces will be released through the main mint. Once they sell out, The Architect will be offered separately as a special 1/1 auction.</p>
+      <p>As the only character outside the bloodlines, The Architect will have a unique role in everything that follows. The holder will receive special access to post-mint airdrops, materials, relics, artifacts, and rituals that are not available through any other character.</p>
+      <p>This will not simply mean receiving more of the same items. Certain ritual paths and outcomes will be created specifically around The Architect and his position as the creator of the system. His participation will be rare, deliberate, and separate from the advantages attached to Crimson, Mystic, Spirit, Wild, and Cursed.</p>
     </div>
 
-    <div class="arch-inner">
-      <span class="section-label">Creator</span>
-      <div class="arch-title">The Architect</div>
-      <div class="arch-rule"></div>
-      <blockquote class="arch-quote">
-        The Architect is the one outside the bloodlines. Not Crimson. Not Mystic. Not Spirit. Not Wild. Not Cursed. The Covenant is not his prison. It is his design.
-      </blockquote>
-      <p class="arch-body">Details to come.</p>
-      <a href="lore.html" class="btn btn-outline">Read the Lore</a>
+    <div class="arch-prose">
+      <p>The Architect stands outside those bloodlines.</p>
+
+      <p>He came before their names, before the first ritual was performed, and before anyone understood what a bargain with The Covenant would become.</p>
+
+      <p>Every bloodline began with a desire. Power over the body. Knowledge that had been hidden. Passage between the living and the dead. Freedom from the limits of being human. Relief from a debt inherited at birth.</p>
+
+      <p class="pull">The Architect gave those desires structure.</p>
+
+      <p>He created the bargains, debts, rituals, relics, materials, and consequences that bind The Covenant together. Every offering has a purpose. Every ritual has a cost. Every unpaid debt remains part of the design.</p>
+
+      <p>The Architect does not serve a bloodline or answer to its rules. He knows the original terms behind every agreement, what remains unpaid, and what each character may become when the Covenant finally collects what it is owed.</p>
+
+      <p>He does not need to appear often.</p>
+
+      <p>His influence is already present in every bargain, every burn, and every consequence.</p>
+
+      <p class="pull">The Covenant is not his prison.</p>
+      <p class="pull">It is his design.</p>
     </div>
 
   </div>
